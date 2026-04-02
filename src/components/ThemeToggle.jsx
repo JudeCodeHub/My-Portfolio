@@ -30,18 +30,18 @@ export const ThemeToggle = () => {
 
   return (
    <button
-    onClick={toggleTheme}
-    className={cn(
+      onClick={toggleTheme}
+      className={cn(
         "fixed max-sm:hidden top-5 right-5 z-50 p-2.5 rounded-full",
         "border transition-all duration-300",
     isDarkMode
-      ? "bg-violet-950 border-violet-500 shadow-[0_0_12px_rgba(139,92,246,0.6)] hover:shadow-[0_0_20px_rgba(139,92,246,0.8)]"
-      : "bg-white border-sky-200 shadow-[0_0_12px_rgba(56,189,248,0.4)] hover:shadow-[0_0_20px_rgba(56,189,248,0.6)]"
-    )}
-    >
-  {isDarkMode
-    ? <Moon className="h-5 w-5 text-violet-300" />
-    : <Sun className="h-5 w-5 text-sky-500" />}
-    </button>
+      ? "bg-sky-950 border-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.5)] hover:shadow-[0_0_20px_rgba(56,189,248,0.7)]"
+      : "bg-white border-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.4)] hover:shadow-[0_0_20px_rgba(56,189,248,0.6)]"
+  )}
+  >
+    {isDarkMode
+      ? <Moon className="h-5 w-5 text-sky-400" />
+      : <Sun  className="h-5 w-5 text-sky-400" />}
+  </button>
   );
 };

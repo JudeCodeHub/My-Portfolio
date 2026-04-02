@@ -1,5 +1,5 @@
 import { ThemeToggle } from "../components/ThemeToggle"
-import { BackgroundEffects } from "../components/BackgroundEffects"
+import { BackgroundEffects } from "@/components/BackgroundEffects"
 
 export const Home = () => {
   return (

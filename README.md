@@ -11,8 +11,6 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Live](https://img.shields.io/badge/Live-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://your-portfolio-link.com)
 
-[🌐 Live](https://your-portfolio-link.com) · [📬 Contact](mailto:your@email.com) · [💼 LinkedIn](https://linkedin.com/in/yourname)
-
 </div>
 
 ---

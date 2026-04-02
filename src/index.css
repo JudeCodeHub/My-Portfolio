@@ -69,7 +69,8 @@
 
     --card: 0 0% 100%;
 
-    --primary: 250 47% 60%;
+    /* Updated to sky-500 for light mode */
+    --primary: 199 89% 48%;
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
@@ -81,7 +82,8 @@
 
     --card: 222 47% 8%;
 
-    --primary: 250 65% 65%;
+    /* Updated to sky-400 for dark mode */
+    --primary: 199 92% 60%;
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
@@ -124,7 +126,8 @@
 
 @utility text-glow {
   @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  /* Updated shadow to blue */
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
 @utility card-hover {
@@ -139,8 +142,9 @@
 }
 
 @utility cosmic-button {
+  /* Updated shadow to blue */
   @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+         transition-all duration-300 hover:shadow-[0_0_10px_rgba(56,189,248,0.5)]
          hover:scale-105 active:scale-95;
 }
 

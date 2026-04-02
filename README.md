@@ -1,16 +1,57 @@
-# React + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ✦ Judechihan — Portfolio
 
-Currently, two official plugins are available:
+*Crafting elegant digital experiences, one component at a time.*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<br/>
 
-## React Compiler
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Live](https://img.shields.io/badge/Live-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://your-portfolio-link.com)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[🌐 Live](https://your-portfolio-link.com) · [📬 Contact](mailto:your@email.com) · [💼 LinkedIn](https://linkedin.com/in/yourname)
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 👤 About
+
+A personal portfolio built with **React** and **JavaScript** to showcase my projects, skills, and journey as a developer. Designed to be fast, responsive, and clean.
+
+---
+
+## 🎨 Sections
+
+| Section | Description |
+|---|---|
+| 🏠 **Hero** | Animated landing with intro and CTA |
+| 👤 **About** | Bio and downloadable CV |
+| 🛠️ **Skills** | Tech stack with proficiency indicators |
+| 💼 **Projects** | Project cards with live demos & source links |
+| 📬 **Contact** | Form with social links |
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** — Component-based UI
+- **JavaScript** — Core logic
+- **Vite** — Build tool & dev server
+- **EmailJS** — Contact form
+
+---
+
+## 📬 Contact
+
+<div align="center">
+
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your@email.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourname)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio-link.com)
+
+*Built with ❤️ by **judechihan***
+
+</div>

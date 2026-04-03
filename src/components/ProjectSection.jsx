@@ -139,7 +139,7 @@ function ProjectCard({ project, index }) {
       </div>
 
       {/* Content */}
-      <div className="px-8 pt-6 pb-8">
+      <div className="px-5 pt-6 pb-7 md:px-8 md:pb-8">
         <h3 
           className="text-[17px] font-bold mb-2 leading-snug transition-colors duration-200"
           style={{ fontFamily: "'Outfit', sans-serif", color: project.accent }}
@@ -258,7 +258,7 @@ function SlideButton() {
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-3 md:px-6 relative overflow-x-hidden">
+    <section id="projects" className="py-24 px-1 sm:px-3 md:px-6 relative overflow-x-hidden">
       <div className="container mx-auto max-w-7xl">
         <SlideHeading />
         <SlideSubtitle />

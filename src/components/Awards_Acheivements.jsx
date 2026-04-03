@@ -131,7 +131,7 @@ export const Awards_Acheivements = () => {
   const visibleOffsets = isMobile ? [-1, 0, 1] : [-2, -1, 0, 1, 2];
 
   const cardWidth = isMobile ? 260 : 280;
-  const layoutHeight = isMobile ? "h-[490px]" : "h-[520px]";
+  const layoutHeight = isMobile ? "h-[560px]" : "h-[540px]";
   const offsetMultiplier = isMobile ? 280 : 320;
 
   return (

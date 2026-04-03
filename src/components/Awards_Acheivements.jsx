@@ -130,9 +130,9 @@ export const Awards_Acheivements = () => {
 
   const visibleOffsets = isMobile ? [-1, 0, 1] : [-2, -1, 0, 1, 2];
 
-  const cardWidth = isMobile ? 220 : 280;
-  const layoutHeight = isMobile ? "h-[450px]" : "h-[520px]";
-  const offsetMultiplier = isMobile ? 250 : 320;
+  const cardWidth = isMobile ? 260 : 280;
+  const layoutHeight = isMobile ? "h-[490px]" : "h-[520px]";
+  const offsetMultiplier = isMobile ? 280 : 320;
 
   return (
     <section
@@ -265,7 +265,7 @@ export const Awards_Acheivements = () => {
           {/* ── Info + Controls row ── */}
           <div className="relative z-20 w-full flex flex-col md:flex-row items-center justify-between gap-4 px-6 pb-7 pointer-events-auto">
             {/* Animated text block */}
-            <div className="flex flex-col items-center text-center md:items-start md:text-left h-28 justify-center">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left h-auto min-h-[140px] justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.id}

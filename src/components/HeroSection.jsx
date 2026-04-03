@@ -50,7 +50,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fade-in-delay-4">
+      <div className="hidden md:flex absolute bottom-4 left-1/2 transform -translate-x-1/2 flex-col items-center opacity-0 animate-fade-in-delay-4">
         <span className="text-sm text-muted-foreground mb-2"> Scroll </span>
         <div className="p-2 rounded-full border border-sky-400/30 bg-sky-950/20 shadow-[0_0_10px_rgba(56,189,248,0.2)] animate-bounce">
           <ArrowDown className="h-4 w-4 text-sky-400" />

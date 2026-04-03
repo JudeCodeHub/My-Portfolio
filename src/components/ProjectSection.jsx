@@ -113,7 +113,7 @@ function ProjectCard({ project, index }) {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-card/80 via-transparent to-transparent" />
 
         {/* Category pill */}
         <div className="absolute top-3 left-5">
@@ -140,11 +140,17 @@ function ProjectCard({ project, index }) {
 
       {/* Content */}
       <div className="px-8 pt-6 pb-8">
-        <h3 className="text-base font-semibold mb-2 leading-snug text-foreground group-hover:text-primary transition-colors duration-200">
+        <h3 
+          className="text-[17px] font-bold mb-2 leading-snug transition-colors duration-200"
+          style={{ fontFamily: "'Outfit', sans-serif", color: project.accent }}
+        >
           {project.title}
         </h3>
 
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed">
+        <p 
+          className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
           {project.description}
         </p>
 
@@ -195,7 +201,10 @@ function SlideHeading() {
           "opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+      <h2 
+        className="text-3xl md:text-4xl font-bold text-foreground"
+        style={{ fontFamily: "'Outfit', sans-serif" }}
+      >
         Featured <span className="text-primary">Projects</span>
       </h2>
       <div className="mt-1 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />

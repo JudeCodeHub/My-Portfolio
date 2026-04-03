@@ -94,9 +94,14 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     emailjs
-      .sendForm("service_sgh759a", "template_oy58rk4", formRef.current, {
-        publicKey: "cG_LHqHLUqjeQzrhU",
-      })
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      )
       .then(
         () => {
           toast({

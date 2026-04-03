@@ -41,7 +41,7 @@ const AWARDS_ITEMS = [
       "Completed hands-on training covering Linux system administration, modern DevOps tooling, automation practices, and CI/CD methodologies.",
     meta: "DevOps • 06/2025 – 01/2026",
     badge: "Certification",
-    org: "WSO2 – Industry-Sponsored Training Program",
+    org: "WSO2 - Industry Sponsored Training Program",
     imageSrc: "public/Achivements&Certification/3.jpg",
     accent: "#10b981",
     icon: <BookOpen size={14} />,
@@ -283,10 +283,16 @@ export const Awards_Acheivements = () => {
                       {activeItem.meta}
                     </span>
                   )}
-                  <h3 className="text-xl md:text-2xl font-bold leading-snug text-foreground">
+                  <h3 
+                    className="text-xl md:text-2xl font-bold leading-snug"
+                    style={{ fontFamily: "'Outfit', sans-serif", color: activeItem.accent }}
+                  >
                     {activeItem.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+                  <p 
+                    className="text-sm text-muted-foreground max-w-xs leading-relaxed"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
                     {activeItem.org}
                   </p>
                 </motion.div>

@@ -15,21 +15,25 @@ export const HeroSection = () => {
           {/* Main Headline */}
           <h1 className="text-xl md:text-7xl font-black tracking-tight leading-tight flex flex-col items-center justify-center">
             <span className="opacity-0 animate-fade-in flex items-center gap-3 text-foreground">
-              Hi, I'm
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]">
+              Hey, I'm
+              <span className="bg-linear-to-r from-cyan-300 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]">
                 Judechihan
               </span>
             </span>
-            <span className="text-3xl md:text-5xl text-foreground/80 mt-2 opacity-0 animate-fade-in-delay-1 font-bold">
-              Software & Cloud Infrastructure Enthusiast
+            <span 
+              className="text-3xl md:text-4xl text-foreground/80 mt-2 opacity-0 animate-fade-in-delay-1 font-bold"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
+            >
+              "Focused on building, refining, and mastering the craft"
             </span>
           </h1>
 
           {/* Subtitle / Summary */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-2 leading-relaxed">
-            Computer Science undergraduate building the engine, not just the
-            paint. Focused on scalable microservices, CI/CD automation, and
-            robust cloud infrastructure.
+          <p 
+            className="text-lg md:text-sm text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-2 leading-relaxed"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+           Building the engine, not just the surface-focused on scalable systems, automation, and resilient cloud infrastructure.
           </p>
 
           {/* Call to Action Button */}

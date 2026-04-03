@@ -2,19 +2,9 @@ import { CloudCog, Palette, Braces, Mail, FileUser } from "lucide-react";
 
 const cards = [
   {
-    icon: CloudCog,
-    title: "Cloud & DevOps",
-    desc: "Mastering AWS, Docker, Kubernetes, and automated CI/CD workflows.",
-    iconColor: "text-orange-400",
-    ringColor: "ring-orange-400/30",
-    bgColor: "bg-orange-400/10",
-    borderHover: "hover:border-orange-400/50",
-    glowHover: "hover:shadow-[0_0_24px_rgba(251,146,60,0.12)]",
-  },
-  {
     icon: Palette,
-    title: "UI/UX Design",
-    desc: "Top 8 Finalist in National UI/UX competitions; prototyping in Figma.",
+    title: "Design Intuitive Interfaces",
+    desc: "Prototyping user-centric UI/UX designs in Figma with a focus on seamless and engaging user experiences.",
     iconColor: "text-pink-400",
     ringColor: "ring-pink-400/30",
     bgColor: "bg-pink-400/10",
@@ -23,13 +13,23 @@ const cards = [
   },
   {
     icon: Braces,
-    title: "Software Engineering",
-    desc: "Developing full-stack applications and microservices using modern web technologies.",
+    title: "Develop Robust Applications",
+    desc: "Building scalable, full-stack applications and microservices using modern web technologies.",
     iconColor: "text-sky-400",
     ringColor: "ring-sky-400/30",
     bgColor: "bg-sky-400/10",
     borderHover: "hover:border-sky-400/50",
     glowHover: "hover:shadow-[0_0_24px_rgba(56,189,248,0.12)]",
+  },
+  {
+    icon: CloudCog,
+    title: "Deploy Scalable Infrastructure",
+    desc: "Automating CI/CD pipelines and orchestrating cloud environments with Docker, Kubernetes, and AWS.",
+    iconColor: "text-orange-400",
+    ringColor: "ring-orange-400/30",
+    bgColor: "bg-orange-400/10",
+    borderHover: "hover:border-orange-400/50",
+    glowHover: "hover:shadow-[0_0_24px_rgba(251,146,60,0.12)]",
   },
 ];
 
@@ -93,7 +93,7 @@ export const AboutSection = () => {
           </div>
 
           {/* ── Right: Skill Cards ── */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 h-full">
             {cards.map(
               ({
                 icon: Icon,
@@ -107,8 +107,8 @@ export const AboutSection = () => {
               }) => (
                 <div
                   key={title}
-                  className={`group p-5 rounded-2xl flex items-center gap-5
-                            bg-card/40 dark:bg-background/40
+                  className={`group p-6 rounded-2xl flex items-center gap-6 flex-1
+                            bg-card/40 dark:bg-background/40 min-h-[135px]
                             border border-border/30 backdrop-blur-md
                             transition-all duration-300 ${borderHover} ${glowHover}`}
                 >
@@ -130,10 +130,16 @@ export const AboutSection = () => {
                   </div>
 
                   <div className="flex-1">
-                    <h4 className="font-semibold text-foreground text-base">
+                    <h4 
+                      className={`font-bold text-[17px] ${iconColor}`}
+                      style={{ fontFamily: "'Outfit', sans-serif" }}
+                    >
                       {title}
                     </h4>
-                    <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
+                    <p 
+                      className="text-muted-foreground text-sm mt-1.5 leading-relaxed"
+                      style={{ fontFamily: "'Inter', sans-serif" }}
+                    >
                       {desc}
                     </p>
                   </div>

@@ -137,7 +137,7 @@ export const Awards_Acheivements = () => {
   return (
     <section
       id="achievements"
-      className="py-24 px-4 relative overflow-x-hidden"
+      className="py-12 md:py-24 px-4 relative overflow-x-hidden"
     >
       <div className="container mx-auto max-w-5xl">
         {/* ── Section heading ── */}

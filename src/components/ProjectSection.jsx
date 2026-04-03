@@ -258,7 +258,7 @@ function SlideButton() {
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-1 sm:px-3 md:px-6 relative overflow-x-hidden">
+    <section id="projects" className="py-12 md:py-24 px-1 sm:px-3 md:px-6 relative overflow-x-hidden">
       <div className="container mx-auto max-w-7xl">
         <SlideHeading />
         <SlideSubtitle />

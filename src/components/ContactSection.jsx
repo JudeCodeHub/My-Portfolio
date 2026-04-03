@@ -138,7 +138,7 @@ export const ContactSection = () => {
 
       <section
         id="contact"
-        className="py-20 px-4 relative overflow-hidden"
+        className="py-12 md:py-24 px-4 relative overflow-hidden"
         style={{ background: "transparent" }}
       >
         <div className="container mx-auto max-w-5xl relative z-10">

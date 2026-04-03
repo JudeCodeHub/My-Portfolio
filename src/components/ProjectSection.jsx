@@ -15,7 +15,7 @@ const projects = [
     category: "Academic Project",
     description:
       "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
-    image: "public/projects/project3.png",
+    image: "/projects/project3.png",
     tags: ["Figma", "HCI", "UI/UX"],
     githubUrl: "https://github.com/JudeCodeHub/UGC-Website-Redesigned.git",
     icon: <Layout size={20} />,
@@ -27,7 +27,7 @@ const projects = [
     category: "DevOps",
     description:
       "End-to-end pipeline that builds, tests, and deploys a Go app to Kubernetes using GitOps principles for automated delivery.",
-    image: "public/projects/project2.png",
+    image: "/projects/project2.png",
     tags: ["GitHub Actions", "Docker", "Kubernetes", "ArgoCD", "Helm"],
     githubUrl: "https://github.com/JudeCodeHub/Go-web-app.git",
     icon: <Server size={20} />,
@@ -39,7 +39,7 @@ const projects = [
     category: "Cloud Engineering",
     description:
       "Deployed a resilient infrastructure with custom VPC, ALB, and Auto Scaling to ensure maximum uptime and scalability.",
-    image: "public/projects/project1.png",
+    image: "/projects/project1.png",
     tags: ["AWS", "ALB", "ASG", "RDS", "Route53", "CloudWatch"],
     githubUrl: "https://github.com/JudeCodeHub/CiniVerse.git",
     icon: <Cloud size={20} />,
@@ -51,7 +51,7 @@ const projects = [
     category: "Full Stack / AI",
     description:
       "Web application that provides ATS compatibility scores and AI-driven improvement suggestions for uploaded resumes.",
-    image: "public/projects/project4.png",
+    image: "/projects/project4.png",
     tags: ["React", "TypeScript", "Tailwind CSS", "AI API"],
     githubUrl: "https://github.com/JudeCodeHub/Resume-Analyzer.git",
     icon: <BrainCircuit size={20} />,

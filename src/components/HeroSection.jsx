@@ -21,7 +21,7 @@ export const HeroSection = () => {
               </span>
             </span>
             <span 
-              className="text-3xl md:text-4xl text-foreground/80 mt-2 opacity-0 animate-fade-in-delay-1 font-bold"
+              className="text-5xl md:text-4xl text-foreground/80 mt-2 opacity-0 animate-fade-in-delay-1 font-bold"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
               "Focused on building, refining, and mastering the craft"
@@ -30,10 +30,10 @@ export const HeroSection = () => {
 
           {/* Subtitle / Summary */}
           <p 
-            className="text-lg md:text-sm text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-2 leading-relaxed"
+            className="text-lg md:text-2xl text-muted-foreground max-w-4xl mx-auto opacity-0 animate-fade-in-delay-2 leading-relaxed"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-           Building the engine, not just the surface-focused on scalable systems, automation, and resilient cloud infrastructure.
+           "Building the engine, not just the surface. Focused on scalable systems, automation, and resilient cloud infrastructure."
           </p>
 
           {/* Call to Action Button */}

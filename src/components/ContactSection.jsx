@@ -188,7 +188,7 @@ export const ContactSection = () => {
                   <span className="text-primary">Collabs & Ideas</span>
                 </h3>
                 <p
-                  className="text-muted-foreground text-sm max-w-md leading-relaxed text-center"
+                  className="text-muted-foreground text-sm max-w-md leading-relaxed ml-3 md:ml-10"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
                   Got a project or idea? Drop me a message - I'll reply within

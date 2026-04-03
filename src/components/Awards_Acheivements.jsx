@@ -301,26 +301,6 @@ export const Awards_Acheivements = () => {
 
             {/* Controls */}
             <div className="flex items-center gap-3 shrink-0">
-              {/* Dot indicators */}
-              <div className="flex items-center gap-1.5">
-                {items.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActive(i)}
-                    className="rounded-full transition-all duration-300 focus:outline-none"
-                    style={{
-                      width: activeIndex === i ? 22 : 6,
-                      height: 6,
-                      background:
-                        activeIndex === i
-                          ? activeItem.accent
-                          : "hsl(var(--muted-foreground) / 0.3)",
-                    }}
-                    aria-label={`Go to item ${i + 1}`}
-                  />
-                ))}
-              </div>
-
               {/* Prev / counter / next */}
               <div
                 className="flex items-center gap-1 rounded-full p-1"

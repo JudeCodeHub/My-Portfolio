@@ -1,43 +1,39 @@
-import {Navbar} from "@/components/Navbar"
-import { ThemeToggle } from "../components/ThemeToggle"
-import { BackgroundEffects } from "@/components/BackgroundEffects"
-import { HeroSection } from "@/components/HeroSection"
-import { AboutSection } from "@/components/AboutSection"
-import { SkillsSection } from "../components/SkillsSection"
-import { ProjectsSection } from "../components/ProjectSection"
-import { Awards_Acheivements } from "../components/Awards_Acheivements"
-import { ContactSection } from "../components/ContactSection"
+import { Navbar } from "@/components/Navbar";
+import { ThemeToggle } from "../components/ThemeToggle";
+import { BackgroundEffects } from "@/components/BackgroundEffects";
+import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
+import { SkillsSection } from "../components/SkillsSection";
+import { ProjectsSection } from "../components/ProjectSection";
+import { Awards_Acheivements } from "../components/Awards_Acheivements";
+import { ContactSection } from "../components/ContactSection";
+import { FooterSection } from "../components/FooterSection";
 
 export const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/*Theme toggle*/}
+      <ThemeToggle />
 
-        {/*Theme toggle*/}
-        <ThemeToggle />
+      {/*Background effects*/}
+      <BackgroundEffects />
 
-        {/*Background effects*/}
-        <BackgroundEffects />
+      {/*Navbar*/}
 
+      <Navbar />
 
-        {/*Navbar*/}
+      {/*Main content*/}
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <Awards_Acheivements />
+        <ContactSection />
+      </main>
 
-        <Navbar/>
-
-
-        {/*Main content*/}
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection/>
-          <ProjectsSection/>
-          <Awards_Acheivements/>
-          <ContactSection/>
-          
-        </main>
-
-
-        {/*Footer */}
-
+      {/*Footer */}
+      <FooterSection />
     </div>
-  )
-}
+  );
+};

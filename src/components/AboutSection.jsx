@@ -36,12 +36,10 @@ const cards = [
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative overflow-hidden">
-
       {/* background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto max-w-5xl">
-
         {/* heading */}
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -51,7 +49,6 @@ export const AboutSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
           {/* ── Left: Bio ── */}
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground/90 leading-snug">
@@ -62,40 +59,32 @@ export const AboutSection = () => {
             </h3>
 
             <p className="text-muted-foreground leading-relaxed text-justify text-sm">
-              Currently pursuing a B.Sc. in Computer Science at Eastern University,
-              Sri Lanka, while building high-availability cloud architectures and
-              automated pipelines.
+              Currently pursuing a B.Sc. in Computer Science at Eastern
+              University, Sri Lanka, while building high-availability cloud
+              architectures and automated pipelines.
             </p>
 
             <p className="text-muted-foreground leading-relaxed text-justify text-sm">
-              I bridge the gap between design and infrastructure, specializing in
-              container orchestration and GitOps workflows to deliver seamless,
-              scalable software solutions.
+              I bridge the gap between design and infrastructure, specializing
+              in container orchestration and GitOps workflows to deliver
+              seamless, scalable software solutions.
             </p>
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a
                 href="#contact"
-                className="group px-6 py-2.5 rounded-full border border-sky-400/40
-                           text-sky-400 text-sm font-medium flex items-center justify-center gap-2
-                           transition-all duration-300 hover:border-sky-400
-                           hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.25)]
-                           active:scale-95"
+                className="px-6 py-2.5 rounded-full border border-sky-400/50 bg-transparent text-sky-400 text-sm font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group"
               >
                 <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                 Get In Touch
               </a>
 
               <a
-                href="/MyResume.pdf"
+                href="/CV/MyResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group px-6 py-2.5 rounded-full border border-sky-400/40
-                           text-sky-400 text-sm font-medium flex items-center justify-center gap-2
-                           transition-all duration-300 hover:border-sky-400
-                           hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.25)]
-                           active:scale-95"
+                className="px-6 py-2.5 rounded-full border border-sky-400/50 bg-transparent text-sky-400 text-sm font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group"
               >
                 <FileUser className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                 Download CV
@@ -105,39 +94,53 @@ export const AboutSection = () => {
 
           {/* ── Right: Skill Cards ── */}
           <div className="flex flex-col gap-4">
-            {cards.map(({ icon: Icon, title, desc, iconColor, ringColor, bgColor, borderHover, glowHover }) => (
-              <div
-                key={title}
-                className={`group p-5 rounded-2xl flex items-center gap-5
+            {cards.map(
+              ({
+                icon: Icon,
+                title,
+                desc,
+                iconColor,
+                ringColor,
+                bgColor,
+                borderHover,
+                glowHover,
+              }) => (
+                <div
+                  key={title}
+                  className={`group p-5 rounded-2xl flex items-center gap-5
                             bg-card/40 dark:bg-background/40
                             border border-border/30 backdrop-blur-md
                             transition-all duration-300 ${borderHover} ${glowHover}`}
-              >
-                {/* ── Circular colored icon ── */}
-                <div className="relative shrink-0">
-                  <div
-                    className={`w-14 h-14 rounded-full flex items-center justify-center
+                >
+                  {/* ── Circular colored icon ── */}
+                  <div className="relative shrink-0">
+                    <div
+                      className={`w-14 h-14 rounded-full flex items-center justify-center
                                  ${bgColor} ring-1 ${ringColor}
                                  group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <Icon className={`w-6 h-6 ${iconColor}`} />
-                  </div>
-                  {/* outer pulse ring on hover */}
-                  <div
-                    className={`absolute inset-0 rounded-full ring-1 ${ringColor}
+                    >
+                      <Icon className={`w-6 h-6 ${iconColor}`} />
+                    </div>
+                    {/* outer pulse ring on hover */}
+                    <div
+                      className={`absolute inset-0 rounded-full ring-1 ${ringColor}
                                  scale-100 opacity-0 group-hover:scale-125 group-hover:opacity-100
                                  transition-all duration-500`}
-                  />
-                </div>
+                    />
+                  </div>
 
-                <div className="flex-1">
-                  <h4 className="font-semibold text-foreground text-base">{title}</h4>
-                  <p className="text-muted-foreground text-sm mt-1 leading-relaxed">{desc}</p>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-foreground text-base">
+                      {title}
+                    </h4>
+                    <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
+                      {desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
           </div>
-
         </div>
       </div>
     </section>

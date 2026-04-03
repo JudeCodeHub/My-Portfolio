@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 
 const categoryGlow = {
   languages: { border: "#fb923caa", shadow: "0 0 22px rgba(251,146,60,0.35)" },
-  databases: { border: "#34d399aa", shadow: "0 0 22px rgba(52,211,153,0.35)"  },
-  devops:    { border: "#38bdf8aa", shadow: "0 0 22px rgba(56,189,248,0.35)"  },
-  frontend:  { border: "#a78bfaaa", shadow: "0 0 22px rgba(167,139,250,0.35)" },
+  databases: { border: "#34d399aa", shadow: "0 0 22px rgba(52,211,153,0.35)" },
+  devops: { border: "#38bdf8aa", shadow: "0 0 22px rgba(56,189,248,0.35)" },
+  frontend: { border: "#a78bfaaa", shadow: "0 0 22px rgba(167,139,250,0.35)" },
 };
 
 const skills = [
@@ -44,7 +44,7 @@ export const SkillsSection = () => {
     (skill) => activeCategory === "all" || skill.category === activeCategory,
   );
   return (
-    <section id="skills" className="py-18 px-4 relative bg-secondary/30">
+    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-1">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -80,11 +80,11 @@ export const SkillsSection = () => {
                 const g = categoryGlow[skill.category];
                 if (!g) return;
                 e.currentTarget.style.borderColor = g.border;
-                e.currentTarget.style.boxShadow   = g.shadow;
+                e.currentTarget.style.boxShadow = g.shadow;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "transparent";
-                e.currentTarget.style.boxShadow   = "";
+                e.currentTarget.style.boxShadow = "";
               }}
             >
               <div className="text-left mb-4">

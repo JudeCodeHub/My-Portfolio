@@ -1,6 +1,11 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Trophy, Star, BookOpen } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Trophy,
+  BookOpen,
+} from "lucide-react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -51,7 +56,7 @@ function wrap(min, max, v) {
 }
 
 const BASE_SPRING = { type: "spring", stiffness: 300, damping: 30, mass: 1 };
-const TAP_SPRING  = { type: "spring", stiffness: 450, damping: 18, mass: 1 };
+const TAP_SPRING = { type: "spring", stiffness: 450, damping: 18, mass: 1 };
 
 // ─── Card image with placeholder fallback ─────────────────────────────────────
 
@@ -112,19 +117,19 @@ export const Awards_Acheivements = () => {
   }, []);
 
   const activeIndex = wrap(0, count, active);
-  const activeItem  = items[activeIndex];
+  const activeItem = items[activeIndex];
 
   const handlePrev = React.useCallback(() => setActive((p) => p - 1), []);
   const handleNext = React.useCallback(() => setActive((p) => p + 1), []);
 
   // Keyboard navigation
   const onKeyDown = (e) => {
-    if (e.key === "ArrowLeft")  handlePrev();
+    if (e.key === "ArrowLeft") handlePrev();
     if (e.key === "ArrowRight") handleNext();
   };
 
   const visibleOffsets = isMobile ? [-1, 0, 1] : [-2, -1, 0, 1, 2];
-  
+
   const cardWidth = isMobile ? 220 : 280;
   const layoutHeight = isMobile ? "h-[450px]" : "h-[520px]";
   const offsetMultiplier = isMobile ? 250 : 320;
@@ -132,15 +137,13 @@ export const Awards_Acheivements = () => {
   return (
     <section
       id="achievements"
-      className="py-21 px-4 relative overflow-x-hidden"
+      className="py-24 px-4 relative overflow-x-hidden"
     >
       <div className="container mx-auto max-w-5xl">
-
         {/* ── Section heading ── */}
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Achievements &{" "}
-            <span className="text-primary">Certifications</span>
+            Achievements & <span className="text-primary">Certifications</span>
           </h2>
           <div className="mt-4 mb-3 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
           <p className="mt-3 text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
@@ -180,17 +183,17 @@ export const Awards_Acheivements = () => {
           >
             {visibleOffsets.map((offset) => {
               const absIndex = active + offset;
-              const index    = wrap(0, count, absIndex);
-              const item     = items[index];
+              const index = wrap(0, count, absIndex);
+              const item = items[index];
 
-              const isCenter   = offset === 0;
-              const dist       = Math.abs(offset);
-              const xOffset    = offset * offsetMultiplier;
-              const zOffset    = -dist * (isMobile ? 100 : 160);
-              const scale      = isCenter ? 1 : 0.8;
-              const rotateY    = offset * (isMobile ? -12 : -18);
-              const opacity    = isCenter ? 1 : Math.max(0.07, 1 - dist * 0.52);
-              const blur       = isCenter ? 0 : dist * 5;
+              const isCenter = offset === 0;
+              const dist = Math.abs(offset);
+              const xOffset = offset * offsetMultiplier;
+              const zOffset = -dist * (isMobile ? 100 : 160);
+              const scale = isCenter ? 1 : 0.8;
+              const rotateY = offset * (isMobile ? -12 : -18);
+              const opacity = isCenter ? 1 : Math.max(0.07, 1 - dist * 0.52);
+              const blur = isCenter ? 0 : dist * 5;
               const brightness = isCenter ? 1 : 0.45;
 
               return (
@@ -261,15 +264,14 @@ export const Awards_Acheivements = () => {
 
           {/* ── Info + Controls row ── */}
           <div className="relative z-20 w-full flex flex-col md:flex-row items-center justify-between gap-4 px-6 pb-7 pointer-events-auto">
-
             {/* Animated text block */}
             <div className="flex flex-col items-center text-center md:items-start md:text-left h-28 justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.id}
                   initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                  animate={{ opacity: 1,  y: 0,  filter: "blur(0px)" }}
-                  exit={{   opacity: 0,  y: -10, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                   transition={{ duration: 0.26 }}
                   className="space-y-1.5"
                 >
@@ -293,7 +295,6 @@ export const Awards_Acheivements = () => {
 
             {/* Controls */}
             <div className="flex items-center gap-3 shrink-0">
-
               {/* Dot indicators */}
               <div className="flex items-center gap-1.5">
                 {items.map((_, i) => (
@@ -302,7 +303,7 @@ export const Awards_Acheivements = () => {
                     onClick={() => setActive(i)}
                     className="rounded-full transition-all duration-300 focus:outline-none"
                     style={{
-                      width:  activeIndex === i ? 22 : 6,
+                      width: activeIndex === i ? 22 : 6,
                       height: 6,
                       background:
                         activeIndex === i

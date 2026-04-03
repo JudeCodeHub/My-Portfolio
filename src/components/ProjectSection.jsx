@@ -217,7 +217,8 @@ function SlideSubtitle() {
           "opacity 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s",
       }}
     >
-      A showcase of my work in software engineering, cloud infrastructure, and DevOps.
+      A showcase of my work in software engineering, cloud infrastructure, and
+      DevOps.
     </p>
   );
 }
@@ -231,7 +232,7 @@ function SlideButton() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/JudeCodeHub"
-        className="px-6 py-2 rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center gap-2 group w-fit mx-auto"
+        className="px-6 py-2.5 text-sm rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group w-fit mx-auto"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateX(0)" : "translateX(-32px)",

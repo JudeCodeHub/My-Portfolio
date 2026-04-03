@@ -40,7 +40,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         toasts: state.toasts.map((t) =>
-          t.id === action.toast.id ? { ...t, ...action.toast } : t
+          t.id === action.toast.id ? { ...t, ...action.toast } : t,
         ),
       };
 
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
                 ...t,
                 open: false,
               }
-            : t
+            : t,
         ),
       };
     }

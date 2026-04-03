@@ -2,12 +2,11 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
-
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const FONT_LINK =
   "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap";
-
 
 const CONTACT_INFO = [
   {
@@ -88,18 +87,37 @@ function ContactInfoItem({ icon: Icon, label, value }) {
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(); // Create a reference to the form
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "Message sent! ✨",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-      e.target.reset();
-    }, 1500);
+
+    emailjs
+      .sendForm("service_sgh759a", "template_oy58rk4", formRef.current, {
+        publicKey: "cG_LHqHLUqjeQzrhU",
+      })
+      .then(
+        () => {
+          toast({
+            title: "Message sent! ✨",
+            description:
+              "Thank you for your message. I'll get back to you soon.",
+          });
+          setIsSubmitting(false);
+          e.target.reset();
+        },
+        (error) => {
+          console.log("EmailJS Error:", error.text || error);
+          toast({
+            title: "Failed to send message 😔",
+            description:
+              "An error occurred. Please try me on social media instead.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+        },
+      );
   };
 
   return (
@@ -113,7 +131,6 @@ export const ContactSection = () => {
       />
       <link href={FONT_LINK} rel="stylesheet" />
 
-     
       <section
         id="contact"
         className="py-20 px-4 relative overflow-hidden"
@@ -121,7 +138,7 @@ export const ContactSection = () => {
       >
         <div className="container mx-auto max-w-5xl relative z-10">
           {/* ── Heading ── */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-7">
             <h2
               className="text-4xl md:text-5xl font-extrabold mb-3 leading-tight"
               style={{ fontFamily: "'Outfit', sans-serif" }}
@@ -134,7 +151,7 @@ export const ContactSection = () => {
                 Connect
               </span>
             </h2>
-            <div className="mt-3 mb-4 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
+            <div className="mt-2 mb-2 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
             <p
               className="text-center text-muted-foreground max-w-xl mx-auto text-base leading-relaxed"
               style={{ fontFamily: "'Inter', sans-serif" }}
@@ -156,8 +173,7 @@ export const ContactSection = () => {
                 "0 8px 48px hsl(var(--primary) / 0.08), 0 2px 8px rgba(0,0,0,0.08)",
             }}
           >
-            
-            <div className="flex flex-col justify-between lg:col-span-2 p- md:p-10 space-y-8">
+            <div className="flex flex-col justify-between lg:col-span-2 p-6 md:p-10 space-y-8">
               <div className="space-y-3">
                 <h3
                   className="text-2xl md:text-3xl font-bold leading-snug"
@@ -170,18 +186,17 @@ export const ContactSection = () => {
                   className="text-muted-foreground text-sm max-w-md leading-relaxed text-center"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  Got a project or idea? Drop me a message - I'll reply within 24 hours.
+                  Got a project or idea? Drop me a message - I'll reply within
+                  24 hours.
                 </p>
               </div>
 
-            
-              <div className="flex flex-row flex-wrap gap-8">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-5 md:gap-8">
                 {CONTACT_INFO.map((info) => (
                   <ContactInfoItem key={info.label} {...info} />
                 ))}
               </div>
 
-              
               <div
                 className="pt-6"
                 style={{ borderTop: "1px solid hsl(var(--primary) / 0.15)" }}
@@ -244,7 +259,11 @@ export const ContactSection = () => {
                 borderTop: "1px solid hsl(var(--primary) / 0.12)",
               }}
             >
-              <form onSubmit={handleSubmit} className="w-full space-y-4">
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="w-full space-y-4"
+              >
                 <h4
                   className="text-lg font-bold text-foreground mb-2"
                   style={{ fontFamily: "'Outfit', sans-serif" }}
@@ -360,7 +379,8 @@ export const ContactSection = () => {
                   disabled={isSubmitting}
                   className={cn(
                     "w-full px-6 py-2.5 mt-2 rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group",
-                    isSubmitting && "opacity-70 cursor-not-allowed hover:shadow-none hover:bg-transparent hover:border-sky-400/50 hover:scale-100",
+                    isSubmitting &&
+                      "opacity-70 cursor-not-allowed hover:shadow-none hover:bg-transparent hover:border-sky-400/50 hover:scale-100",
                   )}
                 >
                   {isSubmitting ? (

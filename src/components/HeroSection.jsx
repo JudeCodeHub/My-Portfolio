@@ -32,7 +32,7 @@ export const HeroSection = () => {
           </p>
 
           {/* Call to Action Button */}
-          <div className="pt-8 flex justify-center opacity-0 animate-fade-in-delay-3">
+          <div className="pt-14 flex justify-center opacity-0 animate-fade-in-delay-3">
             <a 
               href="#projects" 
               className="px-6 py-2 rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center gap-2 group"
@@ -45,8 +45,8 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fade-in-delay-4">
-        <span className="text-sm text-muted-foreground mb-4"> Scroll </span>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fade-in-delay-4">
+        <span className="text-sm text-muted-foreground mb-2"> Scroll </span>
         <div className="p-2 rounded-full border border-sky-400/30 bg-sky-950/20 shadow-[0_0_10px_rgba(56,189,248,0.2)] animate-bounce">
           <ArrowDown className="h-4 w-4 text-sky-400" />
         </div>

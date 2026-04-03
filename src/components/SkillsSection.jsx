@@ -46,11 +46,11 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-18 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-1">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             My <span className="text-primary">Skills</span>
           </h2>
-          <div className="mt-3 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
+          <div className="mt-2 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">

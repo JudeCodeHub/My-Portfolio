@@ -198,7 +198,7 @@ function SlideHeading() {
       <h2 className="text-3xl md:text-4xl font-bold text-foreground">
         Featured <span className="text-primary">Projects</span>
       </h2>
-      <div className="mt-3 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="mt-1 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
     </div>
   );
 }
@@ -226,7 +226,7 @@ function SlideButton() {
   const { ref, visible } = useSlideIn(200);
 
   return (
-    <div ref={ref} className="text-center mt-16">
+    <div ref={ref} className="text-center mt-10">
       <a
         target="_blank"
         rel="noopener noreferrer"

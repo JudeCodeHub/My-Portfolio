@@ -39,38 +39,6 @@ This is a modern, performance-driven personal portfolio designed and engineered 
 | **Icons** | Lucide React, React Icons |
 | **Integrations**| EmailJS, Radix UI (Toasts) |
 
----
-
-## ⚙️ Running Locally
-
-Follow these steps to run the portfolio on your local machine:
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/JudeCodeHub/Your-Repo-Name.git
-cd Your-Repo-Name
-```
-
-**2. Install dependencies**
-```bash
-npm install
-```
-
-**3. Configure Environment Variables**
-For the `ContactSection` to work, create a `.env` file in the root of the project and provide your EmailJS credentials:
-```env
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-**4. Start the development server**
-```bash
-npm run dev
-```
-
----
-
 ## 📬 Connect With Me
 
 <div align="center">

@@ -11,13 +11,13 @@ import {
 const projects = [
   {
     id: 1,
-    title: "University Website Redesign Prototype",
+    title: "GR-10 UGC website",
     category: "Academic Project",
     description:
       "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
     image: "/projects/project3.png",
     tags: ["Figma", "HCI", "UI/UX"],
-    githubUrl: "https://github.com/JudeCodeHub/UGC-Website-Redesigned.git",
+    githubUrl: "https://www.figma.com/design/PkX0gMzUMNAYHwMvLSHoku/GR-10-UGC-website-?node-id=139-148&t=cAui7sBL7yXIGxUg-1",
     icon: <Layout size={20} />,
     accent: "#6366f1",
   },
@@ -175,7 +175,7 @@ function ProjectCard({ project, index }) {
           style={{ color: project.accent }}
         >
           <GitBranch size={15} />
-          View Source Code
+          View Project
           <ArrowRight
             size={13}
             className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"

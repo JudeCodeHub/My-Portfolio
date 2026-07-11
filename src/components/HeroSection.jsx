@@ -138,7 +138,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center px-4 overflow-hidden"
+      className="relative pt-[180px] pb-[70px] flex items-center px-4 overflow-hidden"
     >
       {/* Ambient Glow Blobs */}
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-sky-400/10 rounded-full blur-[100px] -z-10 pointer-events-none animate-pulse-subtle" />
@@ -146,7 +146,7 @@ export const HeroSection = () => {
 
       {/* ── Two-Column Grid ───────────────────────────────── */}
       <div className="container max-w-7xl mx-auto mt-20 lg:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[calc(100vh-5rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
           {/* ── LEFT COLUMN ─────────────────────────────── */}
           <div className="flex flex-col justify-center gap-6 order-2 lg:order-1 text-center lg:text-left">

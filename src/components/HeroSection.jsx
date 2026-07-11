@@ -167,8 +167,8 @@ export const HeroSection = () => {
                 variants={fadeUp(0.1)}
                 initial="hidden"
                 animate="visible"
-                className="italic leading-relaxed"
-                style={{ fontSize: "0.95rem", color: "rgba(226,232,240,0.75)" }}
+                className="italic leading-relaxed text-muted-foreground"
+                style={{ fontSize: "0.95rem" }}
               >
                 "Make it work, make it right, make it fast."
               </motion.p>

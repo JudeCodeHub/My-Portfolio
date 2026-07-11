@@ -50,10 +50,10 @@
   @keyframes meteor {
     0% {
       transform: rotate(215deg) translateX(0);
-      opacity: 1;
+      opacity: var(--meteor-opacity, 1);
     }
     70% {
-      opacity: 1;
+      opacity: var(--meteor-opacity, 1);
     }
     100% {
       transform: rotate(215deg) translateX(-500px);
@@ -65,6 +65,7 @@
 @layer base {
   :root {
     --background: 210 40% 98%;
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2f9 50%, #e8edf5 100%);
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -74,10 +75,16 @@
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
+    
+    /* Starfield light mode variables */
+    --star-color: #64748b;
+    --star-glow: rgba(100, 116, 139, 0.15);
+    --meteor-opacity: 0.3;
   }
 
   .dark {
     --background: 222 47% 4%;
+    --bg-gradient: hsl(var(--background));
     --foreground: 213 31% 91%;
 
     --card: 222 47% 8%;
@@ -87,6 +94,11 @@
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
+
+    /* Starfield dark mode variables */
+    --star-color: white;
+    --star-glow: rgba(255, 255, 255, 0.4);
+    --meteor-opacity: 1;
   }
 
   * {
@@ -98,7 +110,8 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply text-foreground transition-colors duration-300;
+    background: var(--bg-gradient);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -149,13 +162,15 @@
 }
 
 @utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+  @apply absolute rounded-full;
+  background-color: var(--star-color);
+  box-shadow: 0 0 10px 2px var(--star-glow);
 }
 
 @utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+  @apply absolute rounded-full;
+  background: linear-gradient(to right, var(--star-color), var(--star-color), transparent);
+  box-shadow: 0 0 10px 5px var(--star-glow);
 }
 
 #root {

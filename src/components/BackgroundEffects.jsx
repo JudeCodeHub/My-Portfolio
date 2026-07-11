@@ -58,6 +58,10 @@ export const BackgroundEffects = () => {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Soft Atmosphere Blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-sky-400/5 md:bg-sky-400/10 blur-[100px] md:blur-[150px]" />
+      <div className="absolute top-[40%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-purple-400/5 md:bg-purple-400/10 blur-[120px] md:blur-[180px]" />
+
       {stars.map((star) => (
         <div
           key={star.id}

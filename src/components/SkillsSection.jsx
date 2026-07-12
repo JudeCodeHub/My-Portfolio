@@ -187,7 +187,7 @@ const SkillCard = ({ cluster, cIdx, pausedCluster, setPausedCluster, activeToolt
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
       transition={{ duration: 0.4 }}
-      className={`w-full ${isSingleView ? 'max-w-[400px]' : 'max-w-full'}`}
+      className={`w-full ${isSingleView ? 'max-w-[400px]' : 'max-w-full -my-8 md:my-0'}`}
     >
       <motion.div
         animate={{ y: [0, -12, 0] }}

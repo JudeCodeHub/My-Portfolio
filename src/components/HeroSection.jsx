@@ -138,18 +138,18 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative pt-[140px] pb-10 flex items-center px-4 overflow-hidden"
+      className="relative pt-[90px] md:pt-[140px] pb-14 md:pb-10 flex items-center px-4 overflow-hidden"
     >
       {/* Ambient Glow Blobs */}
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-sky-400/10 rounded-full blur-[100px] -z-10 pointer-events-none animate-pulse-subtle" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float" />
 
       {/* ── Two-Column Grid ───────────────────────────────── */}
-      <div className="container max-w-7xl mx-auto mt-20 lg:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="container max-w-7xl mx-auto mt-6 md:mt-20 lg:mt-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-8 items-center">
 
-          {/* ── LEFT COLUMN ─────────────────────────────── */}
-          <div className="flex flex-col justify-center gap-6 order-2 lg:order-1 text-center lg:text-left">
+          {/* ── LEFT COLUMN (Text) ─────────────────────────────── */}
+          <div className="flex flex-col justify-center gap-4 md:gap-6 order-2 lg:order-1 text-center lg:text-left z-20">
 
             <div className="flex flex-col gap-3 mb-[-8px]">
               {/* Eyebrow */}
@@ -230,9 +230,9 @@ export const HeroSection = () => {
 
           </div>
 
-          {/* ── RIGHT COLUMN ─────────────────────────────── */}
+          {/* ── RIGHT COLUMN (Photo) ─────────────────────────────── */}
           {/* ml-auto + pl push the whole column slightly right for breathing room */}
-          <div className="relative flex justify-center items-center order-1 lg:order-2">
+          <div className="relative flex justify-center items-center order-1 lg:order-2 mt-4 lg:mt-0">
             <div className="relative" style={{ marginLeft: "clamp(0px, 4vw, 56px)" }}>
 
               {/* ── Floating Tech Badges ─────────────────── */}
@@ -270,7 +270,7 @@ export const HeroSection = () => {
                   >
                     {/* Badge */}
                     <div
-                      className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 lg:w-[56px] lg:h-[56px] rounded-[12px] lg:rounded-[16px]"
+                      className="flex items-center justify-center w-8 h-8 md:w-12 md:h-12 lg:w-[56px] lg:h-[56px] rounded-[10px] md:rounded-[12px] lg:rounded-[16px]"
                       style={{
                         background: badge.bg,
                         border: `1px solid ${badge.border}`,
@@ -279,7 +279,7 @@ export const HeroSection = () => {
                         WebkitBackdropFilter: "blur(12px)",
                       }}
                     >
-                      <div className="w-5 h-5 md:w-6 md:h-6 lg:w-[28px] lg:h-[28px] flex items-center justify-center">
+                      <div className="w-4 h-4 md:w-6 md:h-6 lg:w-[28px] lg:h-[28px] flex items-center justify-center">
                         {typeof badge.icon === "string" ? (
                           <StackIcon name={badge.icon} />
                         ) : (
@@ -300,7 +300,7 @@ export const HeroSection = () => {
               >
                 <motion.div animate={photoFloat.animate}>
                   <div 
-                    className="w-[240px] h-[320px] md:w-[280px] md:h-[380px] lg:w-[340px] lg:h-[460px] rounded-[120px] md:rounded-[140px] lg:rounded-[170px] overflow-hidden border-2 border-sky-400/60"
+                    className="w-[200px] h-[260px] md:w-[280px] md:h-[380px] lg:w-[340px] lg:h-[460px] rounded-[100px] md:rounded-[140px] lg:rounded-[170px] overflow-hidden border-2 border-sky-400/60"
                     style={{
                       boxShadow: "0 0 50px 8px rgba(56,189,248,0.25), 0 0 100px 20px rgba(56,189,248,0.10)",
                     }}

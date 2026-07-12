@@ -143,7 +143,7 @@ export const Awards_Acheivements = () => {
         {/* ── Section heading ── */}
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Achievements & <span className="text-primary">Certifications</span>
+            Honours & <span className="text-primary">Certifications</span>
           </h2>
           <div className="mt-4 mb-3 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
           <p className="mt-3 text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">

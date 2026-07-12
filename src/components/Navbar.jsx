@@ -3,11 +3,11 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { name: "Home", href: "#hero" },
+  { name: "Init", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Awards", href: "#achievements" },
+  { name: "Honours", href: "#achievements" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -56,6 +56,7 @@ export const Navbar = () => {
               key={key}
               href={item.href}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, letterSpacing: "0.3px" }}
             >
               {item.name}
             </a>
@@ -86,6 +87,7 @@ export const Navbar = () => {
                 key={key}
                 href={item.href}
                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, letterSpacing: "0.3px" }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

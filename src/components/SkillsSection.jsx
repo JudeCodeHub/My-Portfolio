@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { Code2, Palette, Settings, Database } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { 
-  SiPython, SiJavascript, SiTypescript, SiReact, 
-  SiPostgresql, SiMongodb, SiTailwindcss,
-  SiGit, SiDocker, SiKubernetes, SiTerraform, 
-  SiArgo, SiGithubactions, SiLinux 
-} from "react-icons/si";
-import { FaJava, FaAws, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { SiArgo, SiGithubactions } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 
 const clusters = [
   {
@@ -23,16 +18,16 @@ const clusters = [
         radius: 90,
         duration: 20, direction: 1, color: "border-sky-400/40", textRepeats: 14,
         skills: [
-          { name: "JavaScript", level: 90, icon: SiJavascript, color: "#F7DF1E", bg: "rgba(247,223,30,0.15)", angleOffset: 30 },
-          { name: "Python", level: 85, icon: SiPython, color: "#3776AB", bg: "rgba(55,118,171,0.15)", angleOffset: 210 },
+          { name: "JavaScript", level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", color: "#F7DF1E", bg: "rgba(247,223,30,0.15)", angleOffset: 30 },
+          { name: "Python", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", color: "#3776AB", bg: "rgba(55,118,171,0.15)", angleOffset: 210 },
         ]
       },
       {
         radius: 165,
         duration: 30, direction: -1, color: "border-sky-400/20", textRepeats: 19,
         skills: [
-          { name: "TypeScript", level: 85, icon: SiTypescript, color: "#3178C6", bg: "rgba(49,120,198,0.15)", angleOffset: 120 },
-          { name: "Java", level: 80, icon: FaJava, color: "#007396", bg: "rgba(0,115,150,0.15)", angleOffset: 300 },
+          { name: "TypeScript", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", color: "#3178C6", bg: "rgba(49,120,198,0.15)", angleOffset: 120 },
+          { name: "Java", level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", color: "#007396", bg: "rgba(0,115,150,0.15)", angleOffset: 300 },
         ]
       }
     ]
@@ -50,16 +45,16 @@ const clusters = [
         radius: 90,
         duration: 25, direction: -1, color: "border-purple-500/40", textRepeats: 14,
         skills: [
-          { name: "HTML5", level: 90, icon: FaHtml5, color: "#E34F26", bg: "rgba(227,79,38,0.15)", angleOffset: 45 },
-          { name: "React", level: 85, icon: SiReact, color: "#61DAFB", bg: "rgba(97,218,251,0.15)", angleOffset: 225 },
+          { name: "HTML5", level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", color: "#E34F26", bg: "rgba(227,79,38,0.15)", angleOffset: 45 },
+          { name: "React", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "#61DAFB", bg: "rgba(97,218,251,0.15)", angleOffset: 225 },
         ]
       },
       {
         radius: 165,
         duration: 35, direction: 1, color: "border-purple-500/20", textRepeats: 19,
         skills: [
-          { name: "CSS3", level: 85, icon: FaCss3Alt, color: "#1572B6", bg: "rgba(21,114,182,0.15)", angleOffset: 135 },
-          { name: "Tailwind", level: 85, icon: SiTailwindcss, color: "#06B6D4", bg: "rgba(6,182,212,0.15)", angleOffset: 315 },
+          { name: "CSS3", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", color: "#1572B6", bg: "rgba(21,114,182,0.15)", angleOffset: 135 },
+          { name: "Tailwind", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", color: "#06B6D4", bg: "rgba(6,182,212,0.15)", angleOffset: 315 },
         ]
       }
     ]
@@ -77,19 +72,19 @@ const clusters = [
         radius: 90,
         duration: 28, direction: 1, color: "border-orange-500/40", textRepeats: 21,
         skills: [
-          { name: "Git", level: 90, icon: SiGit, color: "#F05032", bg: "rgba(240,80,50,0.15)", angleOffset: 0 },
-          { name: "Docker", level: 85, icon: SiDocker, color: "#2496ED", bg: "rgba(36,150,237,0.15)", angleOffset: 90 },
+          { name: "Git", level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", color: "#F05032", bg: "rgba(240,80,50,0.15)", angleOffset: 0 },
+          { name: "Docker", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", color: "#2496ED", bg: "rgba(36,150,237,0.15)", angleOffset: 90 },
           { name: "Actions", level: 85, icon: SiGithubactions, color: "#2088FF", bg: "rgba(32,136,255,0.15)", angleOffset: 180 },
-          { name: "Kubernetes", level: 75, icon: SiKubernetes, color: "#326CE5", bg: "rgba(50,108,229,0.15)", angleOffset: 270 },
+          { name: "Kubernetes", level: 75, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg", color: "#326CE5", bg: "rgba(50,108,229,0.15)", angleOffset: 270 },
         ]
       },
       {
         radius: 165,
         duration: 32, direction: -1, color: "border-orange-500/20", textRepeats: 28,
         skills: [
-          { name: "Linux", level: 80, icon: SiLinux, color: "#FCC624", bg: "rgba(252,198,36,0.15)", angleOffset: 45 },
+          { name: "Linux", level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", color: "#FCC624", bg: "rgba(252,198,36,0.15)", angleOffset: 45 },
           { name: "AWS", level: 75, icon: FaAws, color: "#FF9900", bg: "rgba(255,153,0,0.15)", angleOffset: 135 },
-          { name: "Terraform", level: 70, icon: SiTerraform, color: "#7C3AED", bg: "rgba(124,58,237,0.15)", angleOffset: 225 },
+          { name: "Terraform", level: 70, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg", color: "#7C3AED", bg: "rgba(124,58,237,0.15)", angleOffset: 225 },
           { name: "ArgoCD", level: 70, icon: SiArgo, color: "#EF7B4D", bg: "rgba(239,123,77,0.15)", angleOffset: 315 },
         ]
       }
@@ -108,14 +103,14 @@ const clusters = [
         radius: 90,
         duration: 25, direction: -1, color: "border-green-500/40", textRepeats: 14,
         skills: [
-          { name: "PostgreSQL", level: 80, icon: SiPostgresql, color: "#4169E1", bg: "rgba(65,105,225,0.15)", angleOffset: 60 },
+          { name: "PostgreSQL", level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", color: "#4169E1", bg: "rgba(65,105,225,0.15)", angleOffset: 60 },
         ]
       },
       {
         radius: 165,
         duration: 30, direction: 1, color: "border-green-500/20", textRepeats: 19,
         skills: [
-          { name: "MongoDB", level: 75, icon: SiMongodb, color: "#47A248", bg: "rgba(71,162,72,0.15)", angleOffset: 240 },
+          { name: "MongoDB", level: 75, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "#47A248", bg: "rgba(71,162,72,0.15)", angleOffset: 240 },
         ]
       }
     ]
@@ -244,17 +239,15 @@ const SkillCard = ({ cluster, cIdx, pausedCluster, setPausedCluster, activeToolt
                     style={{ animationDuration: `${ring.duration}s` }}
                   >
                     <svg width="100%" height="100%" style={{ overflow: "visible", position: "absolute", inset: 0 }}>
-                      <path 
-                        id={`path-${cIdx}-${rIdx}`} 
-                        d={`M ${ring.radius},0 A ${ring.radius},${ring.radius} 0 1,1 ${ring.radius},${ring.radius*2} A ${ring.radius},${ring.radius} 0 1,1 ${ring.radius},0`} 
+                      <circle 
+                        cx={ring.radius} 
+                        cy={ring.radius} 
+                        r={ring.radius} 
                         fill="none" 
-                        stroke="none" 
+                        stroke={cluster.accentColor} 
+                        strokeWidth="1.5" 
+                        strokeOpacity="0.35" 
                       />
-                      <text fill={cluster.accentColor} opacity="0.45" fontSize={isOuter ? "9.5" : "7"} fontWeight="600" letterSpacing="0px">
-                        <textPath href={`#path-${cIdx}-${rIdx}`} startOffset="0%" textLength={2 * Math.PI * ring.radius} lengthAdjust="spacing">
-                          {`${cluster.title.toUpperCase()}`.repeat(ring.textRepeats)}
-                        </textPath>
-                      </text>
                     </svg>
 
                     {/* Scattered Icons */}
@@ -298,7 +291,11 @@ const SkillCard = ({ cluster, cIdx, pausedCluster, setPausedCluster, activeToolt
                                     color: skill.color,
                                   }}
                                 >
-                                  <skill.icon size={iconSize} />
+                                  {typeof skill.icon === 'string' ? (
+                                    <img src={skill.icon} alt={skill.name} style={{ width: `${iconSize}px`, height: `${iconSize}px` }} />
+                                  ) : (
+                                    <skill.icon size={iconSize} />
+                                  )}
 
                                   {/* Tooltip as direct child of Icon */}
                                   <div 
@@ -354,7 +351,7 @@ export const SkillsSection = () => {
   const isSingleView = activeFilter !== "All";
 
   return (
-    <section id="skills" className="py-20 md:py-32 px-4 relative overflow-hidden bg-secondary/20 min-h-screen">
+    <section id="skills" className="py-12 md:py-20 px-4 relative overflow-hidden bg-secondary/20 min-h-screen">
       
       <style>{`
         @keyframes orbit-cw {
@@ -422,7 +419,7 @@ export const SkillsSection = () => {
           layout 
           className={`
             ${isSingleView 
-              ? "flex justify-center items-center w-full mt-4" 
+              ? "flex justify-center items-center w-full mt-4 sm:mt-8 md:mt-12 lg:mt-16 mb-10" 
               : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-12 xl:gap-8 2xl:gap-12 mt-4 justify-items-center"}
           `}
         >

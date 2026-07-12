@@ -81,7 +81,7 @@ export const AboutSection = () => {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section id="about" className="pt-[140px] pb-12 md:pb-24 px-4 relative overflow-hidden">
+    <section id="about" className="py-12 md:py-20 px-4 relative overflow-hidden">
       {/* ── Transition Glow Bridge (Hero to About) ── */}
       <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-sky-400/10 rounded-full blur-[120px] pointer-events-none -z-10" />
       

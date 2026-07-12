@@ -8,6 +8,7 @@ import { ProjectsSection } from "../components/ProjectSection";
 import { Awards_Acheivements } from "../components/Awards_Acheivements";
 import { ContactSection } from "../components/ContactSection";
 import { FooterSection } from "../components/FooterSection";
+import { SectionDivider } from "../components/SectionDivider";
 
 export const Home = () => {
   return (
@@ -25,10 +26,20 @@ export const Home = () => {
       {/*Main content*/}
       <main>
         <HeroSection />
+        <SectionDivider color="#38bdf8" align="right" />
+        
         <AboutSection />
+        <SectionDivider color="#38bdf8" align="left" />
+        
         <SkillsSection />
+        <SectionDivider color="#a855f7" align="right" />
+        
         <ProjectsSection />
+        <SectionDivider color="#f97316" align="left" />
+        
         <Awards_Acheivements />
+        <SectionDivider color="#22c55e" align="right" />
+        
         <ContactSection />
       </main>
 

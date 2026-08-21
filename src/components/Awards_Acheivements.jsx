@@ -283,13 +283,13 @@ export const Awards_Acheivements = () => {
                       {activeItem.meta}
                     </span>
                   )}
-                  <h3 
+                  <h3
                     className="text-xl md:text-2xl font-bold leading-snug"
                     style={{ fontFamily: "'Outfit', sans-serif", color: activeItem.accent }}
                   >
                     {activeItem.title}
                   </h3>
-                  <p 
+                  <p
                     className="text-sm text-muted-foreground max-w-xs leading-relaxed"
                     style={{ fontFamily: "'Inter', sans-serif" }}
                   >

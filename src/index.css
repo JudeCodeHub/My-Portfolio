@@ -75,7 +75,7 @@
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
-    
+
     /* Starfield light mode variables */
     --star-color: #64748b;
     --star-glow: rgba(100, 116, 139, 0.15);
@@ -156,7 +156,7 @@
 
 @utility cosmic-button {
   /* Updated shadow to blue */
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium
          transition-all duration-300 hover:shadow-[0_0_10px_rgba(56,189,248,0.5)]
          hover:scale-105 active:scale-95;
 }

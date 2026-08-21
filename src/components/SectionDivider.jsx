@@ -1,7 +1,7 @@
 export const SectionDivider = ({ color = "#38bdf8", align = "left" }) => {
   return (
     <div className="w-full relative h-0 flex items-center justify-center z-50 pointer-events-none" style={{ marginTop: '-1rem', marginBottom: '-1rem' }}>
-      <div 
+      <div
         className="absolute rounded-full"
         style={{
           width: '300px',
@@ -17,7 +17,7 @@ export const SectionDivider = ({ color = "#38bdf8", align = "left" }) => {
         }}
       >
         {/* Glowing Head of the meteor */}
-        <div 
+        <div
           className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full"
           style={{
             width: '6px',

@@ -27,19 +27,19 @@ export const Home = () => {
       <main>
         <HeroSection />
         <SectionDivider color="#38bdf8" align="right" />
-        
+
         <AboutSection />
         <SectionDivider color="#38bdf8" align="left" />
-        
+
         <SkillsSection />
         <SectionDivider color="#a855f7" align="right" />
-        
+
         <ProjectsSection />
         <SectionDivider color="#f97316" align="left" />
-        
+
         <Awards_Acheivements />
         <SectionDivider color="#22c55e" align="right" />
-        
+
         <ContactSection />
       </main>
 

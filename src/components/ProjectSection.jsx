@@ -140,14 +140,14 @@ function ProjectCard({ project, index }) {
 
       {/* Content */}
       <div className="px-5 pt-6 pb-7 md:px-8 md:pb-8">
-        <h3 
+        <h3
           className="text-[17px] font-bold mb-2 leading-snug transition-colors duration-200"
           style={{ fontFamily: "'Outfit', sans-serif", color: project.accent }}
         >
           {project.title}
         </h3>
 
-        <p 
+        <p
           className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
@@ -201,7 +201,7 @@ function SlideHeading() {
           "opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
-      <h2 
+      <h2
         className="text-3xl md:text-4xl font-bold text-foreground"
         style={{ fontFamily: "'Outfit', sans-serif" }}
       >

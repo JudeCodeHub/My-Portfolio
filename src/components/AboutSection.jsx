@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CloudCog, Palette, Braces, Mail, FileUser, Infinity } from "lucide-react";
+import { CloudCog, Palette, Braces, Mail, FileUser, Infinity as InfinityIcon } from "lucide-react";
 import { SiKubernetes, SiDocker, SiReact, SiTerraform } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import aboutMePic from "../assets/about_me.png";
@@ -42,29 +42,29 @@ const cards = [
 ];
 
 const pillTags = [
-  { 
+  {
     label: "Kubernetes", icon: SiKubernetes, color: "#326CE5", bg: "rgba(50,108,229,0.15)",
-    top: "12%", left: "-6%", delay: 0 
+    top: "12%", left: "-6%", delay: 0,
   },
-  { 
+  {
     label: "Docker", icon: SiDocker, color: "#2496ED", bg: "rgba(36,150,237,0.15)",
-    top: "8%", right: "-3%", delay: 0.3 
+    top: "8%", right: "-3%", delay: 0.3,
   },
-  { 
-    label: "CI/CD", icon: Infinity, color: "#22C55E", bg: "rgba(34,197,94,0.15)",
-    top: "78%", left: "-1%", delay: 0.6 
+  {
+    label: "CI/CD", icon: InfinityIcon, color: "#22C55E", bg: "rgba(34,197,94,0.15)",
+    top: "78%", left: "-1%", delay: 0.6,
   },
-  { 
+  {
     label: "Terraform", icon: SiTerraform, color: "#7C3AED", bg: "rgba(124,58,237,0.15)",
-    top: "75%", right: "-6%", delay: 0.9 
+    top: "75%", right: "-6%", delay: 0.9
   },
-  { 
+  {
     label: "AWS", icon: FaAws, color: "#FF9900", bg: "rgba(255,153,0,0.15)",
-    top: "42%", left: "-10%", delay: 1.2 
+    top: "42%", left: "-10%", delay: 1.2
   },
-  { 
+  {
     label: "React", icon: SiReact, color: "#61DAFB", bg: "rgba(97,218,251,0.15)",
-    top: "45%", right: "-10%", delay: 1.5 
+    top: "45%", right: "-10%", delay: 1.5
   },
 ];
 
@@ -84,13 +84,13 @@ export const AboutSection = () => {
     <section id="about" className="py-12 md:py-20 px-4 relative overflow-hidden">
       {/* ── Transition Glow Bridge (Hero to About) ── */}
       <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-sky-400/10 rounded-full blur-[120px] pointer-events-none -z-10" />
-      
+
       {/* background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto max-w-7xl">
         {/* heading */}
-        <motion.div 
+        <motion.div
           variants={fadeUp(0.1)}
           initial="hidden"
           whileInView="visible"
@@ -106,9 +106,9 @@ export const AboutSection = () => {
         {/* ── TWO-COLUMN LAYOUT: PHOTO (Left) | BIO TEXT (Right) ── */}
         {/* Grid is set to items-center to perfectly vertically center both columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-250px)] mb-10 md:mb-12">
-          
+
           {/* ── Left: Photo & Pills (50% width) ── */}
-          <motion.div 
+          <motion.div
             variants={fadeUp(0.2)}
             initial="hidden"
             whileInView="visible"
@@ -116,29 +116,29 @@ export const AboutSection = () => {
             className="flex justify-center items-center order-1 relative w-full h-full"
           >
             <div className="relative w-[320px] h-[320px] sm:w-[360px] sm:h-[360px] md:w-[400px] md:h-[400px]">
-              
+
               {/* Decorative shapes (match hero minimal style) */}
-              <motion.div 
-                animate={{ rotate: 360 }} 
+              <motion.div
+                animate={{ rotate: 360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-4 -left-4 w-16 h-16 border border-sky-400/20 rounded-full" 
+                className="absolute -top-4 -left-4 w-16 h-16 border border-sky-400/20 rounded-full"
               />
-              <motion.div 
-                animate={{ rotate: -360 }} 
+              <motion.div
+                animate={{ rotate: -360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 className="absolute -bottom-8 -right-4 w-12 h-12 border border-sky-400/20"
                 style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
               />
 
               {/* Circular Photo */}
-              <div 
+              <div
                 className="w-full h-full rounded-full overflow-hidden border-2 border-sky-400/60 relative z-10"
                 style={{ boxShadow: "0 0 35px 6px rgba(56,189,233,0.3)" }}
               >
-                <img 
-                  src={aboutMePic} 
-                  alt="Judechihan" 
-                  className="w-full h-full object-cover" 
+                <img
+                  src={aboutMePic}
+                  alt="Judechihan"
+                  className="w-full h-full object-cover"
                   style={{ objectPosition: "center 30%" }}
                   draggable={false}
                 />
@@ -159,11 +159,11 @@ export const AboutSection = () => {
                     right: pill.right,
                   }}
                   animate={{ y: [0, -8, 0] }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut", 
-                    delay: pill.delay 
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: pill.delay
                   }}
                 >
                   <pill.icon style={{ width: "16px", height: "16px" }} />
@@ -174,7 +174,7 @@ export const AboutSection = () => {
           </motion.div>
 
           {/* ── Right: Bio Text (50% width) ── */}
-          <motion.div 
+          <motion.div
             variants={fadeUp(0.35)}
             initial="hidden"
             whileInView="visible"
@@ -194,8 +194,8 @@ export const AboutSection = () => {
                 const Icon = card.icon;
                 const isActive = activeCard === i;
                 return (
-                  <div 
-                    key={card.title} 
+                  <div
+                    key={card.title}
                     className="relative group cursor-pointer"
                     onMouseEnter={() => setActiveCard(i)}
                     onMouseLeave={() => setActiveCard(null)}
@@ -209,8 +209,8 @@ export const AboutSection = () => {
                     {/* Tooltip Popup */}
                     <motion.div
                       initial={false}
-                      animate={{ 
-                        opacity: isActive ? 1 : 0, 
+                      animate={{
+                        opacity: isActive ? 1 : 0,
                         scale: isActive ? 1 : 0.9,
                         y: isActive ? 0 : 10,
                         pointerEvents: isActive ? "auto" : "none"
@@ -219,13 +219,13 @@ export const AboutSection = () => {
                       className={`absolute bottom-[calc(100%+16px)] left-1/2 -translate-x-1/2 w-[260px] p-5 rounded-2xl border ${card.borderColor} ${card.popupShadow} backdrop-blur-xl origin-bottom`}
                       style={{ background: "rgba(15,23,42,0.95)" }}
                     >
-                      <h4 
+                      <h4
                         className={`font-bold text-[16px] ${card.iconColor} mb-2`}
                         style={{ fontFamily: "'Outfit', sans-serif" }}
                       >
                         {card.title}
                       </h4>
-                      <p 
+                      <p
                         className="text-muted-foreground text-[13px] leading-relaxed mb-3"
                         style={{ fontFamily: "'Inter', sans-serif" }}
                       >
@@ -234,7 +234,7 @@ export const AboutSection = () => {
                       <p className={`text-[11px] font-semibold ${card.iconColor} tracking-wide opacity-90`}>
                         {card.tags}
                       </p>
-                      
+
                       {/* Tooltip Arrow */}
                       <div className={`absolute -bottom-[6px] left-1/2 -translate-x-1/2 w-3 h-3 border-b border-r ${card.borderColor} rotate-45`} style={{ background: "rgba(15,23,42,0.95)" }} />
                     </motion.div>
@@ -243,14 +243,14 @@ export const AboutSection = () => {
               })}
             </div>
 
-            <p 
+            <p
               className="text-muted-foreground text-sm sm:text-base leading-[1.6]"
-              style={{ 
-                textAlign: "justify", 
-                textAlignLast: "left", 
-                hyphens: "auto", 
+              style={{
+                textAlign: "justify",
+                textAlignLast: "left",
+                hyphens: "auto",
                 WebkitHyphens: "auto",
-                wordSpacing: "-0.02em" 
+                wordSpacing: "-0.02em"
               }}
             >
               Currently pursuing a B.Sc. in Computer Science at Eastern
@@ -258,14 +258,14 @@ export const AboutSection = () => {
               architectures and automated pipelines.
             </p>
 
-            <p 
+            <p
               className="text-muted-foreground text-sm sm:text-base leading-[1.6]"
-              style={{ 
-                textAlign: "justify", 
-                textAlignLast: "left", 
-                hyphens: "auto", 
+              style={{
+                textAlign: "justify",
+                textAlignLast: "left",
+                hyphens: "auto",
                 WebkitHyphens: "auto",
-                wordSpacing: "-0.02em" 
+                wordSpacing: "-0.02em"
               }}
             >
               I bridge the gap between design and infrastructure, specializing

@@ -299,7 +299,7 @@ export const HeroSection = () => {
                 className="relative z-10"
               >
                 <motion.div animate={photoFloat.animate}>
-                  <div 
+                  <div
                     className="w-[200px] h-[260px] md:w-[280px] md:h-[380px] lg:w-[340px] lg:h-[460px] rounded-[100px] md:rounded-[140px] lg:rounded-[170px] overflow-hidden border-2 border-sky-400/60"
                     style={{
                       boxShadow: "0 0 50px 8px rgba(56,189,248,0.25), 0 0 100px 20px rgba(56,189,248,0.10)",

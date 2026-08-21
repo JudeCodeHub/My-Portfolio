@@ -1,376 +1,183 @@
+
 import { motion } from "framer-motion";
-import { Rocket, ArrowRight } from "lucide-react";
-import { FaGithub, FaLinkedin, FaBehance, FaInstagram, FaAws } from "react-icons/fa";
+import { ArrowRight, Terminal } from "lucide-react";
+import { FaGithub, FaLinkedin, FaMedium, FaBehance, FaInstagram, FaFacebookF, FaWhatsapp, FaAws } from "react-icons/fa";
 import { SiReact } from "react-icons/si";
 import StackIcon from "tech-stack-icons";
-import profilePic from "../assets/profile1.jpg";
+import profilePic from "../assets/me5.png";
+import TextType from "./ui/TextType";
+import MoltenMetal from "./ui/MoltenMetal";
+import ProfileCard from "./ui/ProfileCard";
 
-/* ─── Animation Variants ─────────────────────────────────── */
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut", delay },
-  },
-});
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.88 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.9, ease: "easeOut", delay: 0.3 },
-  },
-};
-
-const photoFloat = {
-  animate: {
-    y: [0, -14, 0],
-    transition: { duration: 4, ease: "easeInOut", repeat: Infinity },
-  },
-};
-
-/* ─── Tech Badge Configs ─────────────────────────────────── */
-const techBadges = [
-  {
-    id: "js",
-    icon: "js",
-    color: "#F7DF1E",
-    bg: "rgba(247,223,30,0.12)",
-    border: "rgba(247,223,30,0.35)",
-    glow: "rgba(247,223,30,0.25)",
-    label: "JavaScript",
-    // top-left of arch
-    pos: { top: "4%", left: "-8%" },
-    mobilePos: { top: "2%", left: "2%" },
-    delay: 0.6,
-    duration: 3.8,
-    wobble: false,
-  },
-  {
-    id: "docker",
-    icon: "docker",
-    color: "#2496ED",
-    bg: "rgba(36,150,237,0.12)",
-    border: "rgba(36,150,237,0.35)",
-    glow: "rgba(36,150,237,0.25)",
-    label: "Docker",
-    // top-right of arch (nudged right)
-    pos: { top: "8%", right: "-2%" },
-    mobilePos: { top: "2%", right: "2%" },
-    delay: 0.9,
-    duration: 4.5,
-    wobble: true,
-  },
-  {
-    id: "aws",
-    icon: FaAws,
-    color: "#FF9900",
-    bg: "rgba(255,153,0,0.12)",
-    border: "rgba(255,153,0,0.35)",
-    glow: "rgba(255,153,0,0.25)",
-    label: "AWS",
-    // bottom-left (nudged left)
-    pos: { bottom: "10%", left: "-14%" },
-    mobilePos: { bottom: "8%", left: "2%" },
-    delay: 1.2,
-    duration: 4.1,
-    wobble: false,
-  },
-  {
-    id: "figma",
-    icon: "figma",
-    color: "#F24E1E",
-    bg: "rgba(242,78,30,0.12)",
-    border: "rgba(242,78,30,0.35)",
-    glow: "rgba(242,78,30,0.25)",
-    label: "Figma",
-    // right-middle (nudged right)
-    pos: { top: "48%", right: "-6%" },
-    mobilePos: { top: "48%", right: "2%" },
-    delay: 0.4,
-    duration: 3.5,
-    wobble: true,
-  },
-  {
-    id: "react",
-    icon: SiReact,
-    color: "#61DAFB",
-    bg: "rgba(97,218,251,0.10)",
-    border: "rgba(97,218,251,0.30)",
-    glow: "rgba(97,218,251,0.20)",
-    label: "React",
-    // bottom-right (pulled left)
-    pos: { bottom: "6%", right: "1%" },
-    mobilePos: { bottom: "4%", right: "2%" },
-    delay: 1.5,
-    duration: 5.0,
-    wobble: false,
-  },
-  {
-    id: "ts",
-    icon: "typescript",
-    color: "#3178C6",
-    bg: "rgba(49,120,198,0.12)",
-    border: "rgba(49,120,198,0.35)",
-    glow: "rgba(49,120,198,0.25)",
-    label: "TypeScript",
-    // left-middle (nudged left)
-    pos: { top: "42%", left: "-14%" },
-    mobilePos: { top: "42%", left: "2%" },
-    delay: 1.0,
-    duration: 4.3,
-    wobble: false,
-  },
-];
-
-/* ─── Social Sidebar ─────────────────────────────────────── */
 const socials = [
-  { icon: FaGithub,    href: "https://github.com/JudeCodeHub",                    label: "GitHub",    size: 15, color: "#e8e8e8",  bg: "#1a1a1a" },
-  { icon: FaLinkedin,  href: "https://linkedin.com/in/judechihan",                 label: "LinkedIn",  size: 15, color: "#ffffff",  bg: "#0A66C2" },
-  { icon: FaBehance,   href: "https://www.behance.net/jude_dev",                   label: "Behance",   size: 15, color: "#ffffff",  bg: "#1769FF" },
-  { icon: FaInstagram, href: "https://www.instagram.com/judejochimson_judechihan", label: "Instagram", size: 15, color: "#ffffff",  bg: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)" },
+  { icon: FaGithub, href: "https://github.com/JudeCodeHub", label: "GH", color: "text-black group-hover:text-white", hoverBg: "hover:bg-black" },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/judechihan", label: "IN", color: "text-[#0A66C2] group-hover:text-white", hoverBg: "hover:bg-[#0A66C2]" },
+  { icon: FaMedium, href: "https://medium.com/@Judechihan", label: "MD", color: "text-black group-hover:text-white", hoverBg: "hover:bg-black" },
+  { icon: FaBehance, href: "https://www.behance.net/jude_dev", label: "BE", color: "text-[#1769ff] group-hover:text-white", hoverBg: "hover:bg-[#1769ff]" },
+  { icon: FaInstagram, href: "https://www.instagram.com/judejochimson_judechihan", label: "IG", color: "text-[#E1306C] group-hover:text-white", hoverBg: "hover:bg-[#E1306C]" },
+  { icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61563287920654", label: "FB", color: "text-[#1877F2] group-hover:text-white", hoverBg: "hover:bg-[#1877F2]" },
+  { icon: FaWhatsapp, href: "https://wa.me/94776345280", label: "WA", color: "text-[#25D366] group-hover:text-white", hoverBg: "hover:bg-[#25D366]" },
 ];
 
-/* ═══════════════════════════════════════════════════════════ */
 export const HeroSection = () => {
+
   return (
-    <section
-      id="hero"
-      className="relative pt-[90px] md:pt-[140px] pb-14 md:pb-10 flex items-center px-4 overflow-hidden"
-    >
-      {/* Ambient Glow Blobs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-sky-400/10 rounded-full blur-[100px] -z-10 pointer-events-none animate-pulse-subtle" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float" />
+    <section id="hero" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden border-b border-border">
+      {/* ── Background: Lightfall + Grid ── */}
+      <div className="absolute inset-0 z-0">
+        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+          <MoltenMetal
+            color1="#431407" 
+            color2="#f97316" 
+            color3="#fdba74" 
+            speed={0.35}
+            scale={4}
+            detail={3}
+            glow={1.6}
+            coreSize={0.1}
+            swirl={1}
+            fold={-0.2}
+            blackPoint={0.05}
+            brightness={1.3}
+            colorMode="molten"
+            grain={true}
+            grainIntensity={0.05}
+            mouseInteraction={false}
+            mouseStrength={0.3}
+            opacity={0.7}
+          />
+        </div>
+        {/* Industrial Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-[0.04] pointer-events-none" />
+      </div>
 
-      {/* ── Two-Column Grid ───────────────────────────────── */}
-      <div className="container max-w-7xl mx-auto mt-6 md:mt-20 lg:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 lg:gap-8 items-center">
-
-          {/* ── LEFT COLUMN (Text) ─────────────────────────────── */}
-          <div className="flex flex-col justify-center gap-4 md:gap-6 order-2 lg:order-1 text-center lg:text-left z-20">
-
-            <div className="flex flex-col gap-3 mb-[-8px]">
-              {/* Eyebrow */}
-              <motion.p
-                variants={fadeUp(0)}
-                initial="hidden"
-                animate="visible"
-                className="text-sm font-semibold tracking-widest uppercase text-sky-400"
-              >
-                ✦ Welcome to my portfolio!
-              </motion.p>
-
-              {/* Quote */}
-              <motion.p
-                variants={fadeUp(0.1)}
-                initial="hidden"
-                animate="visible"
-                className="italic leading-relaxed text-muted-foreground"
-                style={{ fontSize: "0.95rem" }}
-              >
-                "Make it work, make it right, make it fast."
-              </motion.p>
-            </div>
-
-            {/* Heading */}
-            <motion.h1
-              variants={fadeUp(0.2)}
-              initial="hidden"
-              animate="visible"
-              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight text-foreground"
+      {/* ── Main Layout: Asymmetrical & Structural ── */}
+      <div className="container relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 mix-blend-difference text-white dark:mix-blend-normal dark:text-foreground lg:ml-[80px] lg:mt-[90px] mt-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex items-center gap-4"
             >
-              Hey, I'm{" "}
-              <span className="bg-linear-to-r from-cyan-300 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(56,189,248,0.45)]">
-                Judechihan
+              <div className="h-px w-12 bg-current opacity-50" />
+              <span className="font-mono text-xs tracking-[0.3em] uppercase opacity-70">
+                System Online // v1.0
               </span>
-            </motion.h1>
-
-            {/* Tagline */}
-            <motion.p
-              variants={fadeUp(0.35)}
-              initial="hidden"
-              animate="visible"
-              className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed"
-              style={{ fontFamily: "'Inter', sans-serif" }}
-            >
-              Building the engine, not just the surface — focused on{" "}
-              <span className="text-sky-400 font-medium">scalable systems</span>,
-              automation, and resilient cloud infrastructure.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={fadeUp(0.5)}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-wrap gap-4 justify-center lg:justify-start"
-            >
-              <motion.a
-                href="#projects"
-                whileHover={{ scale: 1.07, boxShadow: "0 0 28px rgba(14,165,233,0.55)" }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-linear-to-r from-sky-500 to-blue-600 text-white font-semibold text-sm shadow-[0_0_14px_rgba(14,165,233,0.4)] transition-shadow duration-300"
-              >
-                <Rocket className="w-4 h-4" />
-                View My Work
-              </motion.a>
-
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.07, boxShadow: "0 0 24px rgba(14,165,233,0.35)" }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-sky-400/60 text-sky-400 font-semibold text-sm bg-transparent hover:bg-sky-400/10 transition-all duration-300"
-              >
-                Contact Me
-                <ArrowRight className="w-4 h-4" />
-              </motion.a>
             </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+              className="flex flex-col"
+            >
+              <h1 className="w-fit text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] xl:text-[2.8rem] font-extrabold leading-[1.1] tracking-tight uppercase min-h-[1.2em] whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-[#c2410c] via-[#f97316] to-[#fdba74]">
+                <TextType 
+                  text={["Judechihan", "Software Engineer", "DevOps Enthusiast"]}
+                  typingSpeed={80}
+                  deletingSpeed={40}
+                  pauseDuration={2000}
+                  cursorClassName="text-[#f97316] font-light"
+                />
+              </h1>
+              <div className="mt-8">
+                <p className="text-sm md:text-base font-mono max-w-xl opacity-80 leading-relaxed border-l-2 border-foreground/30 pl-4">
+                  Building the engine, not just the surface. Focused on scalable systems and resilient infrastructure.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4 w-full"
+            >
+              <a 
+                href="#projects"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background font-mono text-sm uppercase tracking-widest overflow-hidden transition-transform active:scale-95"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <Terminal className="w-4 h-4" />
+                  DEPLOYED_WORK
+                </span>
+              </a>
+              <a 
+                href="#contact"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-foreground/30 hover:border-foreground bg-transparent font-mono text-sm uppercase tracking-widest transition-colors active:scale-95"
+              >
+                Connect <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
           </div>
 
-          {/* ── RIGHT COLUMN (Photo) ─────────────────────────────── */}
-          {/* ml-auto + pl push the whole column slightly right for breathing room */}
-          <div className="relative flex justify-center items-center order-1 lg:order-2 mt-4 lg:mt-0">
-            <div className="relative" style={{ marginLeft: "clamp(0px, 4vw, 56px)" }}>
+          {/* Right Content (Spans 6 cols) - Interactive Profile Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            className="col-span-1 lg:col-span-6 relative flex flex-col items-center lg:items-center mt-12 lg:-mt-8"
+          >
+            <div className="w-full max-w-sm lg:max-w-[500px] mx-auto relative z-20">
+              <ProfileCard
+                name=""
+                title=""
+                handle="judechihan"
+                status="System Online"
+                contactText="Initialize"
+                innerGradient="transparent"
+                avatarUrl={profilePic}
+                showUserInfo={false}
+                enableTilt={false}
+                behindGlowEnabled={true}
+                behindGlowColor="rgba(249, 115, 22, 0.4)"
+                className="w-full"
+              />
 
-              {/* ── Floating Tech Badges ─────────────────── */}
-              {techBadges.map((badge) => {
-                const Icon = badge.icon;
-                return (
-                  <motion.div
-                    key={badge.id}
-                    className="absolute z-30 pointer-events-none flex"
-                    style={badge.pos}
-                    initial={{ opacity: 0, scale: 0.6 }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1,
-                      y: [0, -12, 0],
-                      rotate: badge.wobble ? [0, 4, 0, -4, 0] : 0,
-                    }}
-                    transition={{
-                      opacity:  { duration: 0.5, delay: badge.delay },
-                      scale:    { duration: 0.5, delay: badge.delay },
-                      y: {
-                        duration: badge.duration,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: badge.delay,
-                      },
-                      rotate: badge.wobble ? {
-                        duration: badge.duration * 1.4,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: badge.delay,
-                      } : undefined,
-                    }}
-                    whileHover={{ scale: 1.15, pointerEvents: "auto" }}
-                  >
-                    {/* Badge */}
-                    <div
-                      className="flex items-center justify-center w-8 h-8 md:w-12 md:h-12 lg:w-[56px] lg:h-[56px] rounded-[10px] md:rounded-[12px] lg:rounded-[16px]"
-                      style={{
-                        background: badge.bg,
-                        border: `1px solid ${badge.border}`,
-                        boxShadow: `0 0 18px 2px ${badge.glow}, 0 4px 20px rgba(0,0,0,0.4)`,
-                        backdropFilter: "blur(12px)",
-                        WebkitBackdropFilter: "blur(12px)",
-                      }}
-                    >
-                      <div className="w-4 h-4 md:w-6 md:h-6 lg:w-[28px] lg:h-[28px] flex items-center justify-center">
-                        {typeof badge.icon === "string" ? (
-                          <StackIcon name={badge.icon} />
-                        ) : (
-                          <badge.icon size={28} color={badge.color} />
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-
-              {/* ── Photo Arch Card ──────────────────────── */}
-              <motion.div
-                variants={scaleIn}
-                initial="hidden"
-                animate="visible"
-                className="relative z-10"
-              >
-                <motion.div animate={photoFloat.animate}>
-                  <div
-                    className="w-[200px] h-[260px] md:w-[280px] md:h-[380px] lg:w-[340px] lg:h-[460px] rounded-[100px] md:rounded-[140px] lg:rounded-[170px] overflow-hidden border-2 border-sky-400/60"
-                    style={{
-                      boxShadow: "0 0 50px 8px rgba(56,189,248,0.25), 0 0 100px 20px rgba(56,189,248,0.10)",
-                    }}
-                  >
-                    <img
-                      src={profilePic}
-                      alt="Judechihan — Developer"
-                      draggable={false}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center 10%",
-                        display: "block",
-                        userSelect: "none",
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* ── Vertical "Follow Me" Social Sidebar ─── */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.8 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20 hidden lg:flex"
-                style={{ right: "-90px" }}
-              >
-                <span
-                  className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground font-semibold"
-                  style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                >
-                  Follow Me
-                </span>
-
-                <div className="w-px h-8 bg-sky-400/30" />
-
-                {socials.map(({ icon: Icon, href, label, size, color, bg }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
+          
+              <div className="hidden md:flex absolute -right-6 lg:-right-16 top-0 bottom-0 my-auto h-fit flex-col gap-4 z-30 justify-center">
+                {socials.map((social, i) => (
+                  <motion.a 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + (i * 0.1) }}
+                    key={social.label} 
+                    href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={label}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.92 }}
-                    className="transition-transform duration-200"
+                    className={`group w-10 h-10 bg-white backdrop-blur-md border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
                   >
-                    <span style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: 30,
-                      height: 30,
-                      borderRadius: 8,
-                      background: bg,
-                      color: color,
-                      flexShrink: 0,
-                    }}>
-                      <Icon size={size} />
-                    </span>
+                    <social.icon size={21} className={`transition-colors duration-300 ${social.color}`} />
                   </motion.a>
                 ))}
+              </div>
 
-                <div className="w-px h-8 bg-sky-400/30" />
-              </motion.div>
+              {/* Mobile Socials block - row layout under the card */}
+              <div className="flex md:hidden w-full flex-row flex-wrap justify-center gap-4 mt-8 z-30">
+                {socials.map((social, i) => (
+                  <motion.a 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + (i * 0.1) }}
+                    key={social.label} 
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group w-10 h-10 bg-white backdrop-blur-md border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
+                  >
+                    <social.icon size={21} className={`transition-colors duration-300 ${social.color}`} />
+                  </motion.a>
+                ))}
+              </div>
+
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

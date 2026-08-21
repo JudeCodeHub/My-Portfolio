@@ -1,101 +1,97 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, CodeXml } from "lucide-react";
 import { useEffect, useState } from "react";
+// import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
-  { name: "Init", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Honours", href: "#achievements" },
-  { name: "Contact", href: "#contact" },
 ];
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <nav
-      className={cn(
-        "fixed top-0 w-full z-40 py-4 transition-all duration-300",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md shadow-xs"
-          : "bg-transparent",
-      )}
-    >
-      <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
-        >
-          <span className="relative group flex items-center transition-transform duration-500 hover:-translate-y-0.5 cursor-pointer">
-            <span className="relative z-10 font-serif italic text-2xl font-black bg-linear-to-b from-cyan-300 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]">
-              Jude
+    <>
+      <nav className="absolute top-6 left-0 right-0 mx-auto w-[92%] max-w-7xl z-50 flex items-center justify-between px-6 py-3 rounded-full bg-[#ff6316]/0 backdrop-blur-2xl border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+        
+        {/* Left: Logo */}
+        <div className="flex-1 flex items-center justify-start">
+          <a href="#hero" className="flex items-center gap-2 group">
+            <CodeXml className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+            <span className="text-white font-semibold text-lg tracking-wide hidden sm:block">
+              Jude.dev
             </span>
-            <span className="relative z-10 font-mono text-xl font-bold text-sky-400 ml-1 tracking-wide">
-              .dev
-            </span>
-            <span className="absolute -top-1 -right-2 w-1 h-1 bg-sky-300 rounded-full animate-ping opacity-80 shadow-[0_0_5px_2px_#7dd3fc]" />
-          </span>
-        </a>
+          </a>
+        </div>
 
-        {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        {/* Center: Desktop Links */}
+        <div className="hidden md:flex flex-1 items-center justify-center gap-8">
           {navItems.map((item, key) => (
             <a
               key={key}
               href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, letterSpacing: "0.3px" }}
+              className="text-white/70 hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
             >
               {item.name}
             </a>
           ))}
         </div>
+        
+        {/* Right: Theme Toggle & CTA */}
+        <div className="flex-1 flex items-center justify-end gap-6">
+          <div className="hidden md:block">
+            {/* <ThemeToggle /> */}
+          </div>
+          <a
+            href="#contact"
+            className="hidden md:inline-block bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+          >
+            Contact
+          </a>
 
-        {/* mobile nav */}
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        <div
-          className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none",
-          )}
-        >
-          <div className="flex flex-col space-y-8 text-xl">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500, letterSpacing: "0.3px" }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+          {/* Mobile Menu Controls */}
+          <div className="md:hidden flex items-center gap-4">
+            {/* <ThemeToggle /> */}
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="p-1 text-white hover:text-white/80 transition-colors"
+              aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 bg-[#060714]/95 backdrop-blur-2xl z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden",
+          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="flex flex-col space-y-8 text-2xl items-center">
+          {navItems.map((item, key) => (
+            <a
+              key={key}
+              href={item.href}
+              className="text-white/80 hover:text-white transition-colors duration-300 font-semibold tracking-wider"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="bg-white text-black px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors mt-4"
+          >
+            Contact Me
+          </a>
+        </div>
       </div>
-    </nav>
+    </>
   );
 };

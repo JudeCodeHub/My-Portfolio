@@ -1,6 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-import { ThemeToggle } from "../components/ThemeToggle";
-import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
@@ -12,19 +10,16 @@ import { SectionDivider } from "../components/SectionDivider";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/*Theme toggle*/}
-      <ThemeToggle />
+    <div className="relative h-screen w-full bg-background text-foreground overflow-hidden">
+      {/* Navbar sits outside the scroll container, acting perfectly fixed */}
+      <div className="absolute inset-x-0 top-0 z-[9999] pointer-events-none">
+        <div className="pointer-events-auto">
+          <Navbar />
+        </div>
+      </div>
 
-      {/*Background effects*/}
-      <BackgroundEffects />
-
-      {/*Navbar*/}
-
-      <Navbar />
-
-      {/*Main content*/}
-      <main>
+      {/* Main content takes full screen and scrolls independently */}
+      <main className="absolute inset-0 overflow-y-auto overflow-x-hidden scroll-smooth">
         <HeroSection />
         <SectionDivider color="#38bdf8" align="right" />
 
@@ -41,10 +36,8 @@ export const Home = () => {
         <SectionDivider color="#22c55e" align="right" />
 
         <ContactSection />
+        <FooterSection />
       </main>
-
-      {/*Footer */}
-      <FooterSection />
     </div>
   );
 };

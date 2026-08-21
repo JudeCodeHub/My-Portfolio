@@ -3,6 +3,7 @@ import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { Toaster } from "@/components/ui/toaster";
 import { useEffect } from "react";
+import SplashCursor from "@/components/ui/SplashCursor";
 
 function App() {
   // Force reset scroll to absolute top on any page reload
@@ -14,6 +15,7 @@ function App() {
   }, []);
   return (
     <>
+      <SplashCursor />
       <Toaster />
       <BrowserRouter>
         <Routes>

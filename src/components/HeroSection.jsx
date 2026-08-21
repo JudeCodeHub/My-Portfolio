@@ -23,34 +23,8 @@ const socials = [
 export const HeroSection = () => {
 
   return (
-    <section id="hero" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden border-b border-border">
-      {/* ── Background: Lightfall + Grid ── */}
-      <div className="absolute inset-0 z-0">
-        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
-          <MoltenMetal
-            color1="#431407" 
-            color2="#f97316" 
-            color3="#fdba74" 
-            speed={0.35}
-            scale={4}
-            detail={3}
-            glow={1.6}
-            coreSize={0.1}
-            swirl={1}
-            fold={-0.2}
-            blackPoint={0.05}
-            brightness={1.3}
-            colorMode="molten"
-            grain={true}
-            grainIntensity={0.05}
-            mouseInteraction={false}
-            mouseStrength={0.3}
-            opacity={0.7}
-          />
-        </div>
-        {/* Industrial Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-[0.04] pointer-events-none" />
-      </div>
+    <section id="hero" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden">
+
 
       {/* ── Main Layout: Asymmetrical & Structural ── */}
       <div className="container relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 pb-12">

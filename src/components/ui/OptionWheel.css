@@ -1,0 +1,81 @@
+.option-wheel {
+  --ow-text-color: #a6a6a6;
+  --ow-active-color: #ffffff;
+  --ow-font-size: 3rem;
+  --ow-inset: 80px;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  outline: none;
+}
+
+.option-wheel--dragging {
+  cursor: grabbing;
+}
+
+/* Each option is absolutely centered, then offset along the curve by the
+   rAF loop through transform/opacity/filter, so everything stays in step. */
+.option-wheel__item {
+  position: absolute;
+  top: 50%;
+  left: var(--ow-inset);
+  white-space: nowrap;
+  font-size: var(--ow-font-size);
+  line-height: 1;
+  font-weight: 300;
+  transform-origin: left center;
+  cursor: pointer;
+  will-change: transform, opacity, filter;
+  /* --ow-p goes 0 -> 1 as an option approaches the middle of the wheel */
+  color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), var(--ow-text-color));
+  transition: font-weight 0.3s ease, letter-spacing 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.option-wheel--right .option-wheel__item {
+  left: auto;
+  right: var(--ow-inset);
+  transform-origin: right center;
+  flex-direction: row-reverse;
+}
+
+.option-wheel__item--selected {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ── SCI-FI DIAL STYLES ── */
+.dial-node {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.dial-line {
+  height: 2px;
+  width: calc(15px + (var(--ow-p, 0) * 25px));
+  background-color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), rgba(255,255,255,0.15));
+  box-shadow: 0 0 calc(var(--ow-p, 0) * 10px) var(--ow-active-color);
+  border-radius: 2px;
+}
+
+.dial-dot {
+  width: calc(4px + (var(--ow-p, 0) * 5px));
+  height: calc(4px + (var(--ow-p, 0) * 5px));
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), rgba(255,255,255,0.3));
+  box-shadow: 0 0 calc(var(--ow-p, 0) * 15px) var(--ow-active-color);
+}
+
+.dial-text {
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}

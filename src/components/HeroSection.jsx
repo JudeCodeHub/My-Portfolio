@@ -24,23 +24,38 @@ export const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden">
+      <style>{`
+        @keyframes mouse-scroll {
+          0% { opacity: 0; transform: translateY(-4px); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: translateY(12px); }
+        }
+        .animate-mouse-scroll {
+          animation: mouse-scroll 1.5s cubic-bezier(0.15, 0.41, 0.69, 0.94) infinite;
+        }
+      `}</style>
 
 
       {/* ── Main Layout: Asymmetrical & Structural ── */}
       <div className="container relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 mix-blend-difference text-white dark:mix-blend-normal dark:text-foreground lg:ml-[80px] lg:mt-[90px] mt-8">
+          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 mix-blend-difference text-white dark:mix-blend-normal dark:text-foreground lg:ml-[80px] lg:mt-[20px] mt-4">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex items-center gap-4"
+              className="flex flex-col items-start gap-4"
             >
-              <div className="h-px w-12 bg-current opacity-50" />
-              <span className="font-mono text-xs tracking-[0.3em] uppercase opacity-70">
-                System Online // v1.0
-              </span>
+              <div className="hidden md:block text-white/60 italic text-sm md:text-base font-light tracking-wider text-left">
+                "When something is important enough, <br className="hidden sm:block" /> you do it even if the odds are not in your favor."
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="h-px w-12 bg-current opacity-50" />
+                <span className="font-mono text-xs tracking-[0.3em] uppercase opacity-70 text-orange-500">
+                  System Online // v1.0
+                </span>
+              </div>
             </motion.div>
 
             <motion.div
@@ -59,7 +74,7 @@ export const HeroSection = () => {
                 />
               </h1>
               <div className="mt-8">
-                <p className="text-sm md:text-base font-mono max-w-xl opacity-80 leading-relaxed border-l-2 border-foreground/30 pl-4">
+                <p className="text-sm md:text-base font-mono max-w-xl opacity-80 leading-relaxed border-l-2 border-foreground/30 pl-4 text-left">
                   Building the engine, not just the surface. Focused on scalable systems and resilient infrastructure.
                 </p>
               </div>
@@ -155,6 +170,25 @@ export const HeroSection = () => {
 
         </div>
       </div>
+      
+      {/* Universal Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="md:hidden flex absolute bottom-6 left-0 right-0 mx-auto flex-col items-center gap-3 z-30 cursor-pointer group w-fit"
+        onClick={() => {
+          window.location.hash = "#about";
+          window.dispatchEvent(new CustomEvent('navigateSection', { detail: 'about' }));
+        }}
+      >
+        <div className="w-[28px] h-[46px] border-2 border-white/40 group-hover:border-orange-500/70 rounded-full flex justify-center p-1.5 transition-colors duration-300">
+          <div className="w-1.5 h-2 bg-orange-500 rounded-full animate-mouse-scroll" />
+        </div>
+        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/70 group-hover:text-orange-500 transition-colors duration-300">
+          Scroll
+        </span>
+      </motion.div>
     </section>
   );
 };

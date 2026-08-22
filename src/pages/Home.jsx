@@ -6,18 +6,70 @@ import { ProjectsSection } from "../components/ProjectSection";
 import { Awards_Acheivements } from "../components/Awards_Acheivements";
 import { ContactSection } from "../components/ContactSection";
 import { FooterSection } from "../components/FooterSection";
-import { ScrollPath } from "../components/ui/ScrollPath";
 import MoltenMetal from "../components/ui/MoltenMetal";
-import { useRef } from "react";
+import { useState, useEffect } from "react";
+import OptionWheel from "../components/ui/OptionWheel";
+import { AnimatePresence, motion } from "framer-motion";
+
+const SECTIONS = [
+  { name: "Init", id: "start", component: <HeroSection /> },
+  { name: "About Me", id: "about", component: <AboutSection /> },
+  { name: "Skills", id: "skills", component: <SkillsSection /> },
+  { name: "Projects", id: "projects", component: <ProjectsSection /> },
+  { name: "Awards", id: "awards", component: <Awards_Acheivements /> },
+  { name: "Contact", id: "contact", component: <ContactSection /> },
+];
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  return isMobile;
+}
 
 export const Home = () => {
-  const scrollRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const isMobile = useIsMobile();
+
+  // Listen for hash changes and custom events to sync navigation on desktop
+  useEffect(() => {
+    const handleNavigation = (hash) => {
+      if (isMobile) return; // Mobile uses native scrolling
+      const targetHash = hash.replace('#', '');
+      if (!targetHash) return;
+      
+      const index = SECTIONS.findIndex(s => s.id === targetHash);
+      if (index !== -1) {
+        setActiveIndex(index);
+      }
+    };
+
+    const onHashChange = () => handleNavigation(window.location.hash);
+    const onCustomNav = (e) => handleNavigation(e.detail);
+
+    // Check initial hash on mount
+    onHashChange();
+
+    window.addEventListener('hashchange', onHashChange);
+    window.addEventListener('navigateSection', onCustomNav);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+      window.removeEventListener('navigateSection', onCustomNav);
+    };
+  }, [isMobile]);
 
   return (
-    <div className="relative h-screen w-full bg-background text-foreground overflow-hidden">
+    <div className={`relative w-full bg-background text-foreground ${isMobile ? "min-h-screen" : "h-screen overflow-hidden"}`}>
       
       {/* ── GLOBAL UNIFIED BACKGROUND ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
           <MoltenMetal
             color1="#431407" 
@@ -45,24 +97,66 @@ export const Home = () => {
       </div>
 
       {/* Navbar sits outside the scroll container, acting perfectly fixed */}
-      <div className="absolute inset-x-0 top-0 z-[9999] pointer-events-none">
-        <div className="pointer-events-auto">
+      <div className="fixed inset-x-0 top-0 z-[9999] pointer-events-none pl-0 md:pl-64 lg:pl-80 flex justify-center">
+        <div className="pointer-events-auto w-full">
           <Navbar />
         </div>
       </div>
 
-      {/* Main content takes full screen and scrolls independently */}
-      <main ref={scrollRef} className="absolute inset-0 overflow-y-auto overflow-x-hidden scroll-smooth z-10">
-        <ScrollPath containerRef={scrollRef} />
-        
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <Awards_Acheivements />
-        <ContactSection />
-        <FooterSection />
-      </main>
+      {isMobile ? (
+        /* ── MOBILE LAYOUT (Classic Continuous Scrolling) ── */
+        <main className="relative z-10 pointer-events-auto w-full overflow-x-hidden">
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <Awards_Acheivements />
+          <ContactSection />
+          <FooterSection />
+        </main>
+      ) : (
+        /* ── DESKTOP LAYOUT (Slide Deck with Option Wheel) ── */
+        <>
+          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-56 lg:w-72 z-[50] pointer-events-auto">
+            <OptionWheel
+              items={SECTIONS.map(s => s.name)}
+              defaultSelected={activeIndex}
+              onChange={(index) => setActiveIndex(index)}
+              loop={false}
+              side="left"
+              textColor="rgba(255, 255, 255, 0.3)"
+              activeColor="#f97316"
+              curve={0.5}
+              tilt={4}
+              inset={60}
+              fontSize={2.2}
+              spacing={2.2}
+            />
+          </div>
+
+          <main className="absolute inset-0 z-10 flex items-center justify-center pointer-events-auto pl-32 md:pl-64 lg:pl-80">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full max-h-screen overflow-y-auto overflow-x-hidden flex flex-col justify-center"
+              >
+                {SECTIONS[activeIndex].component}
+                
+                {/* If it's the last section, show Footer */}
+                {activeIndex === SECTIONS.length - 1 && (
+                  <div className="mt-auto">
+                     <FooterSection />
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </main>
+        </>
+      )}
     </div>
   );
 };

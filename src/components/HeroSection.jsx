@@ -176,7 +176,7 @@ export const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="md:hidden flex absolute bottom-6 left-0 right-0 mx-auto flex-col items-center gap-3 z-30 cursor-pointer group w-fit"
+        className="hidden md:flex absolute bottom-10 left-0 right-0 mx-auto transform -translate-x-6 flex-col items-center gap-3 z-30 cursor-pointer group w-fit"
         onClick={() => {
           window.location.hash = "#about";
           window.dispatchEvent(new CustomEvent('navigateSection', { detail: 'about' }));

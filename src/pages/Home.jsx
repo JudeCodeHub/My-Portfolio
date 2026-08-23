@@ -13,8 +13,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const SECTIONS = [
   { name: "Init", id: "start", component: <HeroSection /> },
-  { name: "About Me", id: "about", component: <AboutSection /> },
-  { name: "Skills", id: "skills", component: <SkillsSection /> },
+  { name: "whoami", id: "about", component: <AboutSection /> },
+  { name: "stack", id: "skills", component: <SkillsSection /> },
   { name: "Projects", id: "projects", component: <ProjectsSection /> },
   { name: "Awards", id: "awards", component: <Awards_Acheivements /> },
   { name: "Contact", id: "contact", component: <ContactSection /> },
@@ -121,7 +121,10 @@ export const Home = () => {
             <OptionWheel
               items={SECTIONS.map(s => s.name)}
               defaultSelected={activeIndex}
-              onChange={(index) => setActiveIndex(index)}
+              onChange={(index) => {
+                setActiveIndex(index);
+                window.location.hash = SECTIONS[index].id;
+              }}
               loop={false}
               side="left"
               textColor="rgba(255, 255, 255, 0.3)"

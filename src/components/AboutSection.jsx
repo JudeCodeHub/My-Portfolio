@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, FileUser } from "lucide-react";
 import aboutMePic from "../assets/aboutme.png";
@@ -83,7 +83,7 @@ export const AboutSection = () => {
       >
         
         {/* Section Heading */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 lg:gap-16 mb-4 md:mb-10 lg:mb-12 mt-0 md:mt-4 lg:mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 lg:gap-16 mb-2 md:mb-6 lg:mb-2 mt-0 md:mt-4 lg:mt-6">
           {/* Empty spacer on desktop to push the heading to the right column */}
           <div className="hidden lg:block lg:col-span-5"></div>
           
@@ -91,17 +91,16 @@ export const AboutSection = () => {
             variants={fadeUp(0.1)}
             className="lg:col-span-7 text-center lg:text-left"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight flex gap-3 justify-center lg:justify-start">
-              <Shuffle text="About" loop={true} loopDelay={3} />
-              <Shuffle text="Me" className="text-orange-500" loop={true} loopDelay={3} />
+            <h2 className="text-3xl md:text-5xl font-mono font-bold text-white tracking-tight flex gap-3 justify-center lg:justify-start items-center">
+              <span className="text-orange-500">~$</span>
+              <Shuffle text="whoami" loop={true} loopDelay={3} />
             </h2>
-            <div className="mt-4 w-16 h-[2px] bg-orange-500 mx-auto lg:mx-0" />
           </motion.div>
         </div>
 
         {/* ── SPLIT LAYOUT: PHOTO (Left) | BIO TEXT (Right) ── */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center mb-8 md:mb-12 mt-0 md:mt-2 lg:mt-4"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center mb-8 md:mb-12 mt-0"
         >
           
           {/* ── Left: Profile Image ── */}
@@ -142,7 +141,7 @@ export const AboutSection = () => {
           {/* ── Right: Bio Text ── */}
           <motion.div
             variants={fadeUp(0.4)}
-            className="lg:col-span-7 flex flex-col justify-center text-center md:text-left mt-6 md:mt-0"
+            className="lg:col-span-7 flex flex-col justify-center text-center md:text-left mt-6 md:mt-0 lg:mt-0"
           >
             <h3 className="text-2xl md:text-4xl font-bold text-white leading-snug mb-2 md:mb-3 tracking-tight">
               Software Engineer

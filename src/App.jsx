@@ -6,13 +6,6 @@ import { useEffect } from "react";
 import SplashCursor from "@/components/ui/SplashCursor";
 
 function App() {
-  // Force reset scroll to absolute top on any page reload
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <>
       <SplashCursor />

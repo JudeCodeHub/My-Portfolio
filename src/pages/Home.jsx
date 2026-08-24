@@ -5,6 +5,7 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectSection";
 import { Awards_Acheivements } from "../components/Awards_Acheivements";
 import { ContactSection } from "../components/ContactSection";
+import { CertificationsSection } from "../components/CertificationsSection";
 import { FooterSection } from "../components/FooterSection";
 import MoltenMetal from "../components/ui/MoltenMetal";
 import { useState, useEffect } from "react";
@@ -17,6 +18,7 @@ const SECTIONS = [
   { name: "stack", id: "skills", component: <SkillsSection /> },
   { name: "Projects", id: "projects", component: <ProjectsSection /> },
   { name: "Awards", id: "awards", component: <Awards_Acheivements /> },
+  { name: "Certs", id: "certifications", component: <CertificationsSection /> },
   { name: "Contact", id: "contact", component: <ContactSection /> },
 ];
 

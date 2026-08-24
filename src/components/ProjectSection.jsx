@@ -10,7 +10,7 @@ import {
   TerminalSquare,
   ChevronUp,
   ChevronDown,
-  ExternalLink
+  ExternalLink,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaFigma } from "react-icons/fa";
 import Shuffle from "./ui/Shuffle";
@@ -20,7 +20,8 @@ const projects = [
     id: 1,
     title: "New Portfolio Project",
     category: "Frontend Development",
-    description: "A newly added project demonstrating clean UI/UX and modern frontend capabilities.",
+    description:
+      "A newly added project demonstrating clean UI/UX and modern frontend capabilities.",
     image: "/projects/project5.png",
     tags: ["React", "Tailwind CSS", "Framer Motion"],
     githubUrl: "https://github.com/JudeCodeHub/SitePulse.git",
@@ -79,7 +80,8 @@ const projects = [
       "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
     image: "/projects/project3.png",
     tags: ["Figma", "HCI", "UI/UX"],
-    figmaUrl: "https://www.figma.com/file/PkX0gMzUMNAYHwMvLSHoku/UGC-website-Redesigned",
+    figmaUrl:
+      "https://www.figma.com/file/PkX0gMzUMNAYHwMvLSHoku/UGC-website-Redesigned",
     icon: <Layout size={20} />,
     accent: "#6366f1",
     terminalName: "ugc-website",
@@ -97,11 +99,11 @@ const fadeUp = (delay = 0) => ({
 
 function RolodexCard({ project, isActive }) {
   return (
-    <div 
+    <div
       className={`w-full h-full rounded-2xl flex flex-col overflow-hidden bg-[#0a0a0a]/80 backdrop-blur-md border transition-all duration-700 ease-in-out ${
-        isActive 
-          ? 'border-white/20 shadow-[0_0_40px_rgba(249,115,22,0.15)]' 
-          : 'border-white/5 scale-95'
+        isActive
+          ? "border-white/20 shadow-[0_0_40px_rgba(249,115,22,0.15)]"
+          : "border-white/5 scale-95"
       }`}
     >
       {/* Terminal Header Bar (Macbook Style) */}
@@ -126,12 +128,12 @@ function RolodexCard({ project, isActive }) {
           <img
             src={project.image}
             alt={project.title}
-            className={`w-full h-full object-cover object-center transition-all duration-1000 ${isActive ? 'opacity-100' : 'opacity-30 grayscale'}`}
+            className={`w-full h-full object-cover object-left-top transition-all duration-1000 ${isActive ? "opacity-100" : "opacity-30 grayscale"}`}
           />
 
           {/* Action Links Overlay (Visible on active card) */}
           {isActive && (
-            <div className="absolute bottom-5 left-[45%] -translate-x-1/2 flex items-center gap-3 z-20">
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-wrap justify-center items-center gap-2 md:gap-3 z-20 w-[95%] md:w-auto">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
@@ -140,10 +142,12 @@ function RolodexCard({ project, isActive }) {
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
                 >
                   <FaGithub size={14} />
-                  <span className="text-xs font-medium tracking-wide">Source</span>
+                  <span className="text-xs font-medium tracking-wide">
+                    Source
+                  </span>
                 </a>
               )}
-              
+
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
@@ -152,7 +156,9 @@ function RolodexCard({ project, isActive }) {
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
                 >
                   <ExternalLink size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">Live Demo</span>
+                  <span className="text-xs font-medium tracking-wide text-white">
+                    Live Demo
+                  </span>
                 </a>
               )}
 
@@ -164,10 +170,12 @@ function RolodexCard({ project, isActive }) {
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
                 >
                   <FaLinkedin size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">LinkedIn Post</span>
+                  <span className="text-xs font-medium tracking-wide text-white">
+                    LinkedIn Post
+                  </span>
                 </a>
               )}
-              
+
               {project.figmaUrl && (
                 <a
                   href={project.figmaUrl}
@@ -176,7 +184,9 @@ function RolodexCard({ project, isActive }) {
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-[#F24E1E] hover:border-[#F24E1E] hover:scale-105 transition-all duration-300 shadow-2xl"
                 >
                   <FaFigma size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">Figma Design</span>
+                  <span className="text-xs font-medium tracking-wide text-white">
+                    Figma Design
+                  </span>
                 </a>
               )}
             </div>
@@ -199,17 +209,19 @@ export const ProjectsSection = () => {
   };
 
   // The radius of the 3D cylinder. Larger = smoother curve.
-  const radius = 550; 
+  const radius = 550;
   const anglePerItem = 60; // degrees
 
   return (
-    <section id="projects" className="w-full min-h-screen py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10">
-      
+    <section
+      id="projects"
+      className="w-full md:min-h-screen py-12 md:py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10"
+    >
       {/* Background glow matching the terminal theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
       {/* Header (Centered) */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, margin: "0px" }}
@@ -226,33 +238,31 @@ export const ProjectsSection = () => {
 
       {/* Alignment Wrapper matching Navbar for the 3D Wheel */}
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-[104px] flex flex-col items-start z-10">
-
-        {/* 3D Rolodex Container */}
-        <div 
-          className="relative w-full max-w-5xl h-[700px] md:h-[650px] flex items-center justify-center md:translate-x-5 ml-8 mt-3"
+        {/* 3D Rolodex Container (Desktop Only) */}
+        <div
+          className="relative w-full max-w-5xl h-[650px] hidden md:flex items-center justify-center md:translate-x-5 md:ml-8 mt-8"
           style={{ perspective: "2000px" }}
         >
-          
           {/* Navigation Controls (Right Side) */}
-          <div className="absolute right-0 md:right-[-70px] top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-2 -mt-19">
-            <button 
+          <div className="absolute right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2 -mt-19">
+            <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
               <ChevronUp size={20} />
             </button>
-            
+
             {/* Indicators */}
             <div className="flex flex-col items-center gap-2 py-2">
               {projects.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`w-2 transition-all duration-300 rounded-full ${i === activeIndex ? 'h-6 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]' : 'h-2 bg-white/20'}`} 
+                <div
+                  key={i}
+                  className={`w-2 transition-all duration-300 rounded-full ${i === activeIndex ? "h-6 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" : "h-2 bg-white/20"}`}
                 />
               ))}
             </div>
 
-            <button 
+            <button
               onClick={handleNext}
               className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
@@ -261,8 +271,8 @@ export const ProjectsSection = () => {
           </div>
 
           {/* Rolodex Wheel */}
-          <div 
-            className="relative w-full h-[650px] md:h-[600px]" 
+          <div
+            className="relative w-full h-[600px]"
             style={{ transformStyle: "preserve-3d", willChange: "transform" }}
           >
             {projects.map((project, i) => {
@@ -280,21 +290,21 @@ export const ProjectsSection = () => {
                   animate={{
                     rotateX: rotateX,
                     z: -absOffset * 50,
-                    opacity: isActive ? 1 : (isVisible ? 1 : 0),
+                    opacity: isActive ? 1 : isVisible ? 1 : 0,
                     filter: isActive ? "blur(0px)" : "blur(2px)",
                   }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 150,
                     damping: 20,
-                    mass: 0.8
+                    mass: 0.8,
                   }}
                   style={{
                     transformOrigin: `50% 50% -${radius}px`,
                     backfaceVisibility: "hidden",
                     pointerEvents: isVisible ? "auto" : "none",
                     zIndex: projects.length - absOffset,
-                    willChange: "transform, opacity, filter"
+                    willChange: "transform, opacity, filter",
                   }}
                 >
                   <RolodexCard project={project} isActive={isActive} />
@@ -302,18 +312,48 @@ export const ProjectsSection = () => {
               );
             })}
           </div>
+        </div>
 
-          {/* Mobile controls inside container bottom */}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-6 md:hidden z-30">
-            <button onClick={handlePrev} className="p-2 bg-white/5 rounded-full border border-white/10 active:scale-90"><ChevronUp size={20}/></button>
-            <div className="flex items-center gap-2">
-              {projects.map((_, i) => (
-                <div key={i} className={`w-2 h-2 rounded-full transition-all ${i === activeIndex ? 'bg-orange-500 scale-125' : 'bg-white/20'}`} />
-              ))}
-            </div>
-            <button onClick={handleNext} className="p-2 bg-white/5 rounded-full border border-white/10 active:scale-90"><ChevronDown size={20}/></button>
+        {/* Simple 2D Slider Container (Mobile Only) */}
+        <div className="w-full flex flex-col md:hidden items-center mt-4">
+          <div className="w-[90vw] h-[350px] relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
+              >
+                <RolodexCard project={projects[activeIndex]} isActive={true} />
+              </motion.div>
+            </AnimatePresence>
           </div>
 
+          {/* Mobile controls */}
+          <div className="flex items-center gap-6 mt-8 z-30">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white"
+            >
+              <ChevronUp className="-rotate-90" size={20} />
+            </button>
+            <div className="flex items-center gap-2">
+              {projects.map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-white/20"}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white"
+            >
+              <ChevronDown className="-rotate-90" size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </section>

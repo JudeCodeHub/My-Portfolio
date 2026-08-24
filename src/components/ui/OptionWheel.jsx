@@ -1,28 +1,28 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
-import './OptionWheel.css';
+import { useRef, useState, useCallback, useEffect } from "react";
+import "./OptionWheel.css";
 
 const DEFAULT_ITEMS = [
-  'Ambient',
-  'House',
-  'Techno',
-  'Jazz',
-  'Lo-Fi',
-  'Synthwave',
-  'Trance',
-  'Funk',
-  'Disco',
-  'Hip-Hop',
-  'Chillwave',
-  'Drum & Bass'
+  "Ambient",
+  "House",
+  "Techno",
+  "Jazz",
+  "Lo-Fi",
+  "Synthwave",
+  "Trance",
+  "Funk",
+  "Disco",
+  "Hip-Hop",
+  "Chillwave",
+  "Drum & Bass",
 ];
 
 const OptionWheel = ({
   items = DEFAULT_ITEMS,
   defaultSelected = 0,
   onChange,
-  textColor = '#a6a6a6',
-  activeColor = '#f97316', // Changed to match theme orange
-  side = 'left',
+  textColor = "#a6a6a6",
+  activeColor = "#f97316", // Changed to match theme orange
+  side = "left",
   fontSize = 2.5, // Slightly smaller
   spacing = 1.4,
   curve = 1,
@@ -34,9 +34,9 @@ const OptionWheel = ({
   inset = 80,
   loop = false,
   draggable = true,
-  soundUrl = '',
+  soundUrl = "",
   soundVolume = 0.5,
-  className = ''
+  className = "",
 }) => {
   const rootRef = useRef(null);
   const itemRefs = useRef([]);
@@ -51,12 +51,15 @@ const OptionWheel = ({
   const dragRef = useRef(null);
   const dragMovedRef = useRef(false);
   const audioRef = useRef(null);
-  const audioUrlRef = useRef('');
+  const audioUrlRef = useRef("");
   const lastTickRef = useRef(0);
   const [selectedIndex, setSelectedIndex] = useState(defaultSelected);
   const [isDragging, setIsDragging] = useState(false);
 
-  const remPx = typeof window !== 'undefined' ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16 : 16;
+  const remPx =
+    typeof window !== "undefined"
+      ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+      : 16;
 
   onChangeRef.current = onChange;
   cfgRef.current = {
@@ -73,10 +76,10 @@ const OptionWheel = ({
     smoothing,
     draggable,
     soundUrl,
-    soundVolume
+    soundVolume,
   };
 
-  const runFrame = useCallback(now => {
+  const runFrame = useCallback((now) => {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05);
     lastRef.current = now;
     const cfg = cfgRef.current;
@@ -92,10 +95,10 @@ const OptionWheel = ({
 
     const els = itemRefs.current;
     const n = cfg.count;
-    const mirror = cfg.side === 'right' ? -1 : 1;
+    const mirror = cfg.side === "right" ? -1 : 1;
     const tiltRad = (cfg.tilt * Math.PI) / 180;
     const R = tiltRad > 0.0005 ? cfg.rowH / tiltRad : 0;
-    
+
     for (let i = 0; i < n; i++) {
       const el = els[i];
       if (!el) continue;
@@ -116,8 +119,12 @@ const OptionWheel = ({
       }
       el.style.transform = `translate(${x.toFixed(2)}px, calc(${y.toFixed(2)}px - 50%)) rotate(${rot.toFixed(3)}deg)`;
       el.style.opacity = String(Math.max(cfg.minOpacity, 1 - dist * cfg.fade));
-      el.style.filter = cfg.blur > 0 ? `blur(${(dist * cfg.blur).toFixed(2)}px)` : 'none';
-      el.style.setProperty('--ow-p', Math.max(0, 1 - Math.min(dist, 1)).toFixed(4));
+      el.style.filter =
+        cfg.blur > 0 ? `blur(${(dist * cfg.blur).toFixed(2)}px)` : "none";
+      el.style.setProperty(
+        "--ow-p",
+        Math.max(0, 1 - Math.min(dist, 1)).toFixed(4),
+      );
     }
 
     rafRef.current = settled ? null : requestAnimationFrame(runFrame);
@@ -139,7 +146,7 @@ const OptionWheel = ({
     lastTickRef.current = now;
     if (!audioRef.current || audioUrlRef.current !== soundUrl) {
       audioRef.current = new Audio(soundUrl);
-      audioRef.current.preload = 'auto';
+      audioRef.current.preload = "auto";
       audioUrlRef.current = soundUrl;
     }
     const audio = audioRef.current;
@@ -164,56 +171,60 @@ const OptionWheel = ({
       }
       startLoop();
     },
-    [startLoop, playTick]
+    [startLoop, playTick],
   );
 
   // Global window wheel listener for full page scroll interaction
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     let isCoolingDown = false;
-    
-    const onWheel = e => {
+
+    const onWheel = (e) => {
       // Ignore horizontal scrolling to allow trackpad swiping without changing sections
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      
+
       e.preventDefault();
-      
+
       if (isCoolingDown) return;
-      
+
       const cfg = cfgRef.current;
       const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
-      
+
       // Determine direction. We trigger a snap change.
       if (delta > 30) {
         // scroll down
         applyTarget(targetRef.current + 1, true);
         isCoolingDown = true;
-        setTimeout(() => isCoolingDown = false, 600); // 600ms cooldown for snap
+        setTimeout(() => (isCoolingDown = false), 600); // 600ms cooldown for snap
       } else if (delta < -30) {
         // scroll up
         applyTarget(targetRef.current - 1, true);
         isCoolingDown = true;
-        setTimeout(() => isCoolingDown = false, 600);
+        setTimeout(() => (isCoolingDown = false), 600);
       }
     };
-    
-    window.addEventListener('wheel', onWheel, { passive: false });
+
+    window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
-      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener("wheel", onWheel);
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
     };
   }, [applyTarget]);
 
-  const handlePointerDown = useCallback(e => {
+  const handlePointerDown = useCallback((e) => {
     if (!cfgRef.current.draggable) return;
-    dragRef.current = { y: e.clientY, start: targetRef.current, id: e.pointerId };
+    dragRef.current = {
+      y: e.clientY,
+      start: targetRef.current,
+      id: e.pointerId,
+    };
     dragMovedRef.current = false;
     setIsDragging(true);
   }, []);
 
   const handlePointerMove = useCallback(
-    e => {
+    (e) => {
       const drag = dragRef.current;
       if (!drag) return;
       const dy = e.clientY - drag.y;
@@ -221,9 +232,10 @@ const OptionWheel = ({
         dragMovedRef.current = true;
         rootRef.current?.setPointerCapture(drag.id);
       }
-      if (dragMovedRef.current) applyTarget(drag.start - dy / cfgRef.current.rowH, false);
+      if (dragMovedRef.current)
+        applyTarget(drag.start - dy / cfgRef.current.rowH, false);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   const handlePointerEnd = useCallback(() => {
@@ -234,7 +246,7 @@ const OptionWheel = ({
   }, [applyTarget]);
 
   const handleItemClick = useCallback(
-    index => {
+    (index) => {
       if (dragMovedRef.current) return;
       const cfg = cfgRef.current;
       const cur = targetRef.current;
@@ -245,24 +257,37 @@ const OptionWheel = ({
       }
       applyTarget(cur + d, true);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   const handleKeyDown = useCallback(
-    e => {
+    (e) => {
       let delta = null;
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') delta = -1;
-      else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') delta = 1;
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") delta = -1;
+      else if (e.key === "ArrowDown" || e.key === "ArrowRight") delta = 1;
       if (delta == null) return;
       e.preventDefault();
       applyTarget(Math.round(targetRef.current) + delta, true);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   useEffect(() => {
     applyTarget(targetRef.current, false);
-  }, [items, fontSize, spacing, curve, tilt, blur, fade, minOpacity, side, loop, smoothing, applyTarget]);
+  }, [
+    items,
+    fontSize,
+    spacing,
+    curve,
+    tilt,
+    blur,
+    fade,
+    minOpacity,
+    side,
+    loop,
+    smoothing,
+    applyTarget,
+  ]);
 
   useEffect(
     () => () => {
@@ -270,7 +295,7 @@ const OptionWheel = ({
       rafRef.current = null;
       audioRef.current?.pause();
     },
-    []
+    [],
   );
 
   // Sync wheel if parent changes defaultSelected (e.g., from anchor link clicks)
@@ -286,12 +311,12 @@ const OptionWheel = ({
       role="listbox"
       tabIndex={0}
       aria-label="Option wheel"
-      className={`option-wheel${side === 'right' ? ' option-wheel--right' : ''}${isDragging ? ' option-wheel--dragging' : ''}${className ? ` ${className}` : ''}`}
+      className={`option-wheel${side === "right" ? " option-wheel--right" : ""}${isDragging ? " option-wheel--dragging" : ""}${className ? ` ${className}` : ""}`}
       style={{
-        '--ow-text-color': textColor,
-        '--ow-active-color': activeColor,
-        '--ow-font-size': `${fontSize}rem`,
-        '--ow-inset': `${inset}px`
+        "--ow-text-color": textColor,
+        "--ow-active-color": activeColor,
+        "--ow-font-size": `${fontSize}rem`,
+        "--ow-inset": `${inset}px`,
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -301,12 +326,12 @@ const OptionWheel = ({
       {items.map((label, index) => (
         <div
           key={`${label}-${index}`}
-          ref={el => {
+          ref={(el) => {
             itemRefs.current[index] = el;
           }}
           role="option"
           aria-selected={selectedIndex === index}
-          className={`option-wheel__item font-sans tracking-tight${selectedIndex === index ? ' option-wheel__item--selected' : ''}`}
+          className={`option-wheel__item font-sans tracking-tight${selectedIndex === index ? " option-wheel__item--selected" : ""}`}
           onClick={() => handleItemClick(index)}
         >
           {/* ── Sci-Fi Dial Connecting Line and Dot ── */}
@@ -314,7 +339,7 @@ const OptionWheel = ({
             <div className="dial-line" />
             <div className="dial-dot" />
           </div>
-          
+
           <span className="dial-text">{label}</span>
         </div>
       ))}

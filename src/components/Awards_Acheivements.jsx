@@ -1,11 +1,6 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Trophy,
-  BookOpen,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Trophy, BookOpen } from "lucide-react";
 import Shuffle from "./ui/Shuffle";
 import DepthCarousel from "./ui/DepthCarousel";
 
@@ -64,6 +59,11 @@ export const Awards_Acheivements = () => {
   const [active, setActive] = React.useState(0);
   const activeItem = items[active];
 
+  const handleNext = () =>
+    setActive((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+  const handlePrev = () =>
+    setActive((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+
   const carouselItems = React.useMemo(() => {
     return items.map((item) => ({
       image: item.imageSrc,
@@ -80,27 +80,36 @@ export const Awards_Acheivements = () => {
     >
       <div className="container mx-auto max-w-5xl">
         {/* ── Section heading ── */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, margin: "0px" }}
           variants={fadeUp(0.1)}
           className="w-full max-w-6xl mb-10 z-10 text-center mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4 mt-2">
-            <span className="text-orange-500 shrink-0 mr-3">~$</span>
-            <span className="shrink-0 inline-block">
-              <Shuffle text="honors & achievements" loop={true} loopDelay={3} />
+          <h2 className="text-3xl md:text-5xl font-mono font-bold text-white tracking-tight flex flex-wrap justify-center items-center md:whitespace-nowrap mb-4 mt-2 px-2">
+            <span className="text-orange-500 shrink-0 mr-2 md:mr-3">~$</span>
+            <span className="shrink-0 inline-block text-center leading-tight">
+              <span className="hidden md:inline-block">
+                <Shuffle
+                  text="honors & achievements"
+                  loop={true}
+                  loopDelay={3}
+                />
+              </span>
+              <span className="inline-block md:hidden">
+                <Shuffle text="achievements" loop={true} loopDelay={3} />
+              </span>
             </span>
           </h2>
-          <p className="text-white/90 font-mono text-[13px] md:text-[15px] mt-3 uppercase tracking-[0.2em] md:tracking-[0.3em]">
-            // Recognition earned through competition, craft, and continuous learning
+          <p className="hidden md:block text-white/90 font-mono text-[13px] md:text-[15px] mt-3 uppercase tracking-[0.2em] md:tracking-[0.3em]">
+            // Recognition earned through competition, craft, and continuous
+            learning
           </p>
         </motion.div>
 
         {/* ── Carousel Stage ── */}
-        <div className="relative flex flex-col items-center w-full rounded-2xl overflow-hidden mt-8">
-          
+        <div className="relative flex flex-col items-center w-full rounded-2xl overflow-hidden mt-2 md:mt-8">
           {/* Ambient Glow */}
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-2xl">
             <motion.div
@@ -116,7 +125,15 @@ export const Awards_Acheivements = () => {
             />
           </div>
 
-          <div style={{ height: '520px', width: '100%', position: 'relative', zIndex: 10 }}>
+          <div
+            className="hidden md:block"
+            style={{
+              height: "520px",
+              width: "100%",
+              position: "relative",
+              zIndex: 10,
+            }}
+          >
             <DepthCarousel
               items={carouselItems}
               cardWidth={380}
@@ -135,7 +152,61 @@ export const Awards_Acheivements = () => {
               onChange={(idx) => setActive(idx)}
             />
           </div>
-          
+
+          {/* Simple Mobile Carousel */}
+          <div className="flex flex-col md:hidden w-full items-center mt-2 mb-4 z-20">
+            <div className="w-[85vw] h-[360px] relative rounded-xl overflow-hidden border border-white/20 shadow-[0_0_20px_rgba(249,115,22,0.15)]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={items[active].imageSrc}
+                    alt={items[active].title}
+                    className="w-full h-full object-cover object-top"
+                  />
+
+                  {/* Badge Overlay (Shifted left for mobile) */}
+                  <div className="absolute top-4 right-10 bg-orange-500/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-2 border border-orange-400/50 shadow-lg text-white">
+                    {items[active].icon}
+                    <span className="text-[10px] font-bold text-white uppercase tracking-wider">
+                      {items[active].badge}
+                    </span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Mobile Controls */}
+            <div className="flex items-center gap-6 mt-6">
+              <button
+                onClick={handlePrev}
+                className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white transition-all hover:bg-orange-500 hover:border-orange-500"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <div className="flex items-center gap-2">
+                {items.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === active ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-white/20"}`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={handleNext}
+                className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white transition-all hover:bg-orange-500 hover:border-orange-500"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
+
           {/* Info Section below */}
           <div className="relative z-20 w-full mt-3 flex flex-col items-center text-center">
             <AnimatePresence mode="wait">
@@ -145,14 +216,16 @@ export const Awards_Acheivements = () => {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 transition={{ duration: 0.26 }}
-                className="space-y-3 w-full max-w-5xl px-4"
+                className="space-y-3 w-full max-w-5xl px-4 flex flex-col items-center"
               >
-                {activeItem.meta && (
-                  <span className="text-xs font-mono tracking-[0.16em] uppercase text-orange-500">
-                    {activeItem.meta}
-                  </span>
-                )}
-                <h3 className="text-2xl md:text-3xl font-bold leading-snug text-white font-outfit">
+                <div className="flex flex-col items-center gap-2">
+                  {activeItem.meta && (
+                    <span className="text-xs font-mono tracking-[0.16em] uppercase text-orange-500">
+                      {activeItem.meta}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-xl md:text-3xl font-bold leading-snug text-white font-outfit px-2">
                   {activeItem.title}
                 </h3>
                 <p className="text-sm md:text-base text-white/60 leading-relaxed font-inter">

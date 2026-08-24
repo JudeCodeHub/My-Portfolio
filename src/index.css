@@ -65,7 +65,12 @@
 @layer base {
   :root {
     --background: 210 40% 98%;
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2f9 50%, #e8edf5 100%);
+    --bg-gradient: linear-gradient(
+      135deg,
+      #f8fafc 0%,
+      #eef2f9 50%,
+      #e8edf5 100%
+    );
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -117,7 +122,9 @@
   body {
     @apply text-foreground transition-colors duration-300;
     background: var(--bg-gradient);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -174,7 +181,12 @@
 
 @utility meteor {
   @apply absolute rounded-full;
-  background: linear-gradient(to right, var(--star-color), var(--star-color), transparent);
+  background: linear-gradient(
+    to right,
+    var(--star-color),
+    var(--star-color),
+    transparent
+  );
   box-shadow: 0 0 10px 5px var(--star-glow);
 }
 

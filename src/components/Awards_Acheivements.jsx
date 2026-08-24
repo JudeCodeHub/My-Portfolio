@@ -87,7 +87,7 @@ export const Awards_Acheivements = () => {
           variants={fadeUp(0.1)}
           className="w-full max-w-6xl mb-10 z-10 text-center mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
+          <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4 mt-2">
             <span className="text-orange-500 shrink-0 mr-3">~$</span>
             <span className="shrink-0 inline-block">
               <Shuffle text="honors & achievements" loop={true} loopDelay={3} />

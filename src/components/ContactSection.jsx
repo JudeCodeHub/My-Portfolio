@@ -1,5 +1,7 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin, FaMedium, FaBehance, FaFacebookF, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
+import Shuffle from "./ui/Shuffle";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
@@ -7,6 +9,15 @@ import emailjs from "@emailjs/browser";
 
 const FONT_LINK =
   "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap";
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut", delay },
+  },
+});
 
 const CONTACT_INFO = [
   {
@@ -30,24 +41,10 @@ const CONTACT_INFO = [
 ];
 
 const SOCIALS = [
-  {
-    icon: FaLinkedin,
-    href: "https://www.linkedin.com/in/judechihan",
-    label: "LinkedIn",
-    color: "#0A66C2",
-  },
-  {
-    icon: FaGithub,
-    href: "https://github.com/JudeCodeHub",
-    label: "GitHub",
-    color: "#6e40c9",
-  },
-  {
-    icon: FaInstagram,
-    href: "https://www.instagram.com/judejochimson_judechihan",
-    label: "Instagram",
-    color: "#E1306C",
-  },
+  { icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61563287920654", label: "Facebook", color: "text-[#1877F2] group-hover:text-white", hoverBg: "group-hover:bg-[#1877F2]" },
+  { icon: FaInstagram, href: "https://www.instagram.com/judejochimson_judechihan", label: "Instagram", color: "text-[#E1306C] group-hover:text-white", hoverBg: "group-hover:bg-[#E1306C]" },
+  { icon: FaWhatsapp, href: "https://wa.me/94776345280", label: "WhatsApp", color: "text-[#25D366] group-hover:text-white", hoverBg: "group-hover:bg-[#25D366]" },
+  { icon: FaEnvelope, href: "mailto:judechihan727@gmail.com", label: "Email", color: "text-[#EA4335] group-hover:text-white", hoverBg: "group-hover:bg-[#EA4335]" },
 ];
 
 // ─── Contact info pill ───────────────────────────────────────────────────────
@@ -57,15 +54,15 @@ function ContactInfoItem({ icon: Icon, label, value }) {
       <div
         className="p-2 rounded-xl shrink-0 transition-all duration-300 group-hover:scale-110"
         style={{
-          background: "hsl(var(--primary) / 0.15)",
-          boxShadow: "0 0 12px hsl(var(--primary) / 0.2)",
+          background: "rgba(249, 115, 22, 0.15)",
+          boxShadow: "0 0 12px rgba(249, 115, 22, 0.2)",
         }}
       >
-        <Icon className="h-3.5 w-3.5 text-primary" />
+        <Icon className="h-3.5 w-3.5 text-orange-500" />
       </div>
       <div className="min-w-0 text-left">
         <p
-          className="text-[9px] font-semibold text-primary/70 uppercase tracking-[0.18em] leading-none mb-0.5"
+          className="text-[9px] font-semibold text-orange-500/70 uppercase tracking-[0.18em] leading-none mb-0.5"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           {label}
@@ -138,25 +135,24 @@ export const ContactSection = () => {
 
       <section
         id="contact"
-        className="py-12 md:py-24 px-4 relative overflow-hidden"
+        className="py-12 md:py-24 x-4 relative overflow-hidden"
         style={{ background: "transparent" }}
       >
         <div className="container mx-auto max-w-5xl relative z-10">
           {/* ── Heading ── */}
-          <div className="text-center mb-7">
-            <h2
-              className="text-4xl md:text-5xl font-extrabold mb-3 leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              Let's{" "}
-              <span
-                className="text-primary"
-                style={{ textShadow: "0 0 20px hsl(var(--primary)/0.35)" }}
-              >
-                Connect
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "0px" }}
+            variants={fadeUp(0.1)}
+            className="w-full max-w-5xl mb-10 z-20 text-center flex flex-col items-center justify-center mx-auto"
+          >
+            <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
+              <span className="text-orange-500 shrink-0 mr-3">~$</span>
+              <span className="shrink-0 inline-block">
+                <Shuffle text="contact" loop={true} loopDelay={3} />
               </span>
             </h2>
-            <div className="mt-2 mb-2 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
             <p
               className="text-center text-muted-foreground max-w-xl mx-auto text-base leading-relaxed"
               style={{ fontFamily: "'Inter', sans-serif" }}
@@ -164,18 +160,17 @@ export const ContactSection = () => {
               Have a project in mind or want to collaborate? I'm always open to
               discussing new opportunities and exciting ideas.
             </p>
-          </div>
+          </motion.div>
 
-          {/* ── Glass Card ── */}
           <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden"
             style={{
-              background: "rgba(255,255,255,0.05)",
+              background: "hsl(var(--background) / 0.4)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
-              border: "1px solid hsl(var(--primary) / 0.18)",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
               boxShadow:
-                "0 8px 48px hsl(var(--primary) / 0.08), 0 2px 8px rgba(0,0,0,0.08)",
+                "0 8px 48px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.08)",
             }}
           >
             <div className="flex flex-col justify-between lg:col-span-2 p-6 md:p-10 space-y-8">
@@ -185,7 +180,7 @@ export const ContactSection = () => {
                   style={{ fontFamily: "'Outfit', sans-serif" }}
                 >
                   Open to Opportunities,{" "}
-                  <span className="text-primary">Collabs & Ideas</span>
+                  <span className="text-orange-500">Collabs & Ideas</span>
                 </h3>
                 <p
                   className="text-muted-foreground text-sm max-w-md leading-relaxed ml-3 md:ml-10"
@@ -204,7 +199,7 @@ export const ContactSection = () => {
 
               <div
                 className="pt-6"
-                style={{ borderTop: "1px solid hsl(var(--primary) / 0.15)" }}
+                style={{ borderTop: "1px solid rgba(249, 115, 22, 0.15)" }}
               >
                 <p
                   className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-5 text-center"
@@ -213,8 +208,8 @@ export const ContactSection = () => {
                   Find me on
                 </p>
 
-                <div className="flex items-center justify-center gap-5">
-                  {SOCIALS.map(({ icon: Icon, href, label, color }) => (
+                <div className="flex items-center justify-center gap-5 mt-2">
+                  {SOCIALS.map(({ icon: Icon, href, label, color, hoverBg }) => (
                     <a
                       key={label}
                       href={href}
@@ -222,26 +217,12 @@ export const ContactSection = () => {
                       rel="noopener noreferrer"
                       aria-label={label}
                       title={label}
-                      className="group flex flex-col items-center gap-1.5"
+                      className="flex flex-col items-center gap-2 group"
                     >
                       <span
-                        className="flex items-center justify-center w-11 h-11 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1"
-                        style={{
-                          background: `${color}18`,
-                          border: `1px solid ${color}40`,
-                          boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = `${color}30`;
-                          e.currentTarget.style.boxShadow = `0 4px 20px ${color}50`;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = `${color}18`;
-                          e.currentTarget.style.boxShadow =
-                            "0 2px 10px rgba(0,0,0,0.08)";
-                        }}
+                        className={`w-11 h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg group-hover:border-transparent group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] group-hover:scale-110 group-hover:-translate-y-1 ${hoverBg}`}
                       >
-                        <Icon size={20} style={{ color }} />
+                        <Icon size={21} className={`transition-colors duration-300 ${color}`} />
                       </span>
                       <span
                         className="text-[10px] font-medium text-muted-foreground group-hover:text-foreground transition-colors"
@@ -259,9 +240,9 @@ export const ContactSection = () => {
             <div
               className="flex items-center h-full w-full md:col-span-1 p-6 md:p-8"
               style={{
-                background: "hsl(var(--primary) / 0.04)",
-                borderLeft: "1px solid hsl(var(--primary) / 0.12)",
-                borderTop: "1px solid hsl(var(--primary) / 0.12)",
+                background: "rgba(255, 255, 255, 0.12)",
+                borderLeft: "1px solid rgba(255, 255, 255, 0.12)",
+                borderTop: "1px solid rgba(255, 255, 255, 0.12)",
               }}
             >
               <form
@@ -280,7 +261,7 @@ export const ContactSection = () => {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="name"
-                    className="text-[10px] font-semibold text-primary/80 uppercase tracking-widest"
+                    className="text-[10px] font-semibold text-orange-500/80 uppercase tracking-widest"
                     style={{ fontFamily: "'Outfit', sans-serif" }}
                   >
                     Your Name
@@ -295,16 +276,16 @@ export const ContactSection = () => {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       background: "hsl(var(--background) / 0.5)",
-                      borderColor: "hsl(var(--primary) / 0.2)",
+                      borderColor: "rgba(249, 115, 22, 0.2)",
                       backdropFilter: "blur(8px)",
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.6)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.6)";
                       e.target.style.boxShadow =
-                        "0 0 0 3px hsl(var(--primary) / 0.12)";
+                        "0 0 0 3px rgba(249, 115, 22, 0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.2)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.2)";
                       e.target.style.boxShadow = "none";
                     }}
                   />
@@ -314,7 +295,7 @@ export const ContactSection = () => {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="email"
-                    className="text-[10px] font-semibold text-primary/80 uppercase tracking-widest"
+                    className="text-[10px] font-semibold text-orange-500/80 uppercase tracking-widest"
                     style={{ fontFamily: "'Outfit', sans-serif" }}
                   >
                     Email Address
@@ -329,16 +310,16 @@ export const ContactSection = () => {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       background: "hsl(var(--background) / 0.5)",
-                      borderColor: "hsl(var(--primary) / 0.2)",
+                      borderColor: "rgba(249, 115, 22, 0.2)",
                       backdropFilter: "blur(8px)",
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.6)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.6)";
                       e.target.style.boxShadow =
-                        "0 0 0 3px hsl(var(--primary) / 0.12)";
+                        "0 0 0 3px rgba(249, 115, 22, 0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.2)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.2)";
                       e.target.style.boxShadow = "none";
                     }}
                   />
@@ -348,7 +329,7 @@ export const ContactSection = () => {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="message"
-                    className="text-[10px] font-semibold text-primary/80 uppercase tracking-widest"
+                    className="text-[10px] font-semibold text-orange-500/80 uppercase tracking-widest"
                     style={{ fontFamily: "'Outfit', sans-serif" }}
                   >
                     Message
@@ -363,16 +344,16 @@ export const ContactSection = () => {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       background: "hsl(var(--background) / 0.5)",
-                      borderColor: "hsl(var(--primary) / 0.2)",
+                      borderColor: "rgba(249, 115, 22, 0.2)",
                       backdropFilter: "blur(8px)",
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.6)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.6)";
                       e.target.style.boxShadow =
-                        "0 0 0 3px hsl(var(--primary) / 0.12)";
+                        "0 0 0 3px rgba(249, 115, 22, 0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "hsl(var(--primary) / 0.2)";
+                      e.target.style.borderColor = "rgba(249, 115, 22, 0.2)";
                       e.target.style.boxShadow = "none";
                     }}
                   />
@@ -383,14 +364,14 @@ export const ContactSection = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={cn(
-                    "w-full px-6 py-2.5 mt-2 rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group",
+                    "w-full px-6 py-2.5 mt-2 rounded-full border border-orange-500/50 bg-orange-500/10 text-orange-500 font-bold transition-all duration-300 hover:border-orange-500 hover:bg-orange-500 hover:text-white hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] active:scale-95 flex items-center justify-center gap-2 group",
                     isSubmitting &&
-                      "opacity-70 cursor-not-allowed hover:shadow-none hover:bg-transparent hover:border-sky-400/50 hover:scale-100",
+                      "opacity-70 cursor-not-allowed hover:shadow-none hover:bg-transparent hover:border-orange-500/50 hover:text-orange-500 hover:scale-100",
                   )}
                 >
                   {isSubmitting ? (
                     <>
-                      <span className="h-4 w-4 rounded-full border-2 border-sky-400 border-t-transparent animate-spin" />
+                      <span className="h-4 w-4 rounded-full border-2 border-orange-500 border-t-transparent animate-spin" />
                       <span style={{ fontFamily: "'Inter', sans-serif" }}>
                         Sending…
                       </span>

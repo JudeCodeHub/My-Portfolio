@@ -143,7 +143,7 @@ export const CertificationsSection = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "0px" }}
-        variants={fadeUp(0.1)}
+        variants={fadeUp(0)}
         className="w-full max-w-5xl mb-4 z-20 text-center flex justify-center"
       >
         <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
@@ -161,9 +161,9 @@ export const CertificationsSection = () => {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-        viewport={{ once: true, margin: "0px" }}
-        variants={fadeUp(0.2)}
-        className="w-full min-h-[650px] bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl flex flex-col"
+          viewport={{ once: true, margin: "0px" }}
+          variants={fadeUp(0)}
+          className="w-full min-h-[650px] bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl flex flex-col"
         >
           {/* Terminal Header */}
           <div className="h-10 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 shrink-0 justify-between">

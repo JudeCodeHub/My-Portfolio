@@ -13,7 +13,7 @@ import OptionWheel from "../components/ui/OptionWheel";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SECTIONS = [
-  { name: "Init", id: "start", component: <HeroSection /> },
+  { name: "Init", id: "hero", component: <HeroSection /> },
   { name: "whoami", id: "about", component: <AboutSection /> },
   { name: "stack", id: "skills", component: <SkillsSection /> },
   { name: "Projects", id: "projects", component: <ProjectsSection /> },
@@ -143,23 +143,31 @@ export const Home = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -40 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full h-full max-h-screen overflow-y-auto overflow-x-hidden flex flex-col justify-center"
               >
                 {SECTIONS[activeIndex].component}
-                
-                {/* If it's the last section, show Footer */}
-                {activeIndex === SECTIONS.length - 1 && (
-                  <div className="mt-auto">
-                     <FooterSection />
-                  </div>
-                )}
               </motion.div>
             </AnimatePresence>
           </main>
+
+          {/* Footer spans entire screen, fixed at bottom to prevent layout shifts in main content */}
+          <AnimatePresence>
+            {activeIndex === SECTIONS.length - 1 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5 }}
+                className="fixed bottom-0 left-0 w-full z-[100] pointer-events-auto"
+              >
+                <FooterSection />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </div>

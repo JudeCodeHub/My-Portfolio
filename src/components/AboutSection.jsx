@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, FileUser } from "lucide-react";
 import aboutMePic from "../assets/aboutme.png";

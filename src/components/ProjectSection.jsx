@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   GitBranch,
@@ -6,20 +7,27 @@ import {
   Server,
   Cloud,
   BrainCircuit,
+  TerminalSquare,
+  ChevronUp,
+  ChevronDown,
+  ExternalLink
 } from "lucide-react";
+import { FaGithub, FaLinkedin, FaFigma } from "react-icons/fa";
+import Shuffle from "./ui/Shuffle";
 
 const projects = [
   {
     id: 1,
-    title: "GR-10 UGC website",
-    category: "Academic Project",
-    description:
-      "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
-    image: "/projects/project3.png",
-    tags: ["Figma", "HCI", "UI/UX"],
-    githubUrl: "https://www.figma.com/design/PkX0gMzUMNAYHwMvLSHoku/GR-10-UGC-website-?node-id=139-148&t=cAui7sBL7yXIGxUg-1",
-    icon: <Layout size={20} />,
-    accent: "#6366f1",
+    title: "New Portfolio Project",
+    category: "Frontend Development",
+    description: "A newly added project demonstrating clean UI/UX and modern frontend capabilities.",
+    image: "/projects/project5.png",
+    tags: ["React", "Tailwind CSS", "Framer Motion"],
+    githubUrl: "https://github.com/JudeCodeHub/SitePulse.git",
+    liveUrl: "https://site-pulse-snowy-three.vercel.app/",
+    icon: <TerminalSquare size={20} />,
+    accent: "#3b82f6", // blue-500
+    terminalName: "sitepulse",
   },
   {
     id: 2,
@@ -30,246 +38,283 @@ const projects = [
     image: "/projects/project2.png",
     tags: ["GitHub Actions", "Docker", "Kubernetes", "ArgoCD", "Helm"],
     githubUrl: "https://github.com/JudeCodeHub/Go-web-app.git",
+    linkedinUrl: "https://lnkd.in/p/gJYUK7A6",
     icon: <Server size={20} />,
     accent: "#10b981",
+    terminalName: "gitops-pipeline",
   },
   {
     id: 3,
-    title: "High-Availability AWS Architecture",
-    category: "Cloud Engineering",
+    title: "Resume Analyzer using NLP",
+    category: "AI / ML",
     description:
-      "Deployed a resilient infrastructure with custom VPC, ALB, and Auto Scaling to ensure maximum uptime and scalability.",
-    image: "/projects/project1.png",
-    tags: ["AWS", "ALB", "ASG", "RDS", "Route53", "CloudWatch"],
-    githubUrl: "https://github.com/JudeCodeHub/CiniVerse.git",
-    icon: <Cloud size={20} />,
-    accent: "#f59e0b",
+      "An intelligent system leveraging NLP to parse, analyze, and score resumes against job descriptions for optimized screening.",
+    image: "/projects/project4.png",
+    tags: ["Python", "NLP", "Machine Learning", "Streamlit"],
+    githubUrl: "https://github.com/JudeCodeHub/Resume-Analyzer.git",
+    liveUrl: "https://resumindjude.netlify.app/",
+    icon: <BrainCircuit size={20} />,
+    accent: "#ec4899",
+    terminalName: "resumind",
   },
   {
     id: 4,
-    title: "AI-Powered Applicant Tracking System",
-    category: "Full Stack / AI",
+    title: "CiniVerse: Full-Stack Platform",
+    category: "Web App",
     description:
-      "Web application that provides ATS compatibility scores and AI-driven improvement suggestions for uploaded resumes.",
-    image: "/projects/project4.png",
-    tags: ["React", "TypeScript", "Tailwind CSS", "AI API"],
-    githubUrl: "https://github.com/JudeCodeHub/Resume-Analyzer.git",
-    icon: <BrainCircuit size={20} />,
-    accent: "#ec4899",
+      "A scalable movie database platform with secure authentication, built on a robust MERN stack architecture.",
+    image: "/projects/project1.png",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    githubUrl: "https://github.com/JudeCodeHub/CiniVerse.git",
+    linkedinUrl: "https://lnkd.in/p/g4cWRg2x",
+    icon: <Cloud size={20} />,
+    accent: "#f59e0b",
+    terminalName: "ciniverse",
+  },
+  {
+    id: 5,
+    title: "GR-10 UGC website",
+    category: "Academic Project",
+    description:
+      "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
+    image: "/projects/project3.png",
+    tags: ["Figma", "HCI", "UI/UX"],
+    figmaUrl: "https://www.figma.com/file/PkX0gMzUMNAYHwMvLSHoku/UGC-website-Redesigned",
+    icon: <Layout size={20} />,
+    accent: "#6366f1",
+    terminalName: "ugc-website",
   },
 ];
 
-// Hook to trigger animation when element enters viewport
-function useSlideIn(delay = 0) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut", delay },
+  },
+});
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), delay);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.15 },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return { ref, visible };
-}
-
-function ProjectCard({ project, index }) {
-  const { ref, visible } = useSlideIn(index * 120);
-
+function RolodexCard({ project, isActive }) {
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateX(0)" : "translateX(-72px)",
-        transition:
-          "opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1)",
-      }}
-      className="group relative bg-card rounded-2xl overflow-hidden border border-border/40 hover:border-primary/40 shadow-sm hover:shadow-xl transition-shadow duration-300"
+    <div 
+      className={`w-full h-full rounded-2xl flex flex-col overflow-hidden bg-[#0a0a0a]/80 backdrop-blur-md border transition-all duration-700 ease-in-out ${
+        isActive 
+          ? 'border-white/20 shadow-[0_0_40px_rgba(249,115,22,0.15)]' 
+          : 'border-white/5 scale-95'
+      }`}
     >
-      {/* Colored left-edge accent bar */}
-      <span
-        className="absolute left-0 top-0 h-full w-1 rounded-l-2xl z-10"
-        style={{ background: project.accent, opacity: 0.85 }}
-      />
-
-      {/* Image */}
-      <div className="h-52 overflow-hidden bg-muted relative">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-card/80 via-transparent to-transparent" />
-
-        {/* Category pill */}
-        <div className="absolute top-3 left-5">
-          <span
-            className="px-3 py-1 text-[10px] uppercase tracking-widest font-bold rounded-full backdrop-blur-md border"
-            style={{
-              background: `${project.accent}22`,
-              borderColor: `${project.accent}55`,
-              color: project.accent,
-            }}
-          >
-            {project.category}
+      {/* Terminal Header Bar (Macbook Style) */}
+      <div className="h-10 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 shrink-0 justify-between">
+        <div className="w-14" /> {/* Spacer for perfect centering */}
+        <div className="flex items-center justify-center pointer-events-none">
+          <TerminalSquare size={14} className="text-white/30 mr-2" />
+          <span className="text-white/90 text-xs font-mono">
+            ~/{project.terminalName}.sh
           </span>
         </div>
-
-        {/* Icon badge */}
-        <div
-          className="absolute bottom-3 right-4 w-8 h-8 rounded-lg flex items-center justify-center"
-          style={{ background: project.accent, color: "#fff" }}
-        >
-          {project.icon}
+        <div className="flex gap-2 w-14 justify-end">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
         </div>
       </div>
 
-      {/* Content */}
-      <div className="px-5 pt-6 pb-7 md:px-8 md:pb-8">
-        <h3
-          className="text-[17px] font-bold mb-2 leading-snug transition-colors duration-200"
-          style={{ fontFamily: "'Outfit', sans-serif", color: project.accent }}
-        >
-          {project.title}
-        </h3>
-
-        <p
-          className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed"
-          style={{ fontFamily: "'Inter', sans-serif" }}
-        >
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-0.5 text-[11px] font-medium rounded-md border bg-secondary/40 text-secondary-foreground"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Link */}
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200"
-          style={{ color: project.accent }}
-        >
-          <GitBranch size={15} />
-          View Project
-          <ArrowRight
-            size={13}
-            className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+      <div className="flex flex-1 overflow-hidden">
+        {/* Full Image Area */}
+        <div className="w-full h-full relative shrink-0 group">
+          <img
+            src={project.image}
+            alt={project.title}
+            className={`w-full h-full object-cover object-center transition-all duration-1000 ${isActive ? 'opacity-100' : 'opacity-30 grayscale'}`}
           />
-        </a>
+
+          {/* Action Links Overlay (Visible on active card) */}
+          {isActive && (
+            <div className="absolute bottom-5 left-[45%] -translate-x-1/2 flex items-center gap-3 z-20">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                >
+                  <FaGithub size={14} />
+                  <span className="text-xs font-medium tracking-wide">Source</span>
+                </a>
+              )}
+              
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                >
+                  <ExternalLink size={14} />
+                  <span className="text-xs font-medium tracking-wide text-white">Live Demo</span>
+                </a>
+              )}
+
+              {project.linkedinUrl && (
+                <a
+                  href={project.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                >
+                  <FaLinkedin size={14} />
+                  <span className="text-xs font-medium tracking-wide text-white">LinkedIn Post</span>
+                </a>
+              )}
+              
+              {project.figmaUrl && (
+                <a
+                  href={project.figmaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-[#F24E1E] hover:border-[#F24E1E] hover:scale-105 transition-all duration-300 shadow-2xl"
+                >
+                  <FaFigma size={14} />
+                  <span className="text-xs font-medium tracking-wide text-white">Figma Design</span>
+                </a>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
-
-// Animated heading words
-function SlideHeading() {
-  const { ref, visible } = useSlideIn(0);
-
-  return (
-    <div
-      ref={ref}
-      className="text-center mb-4"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateX(0)" : "translateX(-48px)",
-        transition:
-          "opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1)",
-      }}
-    >
-      <h2
-        className="text-3xl md:text-4xl font-bold text-foreground"
-        style={{ fontFamily: "'Outfit', sans-serif" }}
-      >
-        Featured <span className="text-primary">Projects</span>
-      </h2>
-      <div className="mt-1 mx-auto w-16 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent" />
-    </div>
-  );
-}
-
-function SlideSubtitle() {
-  const { ref, visible } = useSlideIn(100);
-
-  return (
-    <p
-      ref={ref}
-      className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateX(0)" : "translateX(-40px)",
-        transition:
-          "opacity 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s",
-      }}
-    >
-      A showcase of my work in software engineering, cloud infrastructure, and
-      DevOps.
-    </p>
-  );
-}
-
-function SlideButton() {
-  const { ref, visible } = useSlideIn(200);
-
-  return (
-    <div ref={ref} className="text-center mt-10">
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/JudeCodeHub"
-        className="px-6 py-2.5 text-sm rounded-full border border-sky-400/50 bg-transparent text-sky-400 font-medium transition-all duration-300 hover:border-sky-300 hover:bg-sky-400/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] active:scale-95 flex items-center justify-center gap-2 group w-fit mx-auto"
-        style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateX(0)" : "translateX(-32px)",
-          transition:
-            "opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1)",
-        }}
-      >
-        Check My GitHub
-        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-      </a>
     </div>
   );
 }
 
 export const ProjectsSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  };
+
+  // The radius of the 3D cylinder. Larger = smoother curve.
+  const radius = 550; 
+  const anglePerItem = 60; // degrees
+
   return (
-    <section id="projects" className="py-12 md:py-20 px-1 sm:px-3 md:px-6 relative overflow-x-hidden">
-      <div className="container mx-auto max-w-7xl">
-        <SlideHeading />
-        <SlideSubtitle />
+    <section id="projects" className="w-full min-h-screen py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10">
+      
+      {/* Background glow matching the terminal theme */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-14 lg:gap-x-20">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+      {/* Header (Centered) */}
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "0px" }}
+        variants={fadeUp(0.1)}
+        className="w-full max-w-6xl mb-2 z-20 text-center flex justify-center"
+      >
+        <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap">
+          <span className="text-orange-500 shrink-0 mr-3">~$</span>
+          <span className="shrink-0 inline-block">
+            <Shuffle text="projects" loop={true} loopDelay={3} />
+          </span>
+        </h2>
+      </motion.div>
+
+      {/* Alignment Wrapper matching Navbar for the 3D Wheel */}
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-[104px] flex flex-col items-start z-10">
+
+        {/* 3D Rolodex Container */}
+        <div 
+          className="relative w-full max-w-5xl h-[700px] md:h-[650px] flex items-center justify-center md:translate-x-5 ml-8 mt-3"
+          style={{ perspective: "2000px" }}
+        >
+          
+          {/* Navigation Controls (Right Side) */}
+          <div className="absolute right-0 md:right-[-70px] top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-2 -mt-19">
+            <button 
+              onClick={handlePrev}
+              className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+            >
+              <ChevronUp size={20} />
+            </button>
+            
+            {/* Indicators */}
+            <div className="flex flex-col items-center gap-2 py-2">
+              {projects.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-2 transition-all duration-300 rounded-full ${i === activeIndex ? 'h-6 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]' : 'h-2 bg-white/20'}`} 
+                />
+              ))}
+            </div>
+
+            <button 
+              onClick={handleNext}
+              className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+            >
+              <ChevronDown size={20} />
+            </button>
+          </div>
+
+          {/* Rolodex Wheel */}
+          <div 
+            className="relative w-full h-[650px] md:h-[600px]" 
+            style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+          >
+            {projects.map((project, i) => {
+              const offset = i - activeIndex;
+              const rotateX = offset * -anglePerItem;
+              const isActive = offset === 0;
+              const absOffset = Math.abs(offset);
+              const isVisible = absOffset <= 2;
+
+              return (
+                <motion.div
+                  key={i}
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  initial={false}
+                  animate={{
+                    rotateX: rotateX,
+                    z: -absOffset * 50,
+                    opacity: isActive ? 1 : (isVisible ? 1 : 0),
+                    filter: isActive ? "blur(0px)" : "blur(2px)",
+                  }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 20,
+                    mass: 0.8
+                  }}
+                  style={{
+                    transformOrigin: `50% 50% -${radius}px`,
+                    backfaceVisibility: "hidden",
+                    pointerEvents: isVisible ? "auto" : "none",
+                    zIndex: projects.length - absOffset,
+                    willChange: "transform, opacity, filter"
+                  }}
+                >
+                  <RolodexCard project={project} isActive={isActive} />
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Mobile controls inside container bottom */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-6 md:hidden z-30">
+            <button onClick={handlePrev} className="p-2 bg-white/5 rounded-full border border-white/10 active:scale-90"><ChevronUp size={20}/></button>
+            <div className="flex items-center gap-2">
+              {projects.map((_, i) => (
+                <div key={i} className={`w-2 h-2 rounded-full transition-all ${i === activeIndex ? 'bg-orange-500 scale-125' : 'bg-white/20'}`} />
+              ))}
+            </div>
+            <button onClick={handleNext} className="p-2 bg-white/5 rounded-full border border-white/10 active:scale-90"><ChevronDown size={20}/></button>
+          </div>
+
         </div>
-
-        <SlideButton />
       </div>
     </section>
   );

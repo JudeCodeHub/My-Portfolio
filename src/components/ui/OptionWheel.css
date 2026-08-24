@@ -32,8 +32,14 @@
   cursor: pointer;
   will-change: transform, opacity, filter;
   /* --ow-p goes 0 -> 1 as an option approaches the middle of the wheel */
-  color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), var(--ow-text-color));
-  transition: font-weight 0.3s ease, letter-spacing 0.3s ease;
+  color: color-mix(
+    in srgb,
+    var(--ow-active-color) calc(var(--ow-p, 0) * 100%),
+    var(--ow-text-color)
+  );
+  transition:
+    font-weight 0.3s ease,
+    letter-spacing 0.3s ease;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -61,7 +67,11 @@
 .dial-line {
   height: 2px;
   width: calc(15px + (var(--ow-p, 0) * 25px));
-  background-color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), rgba(255,255,255,0.15));
+  background-color: color-mix(
+    in srgb,
+    var(--ow-active-color) calc(var(--ow-p, 0) * 100%),
+    rgba(255, 255, 255, 0.15)
+  );
   box-shadow: 0 0 calc(var(--ow-p, 0) * 10px) var(--ow-active-color);
   border-radius: 2px;
 }
@@ -70,7 +80,11 @@
   width: calc(4px + (var(--ow-p, 0) * 5px));
   height: calc(4px + (var(--ow-p, 0) * 5px));
   border-radius: 50%;
-  background-color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), rgba(255,255,255,0.3));
+  background-color: color-mix(
+    in srgb,
+    var(--ow-active-color) calc(var(--ow-p, 0) * 100%),
+    rgba(255, 255, 255, 0.3)
+  );
   box-shadow: 0 0 calc(var(--ow-p, 0) * 15px) var(--ow-active-color);
 }
 

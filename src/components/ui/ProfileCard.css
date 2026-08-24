@@ -15,7 +15,7 @@
   --behind-glow-color: rgba(124, 58, 237, 0.67);
   --behind-glow-size: 25%;
   --inner-gradient: none;
-  
+
   /* Purplish/cyan theme for the sunpillars to match lightfall/navbar */
   --sunpillar-1: hsl(270, 100%, 73%);
   --sunpillar-2: hsl(280, 100%, 69%);
@@ -33,8 +33,13 @@
 }
 
 @keyframes floatUpAndDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .pc-card-wrapper {
@@ -175,7 +180,7 @@
 
 .pc-shine::before,
 .pc-shine::after {
-  content: '';
+  content: "";
   background-position: center;
   background-size: cover;
   grid-area: 1/1;
@@ -207,7 +212,11 @@
       var(--sunpillar-2),
       var(--sunpillar-3)
     ),
-    radial-gradient(circle at var(--pointer-x) var(--pointer-y), hsl(270, 50%, 60%) 0%, hsla(270, 80%, 20%, 0.2) 90%),
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      hsl(270, 50%, 60%) 0%,
+      hsla(270, 80%, 20%, 0.2) 90%
+    ),
     var(--grain);
   background-size:
     250% 250%,
@@ -218,7 +227,8 @@
     center,
     calc(var(--pointer-x) * 0.01) calc(var(--pointer-y) * 0.01);
   background-blend-mode: color-dodge;
-  filter: brightness(calc(2 - var(--pointer-from-center))) contrast(calc(var(--pointer-from-center) + 2))
+  filter: brightness(calc(2 - var(--pointer-from-center)))
+    contrast(calc(var(--pointer-from-center) + 2))
     saturate(calc(0.5 + var(--pointer-from-center)));
   mix-blend-mode: luminosity;
 }
@@ -258,8 +268,8 @@
   left: 0;
   transform-origin: center center;
   transform: translateX(calc((var(--pointer-from-left) - 0.5) * 8px))
-             translateY(calc((var(--pointer-from-top) - 0.5) * 8px))
-             translateZ(0) scale(1);
+    translateY(calc((var(--pointer-from-top) - 0.5) * 8px)) translateZ(0)
+    scale(1);
   backface-visibility: hidden;
   will-change: transform;
   transition: transform 120ms ease-out;
@@ -281,14 +291,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.02)
+  );
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  border-radius: calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)));
+  border-radius: calc(
+    max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias))
+  );
   padding: 12px 14px;
   pointer-events: auto;
 }
@@ -349,8 +365,13 @@
 }
 
 @keyframes pc-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .pc-contact-btn {
@@ -417,7 +438,9 @@
 }
 
 .pc-details p {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-weight: 600;
   position: relative;
   top: 4px;
@@ -436,16 +459,26 @@
 }
 
 @keyframes glow-bg {
-  0% { --bgrotate: 0deg; }
-  100% { --bgrotate: 360deg; }
+  0% {
+    --bgrotate: 0deg;
+  }
+  100% {
+    --bgrotate: 360deg;
+  }
 }
 
 @keyframes holo-bg {
   0% {
-    background-position: 0 var(--background-y), 0 0, center;
+    background-position:
+      0 var(--background-y),
+      0 0,
+      center;
   }
   100% {
-    background-position: 0 var(--background-y), 90% 90%, center;
+    background-position:
+      0 var(--background-y),
+      90% 90%,
+      center;
   }
 }
 
@@ -454,7 +487,13 @@
     height: 60vh;
     max-height: 4000px;
   }
-  .pc-details { top: 1em; }
-  .pc-details h3 { font-size: min(3svh, 1.5rem); }
-  .pc-details p { font-size: 0.6rem; }
+  .pc-details {
+    top: 1em;
+  }
+  .pc-details h3 {
+    font-size: min(3svh, 1.5rem);
+  }
+  .pc-details p {
+    font-size: 0.6rem;
+  }
 }

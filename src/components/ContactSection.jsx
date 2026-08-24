@@ -1,5 +1,14 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { FaGithub, FaInstagram, FaLinkedin, FaMedium, FaBehance, FaFacebookF, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaMedium,
+  FaBehance,
+  FaFacebookF,
+  FaWhatsapp,
+  FaEnvelope,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import Shuffle from "./ui/Shuffle";
 import { cn } from "@/lib/utils";
@@ -41,10 +50,34 @@ const CONTACT_INFO = [
 ];
 
 const SOCIALS = [
-  { icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61563287920654", label: "Facebook", color: "text-[#1877F2] group-hover:text-white", hoverBg: "group-hover:bg-[#1877F2]" },
-  { icon: FaInstagram, href: "https://www.instagram.com/judejochimson_judechihan", label: "Instagram", color: "text-[#E1306C] group-hover:text-white", hoverBg: "group-hover:bg-[#E1306C]" },
-  { icon: FaWhatsapp, href: "https://wa.me/94776345280", label: "WhatsApp", color: "text-[#25D366] group-hover:text-white", hoverBg: "group-hover:bg-[#25D366]" },
-  { icon: FaEnvelope, href: "mailto:judechihan727@gmail.com", label: "Email", color: "text-[#EA4335] group-hover:text-white", hoverBg: "group-hover:bg-[#EA4335]" },
+  {
+    icon: FaFacebookF,
+    href: "https://www.facebook.com/profile.php?id=61563287920654",
+    label: "Facebook",
+    color: "text-[#1877F2] group-hover:text-white",
+    hoverBg: "group-hover:bg-[#1877F2]",
+  },
+  {
+    icon: FaInstagram,
+    href: "https://www.instagram.com/judejochimson_judechihan",
+    label: "Instagram",
+    color: "text-[#E1306C] group-hover:text-white",
+    hoverBg: "group-hover:bg-[#E1306C]",
+  },
+  {
+    icon: FaWhatsapp,
+    href: "https://wa.me/94776345280",
+    label: "WhatsApp",
+    color: "text-[#25D366] group-hover:text-white",
+    hoverBg: "group-hover:bg-[#25D366]",
+  },
+  {
+    icon: FaEnvelope,
+    href: "mailto:judechihan727@gmail.com",
+    label: "Email",
+    color: "text-[#EA4335] group-hover:text-white",
+    hoverBg: "group-hover:bg-[#EA4335]",
+  },
 ];
 
 // ─── Contact info pill ───────────────────────────────────────────────────────
@@ -97,7 +130,7 @@ export const ContactSection = () => {
         formRef.current,
         {
           publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        }
+        },
       )
       .then(
         () => {
@@ -135,12 +168,12 @@ export const ContactSection = () => {
 
       <section
         id="contact"
-        className="py-12 md:py-24 x-4 relative overflow-hidden"
+        className="py-12 md:py-24 px-4 relative overflow-hidden"
         style={{ background: "transparent" }}
       >
         <div className="container mx-auto max-w-5xl relative z-10">
           {/* ── Heading ── */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "0px" }}
@@ -209,29 +242,34 @@ export const ContactSection = () => {
                 </p>
 
                 <div className="flex items-center justify-center gap-5 mt-2">
-                  {SOCIALS.map(({ icon: Icon, href, label, color, hoverBg }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      title={label}
-                      className="flex flex-col items-center gap-2 group"
-                    >
-                      <span
-                        className={`w-11 h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg group-hover:border-transparent group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] group-hover:scale-110 group-hover:-translate-y-1 ${hoverBg}`}
+                  {SOCIALS.map(
+                    ({ icon: Icon, href, label, color, hoverBg }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        title={label}
+                        className="flex flex-col items-center gap-2 group"
                       >
-                        <Icon size={21} className={`transition-colors duration-300 ${color}`} />
-                      </span>
-                      <span
-                        className="text-[10px] font-medium text-muted-foreground group-hover:text-foreground transition-colors"
-                        style={{ fontFamily: "'Outfit', sans-serif" }}
-                      >
-                        {label}
-                      </span>
-                    </a>
-                  ))}
+                        <span
+                          className={`w-11 h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg group-hover:border-transparent group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] group-hover:scale-110 group-hover:-translate-y-1 ${hoverBg}`}
+                        >
+                          <Icon
+                            size={21}
+                            className={`transition-colors duration-300 ${color}`}
+                          />
+                        </span>
+                        <span
+                          className="text-[10px] font-medium text-muted-foreground group-hover:text-foreground transition-colors"
+                          style={{ fontFamily: "'Outfit', sans-serif" }}
+                        >
+                          {label}
+                        </span>
+                      </a>
+                    ),
+                  )}
                 </div>
               </div>
             </div>

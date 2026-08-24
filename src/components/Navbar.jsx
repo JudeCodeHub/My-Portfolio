@@ -18,15 +18,17 @@ export const Navbar = () => {
       <nav className="hidden md:flex w-full max-w-7xl mx-auto z-50 items-center justify-between px-6 py-6 pt-10 pointer-events-auto">
         {/* Left: Logo */}
         <div className="flex-1 flex items-center justify-start lg:pl-[80px]">
-          <div 
-            className="flex items-center gap-3 group cursor-pointer" 
+          <div
+            className="flex items-center gap-3 group cursor-pointer"
             onClick={() => {
               window.location.hash = "#start";
-              window.dispatchEvent(new CustomEvent('navigateSection', { detail: 'start' }));
+              window.dispatchEvent(
+                new CustomEvent("navigateSection", { detail: "start" }),
+              );
             }}
           >
             <CodeXml className="w-8 h-8 text-orange-500 group-hover:scale-110 transition-transform duration-300" />
-            
+
             {/* Logo Text */}
             <div className="hidden sm:flex flex-col justify-center">
               <span className="text-white font-black text-xl tracking-widest leading-none uppercase">
@@ -50,7 +52,7 @@ export const Navbar = () => {
             <CodeXml className="w-7 h-7 text-orange-500 group-hover:scale-110 transition-transform duration-300" />
           </a>
         </div>
-        
+
         {/* Mobile Menu Controls */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
@@ -68,7 +70,9 @@ export const Navbar = () => {
       <div
         className={cn(
           "fixed inset-0 bg-[#060714]/95 backdrop-blur-2xl z-[99] flex flex-col items-center justify-center transition-all duration-300 md:hidden",
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          isMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
         )}
       >
         <div className="flex flex-col space-y-8 text-2xl items-center">

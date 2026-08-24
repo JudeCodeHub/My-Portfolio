@@ -1,8 +1,8 @@
-import { useEffect, useRef, useMemo } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useMemo } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import './ScrollReveal.css';
+import "./ScrollReveal.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,14 +13,14 @@ export const ScrollReveal = ({
   baseOpacity = 0,
   baseRotation = 3,
   blurStrength = 4,
-  containerClassName = '',
-  textClassName = '',
-  rotationEnd = 'bottom bottom',
-  wordAnimationEnd = 'bottom bottom'
+  containerClassName = "",
+  textClassName = "",
+  rotationEnd = "bottom bottom",
+  wordAnimationEnd = "bottom bottom",
 }) => {
   const containerRef = useRef(null);
 
-  const isString = typeof children === 'string';
+  const isString = typeof children === "string";
 
   const splitContent = useMemo(() => {
     if (isString) {
@@ -42,7 +42,10 @@ export const ScrollReveal = ({
     if (!el) return;
 
     // Use the provided ref if valid, otherwise window
-    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+    const scroller =
+      scrollContainerRef && scrollContainerRef.current
+        ? scrollContainerRef.current
+        : window;
 
     // We use setTimeout to ensure GSAP registers after the DOM is fully painted, especially important when routing.
     const ctx = gsap.context(() => {
@@ -50,39 +53,39 @@ export const ScrollReveal = ({
       if (baseRotation !== 0) {
         gsap.fromTo(
           el,
-          { transformOrigin: '0% 50%', rotate: baseRotation },
+          { transformOrigin: "0% 50%", rotate: baseRotation },
           {
-            ease: 'none',
+            ease: "none",
             rotate: 0,
             scrollTrigger: {
               trigger: el,
               scroller,
-              start: 'top bottom',
+              start: "top bottom",
               end: rotationEnd,
-              scrub: true
-            }
-          }
+              scrub: true,
+            },
+          },
         );
       }
 
-      const wordElements = el.querySelectorAll('.word');
+      const wordElements = el.querySelectorAll(".word");
 
       // Opacity animation
       gsap.fromTo(
         wordElements,
-        { opacity: baseOpacity, willChange: 'opacity' },
+        { opacity: baseOpacity, willChange: "opacity" },
         {
-          ease: 'none',
+          ease: "none",
           opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
             trigger: el,
             scroller,
-            start: 'top bottom-=10%',
+            start: "top bottom-=10%",
             end: wordAnimationEnd,
-            scrub: true
-          }
-        }
+            scrub: true,
+          },
+        },
       );
 
       // Blur animation
@@ -91,17 +94,17 @@ export const ScrollReveal = ({
           wordElements,
           { filter: `blur(${blurStrength}px)` },
           {
-            ease: 'none',
-            filter: 'blur(0px)',
+            ease: "none",
+            filter: "blur(0px)",
             stagger: 0.05,
             scrollTrigger: {
               trigger: el,
               scroller,
-              start: 'top bottom-=10%',
+              start: "top bottom-=10%",
               end: wordAnimationEnd,
-              scrub: true
-            }
-          }
+              scrub: true,
+            },
+          },
         );
       }
     }, el);
@@ -109,11 +112,21 @@ export const ScrollReveal = ({
     return () => {
       ctx.revert();
     };
-  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
+  }, [
+    scrollContainerRef,
+    enableBlur,
+    baseRotation,
+    baseOpacity,
+    rotationEnd,
+    wordAnimationEnd,
+    blurStrength,
+  ]);
 
   return (
     <div ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
-      <div className={`scroll-reveal-text flex flex-wrap ${textClassName}`}>{splitContent}</div>
+      <div className={`scroll-reveal-text flex flex-wrap ${textClassName}`}>
+        {splitContent}
+      </div>
     </div>
   );
 };

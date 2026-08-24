@@ -28,8 +28,8 @@ function useIsMobile() {
   useEffect(() => {
     const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
   return isMobile;
@@ -43,10 +43,10 @@ export const Home = () => {
   useEffect(() => {
     const handleNavigation = (hash) => {
       if (isMobile) return; // Mobile uses native scrolling
-      const targetHash = hash.replace('#', '');
+      const targetHash = hash.replace("#", "");
       if (!targetHash) return;
-      
-      const index = SECTIONS.findIndex(s => s.id === targetHash);
+
+      const index = SECTIONS.findIndex((s) => s.id === targetHash);
       if (index !== -1) {
         setActiveIndex(index);
       }
@@ -58,25 +58,33 @@ export const Home = () => {
     // Check initial hash on mount
     onHashChange();
 
-    window.addEventListener('hashchange', onHashChange);
-    window.addEventListener('navigateSection', onCustomNav);
+    window.addEventListener("hashchange", onHashChange);
+    window.addEventListener("navigateSection", onCustomNav);
 
     return () => {
-      window.removeEventListener('hashchange', onHashChange);
-      window.removeEventListener('navigateSection', onCustomNav);
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("navigateSection", onCustomNav);
     };
   }, [isMobile]);
 
   return (
-    <div className={`relative w-full bg-background text-foreground ${isMobile ? "min-h-screen" : "h-screen overflow-hidden"}`}>
-      
+    <div
+      className={`relative w-full bg-background text-foreground ${isMobile ? "min-h-screen" : "h-screen overflow-hidden"}`}
+    >
       {/* ── GLOBAL UNIFIED BACKGROUND ── */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            inset: 0,
+          }}
+        >
           <MoltenMetal
-            color1="#431407" 
-            color2="#f97316" 
-            color3="#fdba74" 
+            color1="#431407"
+            color2="#f97316"
+            color3="#fdba74"
             speed={0.35}
             scale={4}
             detail={3}
@@ -113,6 +121,7 @@ export const Home = () => {
           <SkillsSection />
           <ProjectsSection />
           <Awards_Acheivements />
+          <CertificationsSection />
           <ContactSection />
           <FooterSection />
         </main>
@@ -121,7 +130,7 @@ export const Home = () => {
         <>
           <div className="absolute left-0 top-0 bottom-0 w-32 md:w-56 lg:w-72 z-[50] pointer-events-auto">
             <OptionWheel
-              items={SECTIONS.map(s => s.name)}
+              items={SECTIONS.map((s) => s.name)}
               defaultSelected={activeIndex}
               onChange={(index) => {
                 setActiveIndex(index);

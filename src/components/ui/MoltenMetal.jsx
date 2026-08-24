@@ -1,14 +1,19 @@
-import { useEffect, useRef } from 'react';
-import { Renderer, Program, Mesh, Triangle } from 'ogl';
-import './MoltenMetal.css';
+import { useEffect, useRef } from "react";
+import { Renderer, Program, Mesh, Triangle } from "ogl";
+import "./MoltenMetal.css";
 
-const hexToRgb = hex => {
+const hexToRgb = (hex) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return [1, 1, 1];
-  return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
+  return [
+    parseInt(result[1], 16) / 255,
+    parseInt(result[2], 16) / 255,
+    parseInt(result[3], 16) / 255,
+  ];
 };
 
-const colorModeToFloat = mode => (mode === 'ember' ? 1 : mode === 'frost' ? 2 : 0);
+const colorModeToFloat = (mode) =>
+  mode === "ember" ? 1 : mode === "frost" ? 2 : 0;
 
 const vertex = `#version 300 es
 in vec2 position;
@@ -103,9 +108,9 @@ void main() {
 const ctxMap = new WeakMap();
 
 const MoltenMetal = ({
-  color1 = '#5227FF',
-  color2 = '#FF9FFC',
-  color3 = '#FFFFFF',
+  color1 = "#5227FF",
+  color2 = "#FF9FFC",
+  color3 = "#FFFFFF",
   speed = 0.35,
   scale = 4,
   detail = 3,
@@ -115,13 +120,13 @@ const MoltenMetal = ({
   fold = -0.2,
   blackPoint = 0.05,
   brightness = 1.3,
-  colorMode = 'molten',
+  colorMode = "molten",
   grain = true,
   grainIntensity = 0.05,
   mouseInteraction = true,
   mouseStrength = 0.3,
   opacity = 1.0,
-  className = ''
+  className = "",
 }) => {
   const containerRef = useRef(null);
 
@@ -134,15 +139,15 @@ const MoltenMetal = ({
       alpha: true,
       premultipliedAlpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      dpr: Math.min(window.devicePixelRatio || 1, 2),
     });
 
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     const canvas = gl.canvas;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.display = 'block';
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.display = "block";
     container.appendChild(canvas);
 
     const geometry = new Triangle(gl);
@@ -170,8 +175,8 @@ const MoltenMetal = ({
         uEnableMouse: { value: true },
         uColor1: { value: new Float32Array([1, 1, 1]) },
         uColor2: { value: new Float32Array([1, 1, 1]) },
-        uColor3: { value: new Float32Array([1, 1, 1]) }
-      }
+        uColor3: { value: new Float32Array([1, 1, 1]) },
+      },
     });
 
     const mesh = new Mesh(gl, { geometry, program });
@@ -195,7 +200,7 @@ const MoltenMetal = ({
     const targetMouse = [0.5, 0.5];
     const currentMouse = [0.5, 0.5];
 
-    const handleMouseMove = e => {
+    const handleMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
       targetMouse[0] = (e.clientX - rect.left) / rect.width;
       targetMouse[1] = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -204,15 +209,15 @@ const MoltenMetal = ({
       targetMouse[0] = 0.5;
       targetMouse[1] = 0.5;
     };
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
 
     let raf = 0;
     let isVisible = true;
     let isPageVisible = !document.hidden;
     const t0 = performance.now();
 
-    const loop = t => {
+    const loop = (t) => {
       program.uniforms.iTime.value = (t - t0) * 0.001;
       currentMouse[0] += 0.05 * (targetMouse[0] - currentMouse[0]);
       currentMouse[1] += 0.05 * (targetMouse[1] - currentMouse[1]);
@@ -223,7 +228,8 @@ const MoltenMetal = ({
     };
 
     const tryStart = () => {
-      if (isVisible && isPageVisible && raf === 0) raf = requestAnimationFrame(loop);
+      if (isVisible && isPageVisible && raf === 0)
+        raf = requestAnimationFrame(loop);
     };
     const tryStop = () => {
       if (raf !== 0) {
@@ -237,7 +243,7 @@ const MoltenMetal = ({
         isVisible = entry.isIntersecting;
         isVisible ? tryStart() : tryStop();
       },
-      { threshold: 0 }
+      { threshold: 0 },
     );
     io.observe(container);
 
@@ -245,7 +251,7 @@ const MoltenMetal = ({
       isPageVisible = !document.hidden;
       isPageVisible ? tryStart() : tryStop();
     };
-    document.addEventListener('visibilitychange', onVisibility);
+    document.addEventListener("visibilitychange", onVisibility);
 
     tryStart();
 
@@ -253,14 +259,14 @@ const MoltenMetal = ({
       tryStop();
       ro.disconnect();
       io.disconnect();
-      document.removeEventListener('visibilitychange', onVisibility);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
       ctxMap.delete(container);
       try {
         container.removeChild(canvas);
       } catch {}
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, []);
 
@@ -319,10 +325,15 @@ const MoltenMetal = ({
     grainIntensity,
     mouseInteraction,
     mouseStrength,
-    opacity
+    opacity,
   ]);
 
-  return <div ref={containerRef} className={`molten-metal-container ${className}`.trim()} />;
+  return (
+    <div
+      ref={containerRef}
+      className={`molten-metal-container ${className}`.trim()}
+    />
+  );
 };
 
 export default MoltenMetal;

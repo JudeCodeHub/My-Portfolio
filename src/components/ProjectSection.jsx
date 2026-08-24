@@ -244,7 +244,7 @@ export const ProjectsSection = () => {
           style={{ perspective: "2000px" }}
         >
           {/* Navigation Controls (Right Side) */}
-          <div className="absolute right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2 -mt-19">
+          <div className="absolute right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"

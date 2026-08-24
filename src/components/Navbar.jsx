@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Menu, X, CodeXml, Sun } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, CodeXml } from "lucide-react";
+import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
 
 const navItems = [
@@ -11,6 +11,22 @@ const navItems = [
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+
+  // Initialize theme from HTML class or localStorage on mount
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
+  }, []);
+
+  const toggleTheme = (checked) => {
+    setIsDark(checked);
+    if (checked) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   return (
     <>
@@ -40,7 +56,7 @@ export const Navbar = () => {
 
         {/* Right: Theme Toggle Placeholder */}
         <div className="flex-1 flex items-center justify-end gap-6 lg:pr-[80px]">
-          <ThemeToggle />
+          <ThemeToggle isDark={isDark} onChange={toggleTheme} />
         </div>
       </nav>
 
@@ -55,7 +71,7 @@ export const Navbar = () => {
 
         {/* Mobile Menu Controls */}
         <div className="flex items-center gap-4">
-          <ThemeToggle />
+          <ThemeToggle isDark={isDark} onChange={toggleTheme} />
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
             className="p-1 text-white hover:text-white/80 transition-colors"

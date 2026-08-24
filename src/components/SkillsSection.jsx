@@ -3,6 +3,13 @@ import StackIcon from "tech-stack-icons";
 import { GithubIcon } from "hugeicons-react";
 import Shuffle from "./ui/Shuffle";
 
+const AnsibleIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-full h-full">
+    <path fill="#1A1918" d="M126 64c0 34.2-27.8 62-62 62S2 98.2 2 64 29.8 2 64 2s62 27.8 62 62"/>
+    <path fill="#FFF" d="M65 39.9l16 39.6-24.1-19.1L65 39.9zm28.5 48.7L68.9 29.2c-.7-1.7-2.1-2.6-3.8-2.6-1.7 0-3.2.9-3.9 2.6L34 94.3h9.3L54 67.5l32 25.9c1.3 1 2.2 1.5 3.4 1.5 2.4 0 4.5-1.8 4.5-4.4.1-.5-.1-1.2-.4-1.9z"/>
+  </svg>
+);
+
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -32,11 +39,12 @@ const graphData = [
     id: "devops",
     title: "DEVOPS",
     skills: [
-      "git",
-      "docker",
-      "github2",
-      "kubernetes",
       "linux",
+      "git",
+      "github2",
+      "docker",
+      "ansible",
+      "kubernetes",
       "aws",
       "terraform",
     ],
@@ -121,6 +129,8 @@ export const SkillsSection = () => {
                   <div className="w-8 h-8 md:w-9 md:h-9 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.5)] flex items-center justify-center">
                     {skill === "github2" ? (
                       <GithubIcon className="w-full h-full text-white" />
+                    ) : skill === "ansible" ? (
+                      <AnsibleIcon />
                     ) : (
                       <StackIcon name={skill} />
                     )}

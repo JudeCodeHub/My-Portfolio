@@ -390,6 +390,7 @@ const DepthCarousel = ({
             type="button"
             className="depth-carousel__arrow depth-carousel__arrow--prev"
             aria-label="Previous slide"
+            disabled={!loop && active === 0}
             onClick={() => navigateBy(-1)}
           >
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -407,6 +408,7 @@ const DepthCarousel = ({
             type="button"
             className="depth-carousel__arrow depth-carousel__arrow--next"
             aria-label="Next slide"
+            disabled={!loop && active === count - 1}
             onClick={() => navigateBy(1)}
           >
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">

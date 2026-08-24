@@ -130,8 +130,8 @@ export const Awards_Acheivements = () => {
               visibleCards={3}
               falloff={0.2}
               blur={6}
-              autoplay={true}
-              loop={true}
+              autoplay={false}
+              loop={false}
               onChange={(idx) => setActive(idx)}
             />
           </div>

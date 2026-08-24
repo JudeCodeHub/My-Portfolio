@@ -288,14 +288,17 @@ export const CertificationsSection = () => {
                 {/* Image / PDF Container */}
                 <div className="flex-1 overflow-auto bg-black/50 p-4 sm:p-8 flex items-center justify-center relative group/modal">
                   
-                  {hasPrev && (
-                    <button 
-                      onClick={handlePrev}
-                      className="absolute left-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white flex items-center justify-center transition-all opacity-0 group-hover/modal:opacity-100 z-10 cursor-pointer"
-                    >
-                      <ChevronLeft size={28} className="mr-1" />
-                    </button>
-                  )}
+                  <button 
+                    onClick={handlePrev}
+                    disabled={!hasPrev}
+                    className={`absolute left-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all z-10 opacity-0 ${
+                      !hasPrev 
+                        ? 'bg-black/60 border border-white text-white cursor-not-allowed group-hover/modal:opacity-30' 
+                        : 'bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white cursor-pointer group-hover/modal:opacity-100'
+                    }`}
+                  >
+                    <ChevronLeft size={28} className="mr-1" />
+                  </button>
 
                   <div className="w-full h-full flex items-center justify-center relative">
                     <img 
@@ -309,14 +312,17 @@ export const CertificationsSection = () => {
                     />
                   </div>
 
-                  {hasNext && (
-                    <button 
-                      onClick={handleNext}
-                      className="absolute right-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white flex items-center justify-center transition-all opacity-0 group-hover/modal:opacity-100 z-10 cursor-pointer"
-                    >
-                      <ChevronRight size={28} className="ml-1" />
-                    </button>
-                  )}
+                  <button 
+                    onClick={handleNext}
+                    disabled={!hasNext}
+                    className={`absolute right-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center transition-all z-10 opacity-0 ${
+                      !hasNext 
+                        ? 'bg-black/60 border border-white text-white cursor-not-allowed group-hover/modal:opacity-30' 
+                        : 'bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white cursor-pointer group-hover/modal:opacity-100'
+                    }`}
+                  >
+                    <ChevronRight size={28} className="ml-1" />
+                  </button>
                 </div>
               </motion.div>
             </motion.div>

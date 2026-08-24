@@ -84,21 +84,27 @@
     transform 0.2s ease;
 }
 
-.depth-carousel__arrow:hover {
+.depth-carousel__arrow:not(:disabled):hover {
   background: rgba(28, 31, 40, 0.85);
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-.depth-carousel__arrow:active {
+.depth-carousel__arrow:active:not(:disabled) {
   transform: translateY(-50%) scale(0.94);
 }
 
+.depth-carousel__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .depth-carousel__arrow--prev {
-  left: 16px;
+  left: max(16px, calc(50% - 378px));
 }
 
 .depth-carousel__arrow--next {
-  right: 16px;
+  right: max(16px, calc(50% - 378px));
 }
 
 .depth-carousel__dots {

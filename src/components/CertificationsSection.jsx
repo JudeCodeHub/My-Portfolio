@@ -300,7 +300,7 @@ export const CertificationsSection = () => {
 
       {/* Header */}
       <div className="w-full max-w-5xl mb-4 z-20 text-center flex justify-center">
-        <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
+        <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
           <span className="text-orange-500 shrink-0 mr-3">~$</span>
           <span className="shrink-0 inline-block">
             <Shuffle text="certifications" loop={true} loopDelay={3} />

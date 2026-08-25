@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-border: hsl(var(--border));
@@ -85,6 +86,10 @@
     --star-color: #64748b;
     --star-glow: rgba(100, 116, 139, 0.15);
     --meteor-opacity: 0.3;
+
+    --wheel-text: rgba(0, 0, 0, 0.4);
+    --wheel-line: rgba(0, 0, 0, 0.15);
+    --wheel-dot: rgba(0, 0, 0, 0.3);
   }
 
   .dark {
@@ -104,6 +109,10 @@
     --star-color: white;
     --star-glow: rgba(255, 255, 255, 0.4);
     --meteor-opacity: 1;
+
+    --wheel-text: rgba(255, 255, 255, 0.3);
+    --wheel-line: rgba(255, 255, 255, 0.15);
+    --wheel-dot: rgba(255, 255, 255, 0.3);
   }
 
   * {

@@ -138,7 +138,7 @@ export const Home = () => {
               }}
               loop={false}
               side="left"
-              textColor="rgba(255, 255, 255, 0.3)"
+              textColor="var(--wheel-text)"
               activeColor="#f97316"
               curve={0.5}
               tilt={4}

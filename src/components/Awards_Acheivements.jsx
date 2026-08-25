@@ -110,7 +110,7 @@ export const Awards_Acheivements = () => {
           whileInView="visible"
           viewport={{ once: false, margin: "0px" }}
           variants={fadeUp(0.1)}
-          className="w-full max-w-6xl mb-10 z-10 text-center mx-auto"
+          className="w-full max-w-6xl mb-10 z-10 text-center mx-auto translate-y-[4px] mt-18"
         >
           <h2 className="text-3xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex flex-wrap justify-center items-center md:whitespace-nowrap mb-4 mt-2 px-2">
             <span className="text-orange-500 shrink-0 mr-2 md:mr-3">~$</span>

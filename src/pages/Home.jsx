@@ -107,7 +107,7 @@ export const Home = () => {
       </div>
 
       {/* Navbar sits outside the scroll container, acting perfectly fixed */}
-      <div className="fixed inset-x-0 top-0 z-[9999] pointer-events-none pl-0 md:pl-64 lg:pl-80 flex justify-center">
+      <div className="fixed inset-x-0 top-0 z-[9999] pointer-events-none pl-0 md:pl-32 lg:pl-48 flex justify-center">
         <div className="pointer-events-auto w-full">
           <Navbar />
         </div>
@@ -128,7 +128,7 @@ export const Home = () => {
       ) : (
         /* ── DESKTOP LAYOUT (Slide Deck with Option Wheel) ── */
         <>
-          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-56 lg:w-72 z-[50] pointer-events-auto">
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 lg:w-48 z-[50] pointer-events-auto">
             <OptionWheel
               items={SECTIONS.map((s) => s.name)}
               defaultSelected={activeIndex}
@@ -148,7 +148,7 @@ export const Home = () => {
             />
           </div>
 
-          <main className="absolute inset-0 z-10 flex items-center justify-center pointer-events-auto pl-32 md:pl-64 lg:pl-80">
+          <main className="absolute inset-0 z-10 flex items-center justify-center pointer-events-auto pl-8 md:pl-32 lg:pl-48">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

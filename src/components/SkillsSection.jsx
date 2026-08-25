@@ -55,7 +55,7 @@ export const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="w-full min-h-screen lg:min-h-[85vh] py-12 md:pt-20 lg:pt-12 xl:pt-20 md:pb-28 lg:pb-16 xl:pb-28 flex flex-col justify-start lg:justify-center items-center px-4 relative overflow-hidden scroll-mt-20 lg:scroll-mt-0"
+      className="w-full min-h-screen lg:min-h-[85vh] py-12 md:pt-20 lg:pt-12 xl:pt-44 md:pb-28 lg:pb-16 xl:pb-28 flex flex-col justify-start lg:justify-center items-center px-4 relative overflow-hidden scroll-mt-20 lg:scroll-mt-0 ml-4"
     >
       {/* Deep Space Background Glow */}
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent pointer-events-none" />

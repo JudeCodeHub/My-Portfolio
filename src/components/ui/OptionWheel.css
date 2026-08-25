@@ -70,7 +70,7 @@
   background-color: color-mix(
     in srgb,
     var(--ow-active-color) calc(var(--ow-p, 0) * 100%),
-    rgba(255, 255, 255, 0.15)
+    var(--wheel-line, rgba(255, 255, 255, 0.15))
   );
   box-shadow: 0 0 calc(var(--ow-p, 0) * 10px) var(--ow-active-color);
   border-radius: 2px;
@@ -83,7 +83,7 @@
   background-color: color-mix(
     in srgb,
     var(--ow-active-color) calc(var(--ow-p, 0) * 100%),
-    rgba(255, 255, 255, 0.3)
+    var(--wheel-dot, rgba(255, 255, 255, 0.3))
   );
   box-shadow: 0 0 calc(var(--ow-p, 0) * 15px) var(--ow-active-color);
 }

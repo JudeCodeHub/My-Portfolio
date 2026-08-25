@@ -180,7 +180,7 @@ export const ContactSection = () => {
             variants={fadeUp(0.1)}
             className="w-full max-w-5xl mb-10 z-20 text-center flex flex-col items-center justify-center mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
+            <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
               <span className="text-orange-500 shrink-0 mr-3">~$</span>
               <span className="shrink-0 inline-block">
                 <Shuffle text="contact" loop={true} loopDelay={3} />

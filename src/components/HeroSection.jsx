@@ -89,14 +89,14 @@ export const HeroSection = () => {
       {/* ── Main Layout: Asymmetrical & Structural ── */}
       <div className="container relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 mix-blend-difference text-white dark:mix-blend-normal dark:text-foreground lg:ml-[80px] lg:mt-[20px] mt-4">
+          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 text-slate-800 dark:text-white lg:ml-[80px] lg:mt-[20px] mt-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="flex flex-col items-start gap-4"
             >
-              <div className="hidden md:block text-white/60 italic text-sm md:text-base font-light tracking-wider text-left">
+              <div className="hidden md:block text-slate-700 dark:text-white/60 italic text-sm md:text-base font-medium dark:font-light tracking-wider text-left">
                 "When something is important enough,{" "}
                 <br className="hidden sm:block" /> you do it even if the odds
                 are not in your favor."
@@ -194,7 +194,7 @@ export const HeroSection = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group w-10 h-10 bg-white backdrop-blur-md border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
+                    className={`group w-10 h-10 bg-slate-200/80 dark:bg-white backdrop-blur-md border border-black/10 dark:border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
                   >
                     <social.icon
                       size={21}
@@ -215,7 +215,7 @@ export const HeroSection = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group w-10 h-10 bg-white backdrop-blur-md border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
+                    className={`group w-10 h-10 bg-slate-200/80 dark:bg-white backdrop-blur-md border border-black/10 dark:border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:border-transparent hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${social.hoverBg}`}
                   >
                     <social.icon
                       size={21}
@@ -242,10 +242,10 @@ export const HeroSection = () => {
           );
         }}
       >
-        <div className="w-[28px] h-[46px] border-2 border-white/40 group-hover:border-orange-500/70 rounded-full flex justify-center p-1.5 transition-colors duration-300">
+        <div className="w-[28px] h-[46px] border-2 border-slate-400 dark:border-white/40 group-hover:border-orange-500/70 rounded-full flex justify-center p-1.5 transition-colors duration-300">
           <div className="w-1.5 h-2 bg-orange-500 rounded-full animate-mouse-scroll" />
         </div>
-        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/70 group-hover:text-orange-500 transition-colors duration-300">
+        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-slate-500 dark:text-white/70 group-hover:text-orange-500 transition-colors duration-300">
           Scroll
         </span>
       </motion.div>

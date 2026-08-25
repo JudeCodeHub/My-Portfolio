@@ -68,11 +68,11 @@ export const SkillsSection = () => {
         variants={fadeUp(0.1)}
         className="w-full max-w-6xl mb-1 md:mb-2 z-10 text-center"
       >
-        <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex gap-3 justify-center">
+        <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex gap-3 justify-center">
           <span className="text-orange-500">~$</span>
           <Shuffle text="stack" loop={true} loopDelay={3} />
         </h2>
-        <p className="text-white/90 font-mono text-[15px] mt-2 uppercase tracking-[0.3em]">
+        <p className="text-slate-700 dark:text-white/90 font-mono text-[15px] mt-2 uppercase tracking-[0.3em]">
           // Technologies & Tools I work with
         </p>
       </motion.div>
@@ -139,7 +139,7 @@ export const SkillsSection = () => {
                   {/* Hardware Connection Node (Dot attaching to the main line) */}
 
                   {/* Floating Data Label */}
-                  <div className="absolute -bottom-6 font-mono font-bold text-[9px] md:text-[10px] text-white/90 group-hover:text-orange-500 tracking-widest uppercase transition-colors duration-300 pointer-events-none whitespace-nowrap">
+                  <div className="absolute -bottom-6 font-mono font-bold text-[9px] md:text-[10px] text-slate-700 dark:text-white/90 group-hover:text-orange-500 tracking-widest uppercase transition-colors duration-300 pointer-events-none whitespace-nowrap">
                     {skill === "github2"
                       ? "github"
                       : skill === "nextjs2"

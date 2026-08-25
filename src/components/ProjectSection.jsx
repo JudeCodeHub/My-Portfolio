@@ -228,7 +228,7 @@ export const ProjectsSection = () => {
         variants={fadeUp(0.1)}
         className="w-full max-w-6xl mb-2 z-20 text-center flex justify-center"
       >
-        <h2 className="text-4xl md:text-5xl font-mono font-bold text-white tracking-tight flex justify-center items-center whitespace-nowrap">
+        <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex justify-center items-center whitespace-nowrap">
           <span className="text-orange-500 shrink-0 mr-3">~$</span>
           <span className="shrink-0 inline-block">
             <Shuffle text="projects" loop={true} loopDelay={3} />
@@ -257,7 +257,7 @@ export const ProjectsSection = () => {
               {projects.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 transition-all duration-300 rounded-full ${i === activeIndex ? "h-6 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" : "h-2 bg-white/20"}`}
+                  className={`w-2 transition-all duration-300 rounded-full ${i === activeIndex ? "h-6 bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]" : "h-2 bg-slate-300 dark:bg-white/20"}`}
                 />
               ))}
             </div>
@@ -343,7 +343,7 @@ export const ProjectsSection = () => {
               {projects.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-white/20"}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-slate-300 dark:bg-white/20"}`}
                 />
               ))}
             </div>

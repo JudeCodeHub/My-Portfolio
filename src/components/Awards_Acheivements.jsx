@@ -87,7 +87,7 @@ export const Awards_Acheivements = () => {
           variants={fadeUp(0.1)}
           className="w-full max-w-6xl mb-10 z-10 text-center mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl font-mono font-bold text-white tracking-tight flex flex-wrap justify-center items-center md:whitespace-nowrap mb-4 mt-2 px-2">
+          <h2 className="text-3xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex flex-wrap justify-center items-center md:whitespace-nowrap mb-4 mt-2 px-2">
             <span className="text-orange-500 shrink-0 mr-2 md:mr-3">~$</span>
             <span className="shrink-0 inline-block text-center leading-tight">
               <span className="hidden md:inline-block">
@@ -102,7 +102,7 @@ export const Awards_Acheivements = () => {
               </span>
             </span>
           </h2>
-          <p className="hidden md:block text-white/90 font-mono text-[13px] md:text-[15px] mt-3 uppercase tracking-[0.2em] md:tracking-[0.3em]">
+          <p className="hidden md:block text-slate-700 dark:text-white/90 font-mono text-[13px] md:text-[15px] mt-3 uppercase tracking-[0.2em] md:tracking-[0.3em]">
             // Recognition earned through competition, craft, and continuous
             learning
           </p>
@@ -194,7 +194,7 @@ export const Awards_Acheivements = () => {
                 {items.map((_, i) => (
                   <div
                     key={i}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === active ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-white/20"}`}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === active ? "bg-orange-500 scale-125 shadow-[0_0_8px_rgba(249,115,22,0.8)]" : "bg-slate-300 dark:bg-white/20"}`}
                   />
                 ))}
               </div>
@@ -225,10 +225,10 @@ export const Awards_Acheivements = () => {
                     </span>
                   )}
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold leading-snug text-white font-outfit px-2">
+                <h3 className="text-xl md:text-3xl font-bold leading-snug text-slate-800 dark:text-white font-outfit px-2">
                   {activeItem.title}
                 </h3>
-                <p className="text-sm md:text-base text-white/60 leading-relaxed font-inter">
+                <p className="text-sm md:text-base text-slate-600 dark:text-white/60 leading-relaxed font-inter">
                   {activeItem.org}
                 </p>
               </motion.div>

@@ -89,7 +89,7 @@ export const AboutSection = () => {
             variants={fadeUp(0.1)}
             className="lg:col-span-7 text-center lg:text-left"
           >
-            <h2 className="text-3xl md:text-5xl font-mono font-bold text-white tracking-tight flex gap-3 justify-center lg:justify-start items-center">
+            <h2 className="text-3xl md:text-5xl font-mono font-bold text-foreground dark:text-white tracking-tight flex gap-3 justify-center lg:justify-start items-center">
               <span className="text-orange-500">~$</span>
               <Shuffle text="whoami" loop={true} loopDelay={3} />
             </h2>
@@ -110,7 +110,7 @@ export const AboutSection = () => {
                   text="DESIGN • DEVELOP • DEPLOY • DESIGN • DEVELOP • DEPLOY • "
                   onHover="speedUp"
                   spinDuration={25}
-                  className="text-white drop-shadow-[0_0_8px_rgba(249,115,22,1)] text-[10px] md:text-[14px] lg:text-[16px] tracking-[0.3em] uppercase pointer-events-auto"
+                  className="text-foreground dark:text-white drop-shadow-[0_0_8px_rgba(249,115,22,1)] text-[10px] md:text-[14px] lg:text-[16px] tracking-[0.3em] uppercase pointer-events-auto"
                 />
               </div>
 
@@ -135,14 +135,14 @@ export const AboutSection = () => {
             variants={fadeUp(0.4)}
             className="lg:col-span-7 flex flex-col justify-center text-center md:text-left mt-6 md:mt-0 lg:mt-0"
           >
-            <h3 className="text-2xl md:text-4xl font-bold text-white leading-snug mb-2 md:mb-3 tracking-tight">
+            <h3 className="text-2xl md:text-4xl font-bold text-foreground dark:text-white leading-snug mb-2 md:mb-3 tracking-tight">
               Software Engineer
             </h3>
             <p className="text-orange-500 font-medium tracking-widest uppercase text-xs md:text-base mb-4 md:mb-8">
               & DevOps Enthusiast
             </p>
 
-            <div className="text-white/80 text-sm md:text-lg leading-relaxed md:leading-loose max-w-2xl mx-auto md:mx-0 font-light tracking-wide text-justify md:text-left">
+            <div className="text-slate-700 dark:text-white/80 text-sm md:text-lg leading-relaxed md:leading-loose max-w-2xl mx-auto md:mx-0 font-medium dark:font-light tracking-wide text-justify">
               <p>
                 Computer Science undergraduate at Eastern University, Sri Lanka,
                 currently shipping code as a Software Engineer Intern. I build
@@ -173,7 +173,7 @@ export const AboutSection = () => {
                 href="/CV/MyResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 rounded-full border border-white/20 bg-transparent text-white/90 text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-white/10 flex items-center justify-center gap-3 group"
+                className="px-8 py-3.5 rounded-full border border-black/20 dark:border-white/20 bg-transparent text-slate-800 dark:text-white/90 text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/10 flex items-center justify-center gap-3 group"
               >
                 <FileUser className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 Download CV
@@ -193,7 +193,7 @@ export const AboutSection = () => {
             whileHover={{ scale: 1.05 }}
             className="flex flex-col items-center text-center group cursor-default w-1/2 md:w-1/3 py-2 md:py-0"
           >
-            <span className="text-3xl md:text-5xl font-black text-white mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
+            <span className="text-3xl md:text-5xl font-black text-slate-800 dark:text-white mb-1 md:mb-2 dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] drop-shadow-none group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
               5+
             </span>
             <span className="text-orange-500/70 text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase">
@@ -212,7 +212,7 @@ export const AboutSection = () => {
             whileHover={{ scale: 1.05 }}
             className="flex flex-col items-center text-center group cursor-default w-1/2 md:w-1/3 py-2 md:py-0 border-l border-orange-500/40 md:border-none"
           >
-            <span className="text-3xl md:text-5xl font-black text-white mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
+            <span className="text-3xl md:text-5xl font-black text-slate-800 dark:text-white mb-1 md:mb-2 dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] drop-shadow-none group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
               WSO2
             </span>
             <span className="text-orange-500/70 text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase">
@@ -231,7 +231,7 @@ export const AboutSection = () => {
             whileHover={{ scale: 1.05 }}
             className="flex flex-col items-center text-center group cursor-default w-full md:w-1/3 py-4 md:py-0 mt-2 md:mt-0 md:border-l border-orange-500/40"
           >
-            <span className="text-3xl md:text-5xl font-black text-white mb-1 md:mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
+            <span className="text-3xl md:text-5xl font-black text-slate-800 dark:text-white mb-1 md:mb-2 dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] drop-shadow-none group-hover:text-orange-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
               10+
             </span>
             <span className="text-orange-500/70 text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase">

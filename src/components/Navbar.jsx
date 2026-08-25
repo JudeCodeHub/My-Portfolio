@@ -47,7 +47,7 @@ export const Navbar = () => {
 
             {/* Logo Text */}
             <div className="hidden sm:flex flex-col justify-center">
-              <span className="text-white font-black text-xl tracking-widest leading-none uppercase">
+              <span className="text-foreground dark:text-white font-black text-xl tracking-widest leading-none uppercase">
                 Jude<span className="text-orange-500">.</span>dev
               </span>
             </div>

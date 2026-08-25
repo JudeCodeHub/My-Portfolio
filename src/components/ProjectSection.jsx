@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -208,14 +208,33 @@ export const ProjectsSection = () => {
     setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
 
-  // The radius of the 3D cylinder. Larger = smoother curve.
-  const radius = 550;
+  const [radius, setRadius] = useState(550);
   const anglePerItem = 60; // degrees
+
+  // Adjust 3D radius and responsiveness dynamically
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth >= 1280) {
+          setRadius(550);
+        } else if (window.innerWidth >= 1024) {
+          setRadius(400);
+        } else {
+          setRadius(550);
+        }
+      }
+    };
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   return (
     <section
       id="projects"
-      className="w-full md:min-h-screen py-12 md:py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10"
+      className="w-full md:min-h-screen lg:min-h-[85vh] py-12 md:py-20 lg:py-10 xl:py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10 lg:scroll-mt-0"
     >
       {/* Background glow matching the terminal theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.05)_0%,_transparent_60%)] pointer-events-none" />
@@ -237,14 +256,14 @@ export const ProjectsSection = () => {
       </motion.div>
 
       {/* Alignment Wrapper matching Navbar for the 3D Wheel */}
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-[104px] flex flex-col items-start z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 xl:px-[104px] flex flex-col items-start lg:items-center xl:items-start z-10">
         {/* 3D Rolodex Container (Desktop Only) */}
         <div
-          className="relative w-full max-w-5xl h-[650px] hidden md:flex items-center justify-center md:translate-x-5 md:ml-8 mt-8"
+          className="relative w-full max-w-5xl h-[650px] lg:max-w-2xl lg:h-[450px] xl:max-w-5xl xl:h-[650px] hidden md:flex items-center justify-center md:translate-x-5 md:ml-8 lg:translate-x-0 lg:ml-0 xl:translate-x-5 xl:ml-8 mt-8 lg:mt-4 xl:mt-8"
           style={{ perspective: "2000px" }}
         >
           {/* Navigation Controls (Right Side) */}
-          <div className="absolute right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
+          <div className="absolute right-[-70px] lg:right-[-40px] xl:right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
             <button
               onClick={handlePrev}
               className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
@@ -272,7 +291,7 @@ export const ProjectsSection = () => {
 
           {/* Rolodex Wheel */}
           <div
-            className="relative w-full h-[600px]"
+            className="relative w-full h-[600px] lg:h-[400px] xl:h-[600px]"
             style={{ transformStyle: "preserve-3d", willChange: "transform" }}
           >
             {projects.map((project, i) => {

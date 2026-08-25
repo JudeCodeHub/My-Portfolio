@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, CodeXml, Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
+import { StaggeredMenu } from "./ui/StaggeredMenu";
 
 const navItems = [
   { name: "whoami", href: "#about" },
@@ -45,7 +46,7 @@ export const Navbar = () => {
     <>
       <audio ref={audioRef} src="/Background_Audio.mp3" loop />
       {/* DESKTOP NAV (Slide Deck Style) */}
-      <nav className="hidden md:flex w-full max-w-7xl mx-auto z-50 items-center justify-between px-6 py-6 pt-10 pointer-events-auto">
+      <nav className="hidden md:flex w-full max-w-7xl mx-auto z-50 items-center justify-between px-6 py-6 lg:py-4 xl:py-6 lg:pt-6 xl:pt-10 pointer-events-auto">
         {/* Left: Logo */}
         <div className="flex-1 flex items-center justify-start lg:pl-[80px]">
           <div
@@ -91,47 +92,34 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Menu Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5">
           <button 
             onClick={toggleAudio}
-            className="p-1.5 rounded-full border border-orange-500/30 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] active:scale-95 bg-white/50 dark:bg-[#0a0a0a]/50"
+            className="p-1 rounded-full border border-orange-500/30 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] active:scale-95 bg-white/50 dark:bg-[#0a0a0a]/50"
             aria-label={isPlaying ? "Mute audio" : "Play audio"}
           >
-            {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+            {isPlaying ? <Volume2 size={14} /> : <VolumeX size={14} />}
           </button>
-          <ThemeToggle isDark={isDark} onChange={toggleTheme} />
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="p-1 text-white hover:text-white/80 transition-colors"
-            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="-mx-3.5 h-8 flex items-center justify-center">
+            <ThemeToggle isDark={isDark} onChange={toggleTheme} />
+          </div>
+          <StaggeredMenu
+            items={[
+              { label: "Init", link: "#hero" },
+              { label: "Who Am I", link: "#about" },
+              { label: "Stack", link: "#skills" },
+              { label: "Projects", link: "#projects" },
+              { label: "Awards", link: "#awards" },
+              { label: "Certs", link: "#certifications" },
+              { label: "Contact", link: "#contact" }
+            ]}
+            colors={['#3f3f46', '#27272a']}
+            menuButtonColor={isDark ? '#fff' : '#000'}
+            openMenuButtonColor="#fff"
+            accentColor="#ff6316"
+          />
         </div>
       </nav>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-[#060714]/95 backdrop-blur-2xl z-[99] flex flex-col items-center justify-center transition-all duration-300 md:hidden",
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
-        )}
-      >
-        <div className="flex flex-col space-y-8 text-2xl items-center">
-          {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className="text-white/80 hover:text-white transition-colors duration-300 font-semibold tracking-wider"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
-      </div>
     </>
   );
 };

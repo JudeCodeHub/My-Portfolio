@@ -64,6 +64,31 @@ export const Awards_Acheivements = () => {
   const handlePrev = () =>
     setActive((prev) => (prev === 0 ? items.length - 1 : prev - 1));
 
+  const [dimensions, setDimensions] = React.useState({
+    width: 380,
+    height: 450,
+    containerHeight: 520,
+  });
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        if (window.innerWidth >= 1280) {
+          setDimensions({ width: 380, height: 450, containerHeight: 520 });
+        } else if (window.innerWidth >= 1024) {
+          setDimensions({ width: 280, height: 340, containerHeight: 400 });
+        } else {
+          setDimensions({ width: 380, height: 450, containerHeight: 520 });
+        }
+      }
+    };
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
   const carouselItems = React.useMemo(() => {
     return items.map((item) => ({
       image: item.imageSrc,
@@ -76,9 +101,9 @@ export const Awards_Acheivements = () => {
   return (
     <section
       id="achievements"
-      className="py-12 md:py-24 px-4 relative overflow-hidden max-w-[100vw]"
+      className="py-12 md:py-24 lg:py-8 xl:py-20 px-4 relative overflow-hidden max-w-[100vw] w-full flex flex-col justify-center items-center lg:min-h-[85vh] scroll-mt-10 lg:scroll-mt-0"
     >
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-5xl w-full">
         {/* ── Section heading ── */}
         <motion.div
           initial="hidden"
@@ -128,7 +153,7 @@ export const Awards_Acheivements = () => {
           <div
             className="hidden md:block"
             style={{
-              height: "520px",
+              height: `${dimensions.containerHeight}px`,
               width: "100%",
               position: "relative",
               zIndex: 10,
@@ -136,8 +161,8 @@ export const Awards_Acheivements = () => {
           >
             <DepthCarousel
               items={carouselItems}
-              cardWidth={380}
-              cardHeight={450}
+              cardWidth={dimensions.width}
+              cardHeight={dimensions.height}
               radius={18}
               depth={220}
               spread={90}
@@ -225,10 +250,10 @@ export const Awards_Acheivements = () => {
                     </span>
                   )}
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold leading-snug text-slate-800 dark:text-white font-outfit px-2">
+                <h3 className="text-xl md:text-2xl lg:text-xl xl:text-3xl font-bold leading-snug text-slate-800 dark:text-white font-outfit px-2">
                   {activeItem.title}
                 </h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-white/60 leading-relaxed font-inter">
+                <p className="text-sm md:text-base lg:text-sm xl:text-base text-slate-600 dark:text-white/60 leading-relaxed font-inter">
                   {activeItem.org}
                 </p>
               </motion.div>

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Menu, X, CodeXml } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X, CodeXml, Volume2, VolumeX } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
 
 const navItems = [
@@ -12,6 +12,8 @@ const navItems = [
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   // Initialize theme from HTML class or localStorage on mount
   useEffect(() => {
@@ -28,8 +30,20 @@ export const Navbar = () => {
     }
   };
 
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(e => console.log("Audio play failed:", e));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <>
+      <audio ref={audioRef} src="/Background_Audio.mp3" loop />
       {/* DESKTOP NAV (Slide Deck Style) */}
       <nav className="hidden md:flex w-full max-w-7xl mx-auto z-50 items-center justify-between px-6 py-6 pt-10 pointer-events-auto">
         {/* Left: Logo */}
@@ -55,7 +69,14 @@ export const Navbar = () => {
         </div>
 
         {/* Right: Theme Toggle Placeholder */}
-        <div className="flex-1 flex items-center justify-end gap-6 lg:pr-[80px]">
+        <div className="flex-1 flex items-center justify-end gap-4 lg:pr-[80px]">
+          <button 
+            onClick={toggleAudio}
+            className="p-2 rounded-full border border-orange-500/30 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] active:scale-95 bg-white dark:bg-[#0a0a0a]"
+            aria-label={isPlaying ? "Mute audio" : "Play audio"}
+          >
+            {isPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
+          </button>
           <ThemeToggle isDark={isDark} onChange={toggleTheme} />
         </div>
       </nav>
@@ -70,7 +91,14 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Menu Controls */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={toggleAudio}
+            className="p-1.5 rounded-full border border-orange-500/30 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-[0_0_10px_rgba(249,115,22,0.1)] active:scale-95 bg-white/50 dark:bg-[#0a0a0a]/50"
+            aria-label={isPlaying ? "Mute audio" : "Play audio"}
+          >
+            {isPlaying ? <Volume2 size={18} /> : <VolumeX size={18} />}
+          </button>
           <ThemeToggle isDark={isDark} onChange={toggleTheme} />
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}

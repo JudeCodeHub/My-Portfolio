@@ -168,7 +168,7 @@ export const ContactSection = () => {
 
       <section
         id="contact"
-        className="py-12 md:py-24 px-4 relative overflow-hidden"
+        className="py-12 md:pt-24 md:pb-40 lg:pt-8 lg:pb-28 xl:pt-24 xl:pb-48 px-4 relative overflow-hidden flex flex-col justify-center min-h-[85vh] md:min-h-0"
         style={{ background: "transparent" }}
       >
         <div className="container mx-auto max-w-5xl relative z-10">
@@ -178,7 +178,7 @@ export const ContactSection = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "0px" }}
             variants={fadeUp(0.1)}
-            className="w-full max-w-5xl mb-10 z-20 text-center flex flex-col items-center justify-center mx-auto"
+            className="w-full max-w-5xl mb-10 lg:mb-6 xl:mb-10 z-20 text-center flex flex-col items-center justify-center mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex justify-center items-center whitespace-nowrap mb-4">
               <span className="text-orange-500 shrink-0 mr-3">~$</span>
@@ -206,7 +206,7 @@ export const ContactSection = () => {
                 "0 8px 48px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.08)",
             }}
           >
-            <div className="flex flex-col justify-between lg:col-span-2 p-6 md:p-10 space-y-8">
+            <div className="flex flex-col justify-between lg:col-span-2 p-6 md:p-10 lg:p-6 xl:p-10 space-y-8 lg:space-y-5 xl:space-y-8">
               <div className="space-y-3">
                 <h3
                   className="text-2xl md:text-3xl font-bold leading-snug"
@@ -276,7 +276,7 @@ export const ContactSection = () => {
 
             {/* ── Right / form panel ── */}
             <div
-              className="flex items-center h-full w-full md:col-span-1 p-6 md:p-8"
+              className="flex items-center h-full w-full md:col-span-1 p-6 md:p-8 lg:p-6 xl:p-8"
               style={{
                 background: "rgba(255, 255, 255, 0.12)",
                 borderLeft: "1px solid rgba(255, 255, 255, 0.12)",

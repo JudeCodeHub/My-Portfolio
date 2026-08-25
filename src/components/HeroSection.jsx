@@ -88,8 +88,8 @@ export const HeroSection = () => {
 
       {/* ── Main Layout: Asymmetrical & Structural ── */}
       <div className="container relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 text-slate-800 dark:text-white lg:ml-[80px] lg:mt-[20px] mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 xl:gap-8 items-center lg:items-start">
+          <div className="col-span-1 lg:col-span-6 flex flex-col gap-8 text-slate-800 dark:text-white xl:ml-[80px] lg:ml-[20px] lg:mt-[20px] mt-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -128,8 +128,8 @@ export const HeroSection = () => {
                   cursorClassName="text-[#f97316] font-light"
                 />
               </h1>
-              <div className="mt-8">
-                <p className="text-sm md:text-base font-mono max-w-xl opacity-80 leading-relaxed border-l-2 border-foreground/30 pl-4 text-left">
+              <div className="mt-6 md:mt-8">
+                <p className="text-sm md:text-base lg:text-sm xl:text-base font-mono max-w-xl opacity-80 leading-relaxed border-l-2 border-foreground/30 pl-4 text-left">
                   Building the engine, not just the surface. Focused on scalable
                   systems and resilient infrastructure.
                 </p>
@@ -166,9 +166,9 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-            className="col-span-1 lg:col-span-6 relative flex flex-col items-center lg:items-center mt-12 lg:-mt-8"
+            className="col-span-1 lg:col-span-6 relative flex flex-col items-center lg:items-center mt-12 lg:mt-0 xl:-mt-8"
           >
-            <div className="w-full max-w-sm lg:max-w-[500px] mx-auto relative z-20">
+            <div className="w-full max-w-sm lg:max-w-[400px] xl:max-w-[500px] mx-auto relative z-20">
               <ProfileCard
                 name=""
                 title=""

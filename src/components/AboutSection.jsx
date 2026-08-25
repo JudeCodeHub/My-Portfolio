@@ -72,7 +72,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen pt-12 md:pt-28 pb-12 md:pb-16 px-4 overflow-hidden block md:flex md:flex-col md:justify-center md:items-center scroll-mt-10 md:scroll-mt-15"
+      className="relative min-h-screen pt-20 lg:pt-28 pb-16 px-4 overflow-hidden flex flex-col justify-center lg:items-center scroll-mt-10 lg:scroll-mt-15"
     >
       <motion.div
         initial="hidden"
@@ -133,12 +133,12 @@ export const AboutSection = () => {
           {/* ── Right: Bio Text ── */}
           <motion.div
             variants={fadeUp(0.4)}
-            className="lg:col-span-7 flex flex-col justify-center text-center md:text-left mt-6 md:mt-0 lg:mt-0"
+            className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left mt-6 md:mt-0"
           >
-            <h3 className="text-2xl md:text-4xl font-bold text-foreground dark:text-white leading-snug mb-2 md:mb-3 tracking-tight">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground dark:text-white leading-snug mb-2 md:mb-3 tracking-tight">
               Software Engineer
             </h3>
-            <p className="text-orange-500 font-medium tracking-widest uppercase text-xs md:text-base mb-4 md:mb-8">
+            <p className="text-orange-500 font-medium tracking-widest uppercase text-xs md:text-sm lg:text-base mb-4 md:mb-6 lg:mb-8">
               & DevOps Enthusiast
             </p>
 
@@ -153,7 +153,7 @@ export const AboutSection = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 md:mt-10 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 lg:mt-10 justify-center lg:justify-start">
               <a
                 href="#contact"
                 onClick={(e) => {
@@ -185,7 +185,7 @@ export const AboutSection = () => {
         {/* ── BOTTOM: QUICK STATS ── */}
         <motion.div
           variants={fadeUpSlow(0.8)}
-          className="hidden w-full mt-4 md:mt-12 pt-4 md:pt-8 pb-4 md:flex flex-row flex-wrap md:flex-nowrap justify-center items-center md:divide-x divide-orange-500/40 gap-y-6 md:gap-y-0"
+          className="flex w-full mt-8 lg:mt-12 pt-4 lg:pt-8 pb-4 flex-row flex-wrap md:flex-nowrap justify-center items-center md:divide-x divide-orange-500/40 gap-y-6 md:gap-y-0"
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}

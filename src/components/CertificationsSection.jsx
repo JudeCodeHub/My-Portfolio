@@ -293,7 +293,7 @@ export const CertificationsSection = () => {
   return (
     <section
       id="certifications"
-      className="w-full md:min-h-screen py-12 md:py-24 relative overflow-hidden flex flex-col items-center max-w-[100vw]"
+      className="w-full md:min-h-screen lg:min-h-[85vh] py-12 md:py-24 lg:py-8 xl:py-24 relative overflow-hidden flex flex-col items-center max-w-[100vw] scroll-mt-10 lg:scroll-mt-0"
     >
       {/* Background glow matching the terminal theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.03)_0%,_transparent_60%)] pointer-events-none" />
@@ -311,7 +311,7 @@ export const CertificationsSection = () => {
       {/* Content Container */}
       <div className="w-full max-w-5xl px-4 md:px-8 z-10">
         {/* Terminal Window Frame */}
-        <div className="w-full min-h-[400px] md:min-h-[650px] bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+        <div className="w-full min-h-[400px] md:h-[650px] lg:h-[450px] xl:h-[650px] md:min-h-0 bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
           {/* Terminal Header */}
           <div className="h-10 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 shrink-0 justify-between">
             <div className="w-14" /> {/* Spacer to keep title centered */}
@@ -326,7 +326,7 @@ export const CertificationsSection = () => {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-4 md:p-6 font-mono text-sm md:text-base">
+          <div className="p-4 md:p-6 font-mono text-sm md:text-base flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.2) transparent" }}>
             {/* Table Header (Simulated ls -la output) */}
             <div className="flex items-center text-white/40 border-b border-white/10 pb-2 mb-4 px-2 hidden md:flex">
               <div className="w-10 shrink-0"></div>

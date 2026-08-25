@@ -1,7 +1,7 @@
 export const ThemeToggle = ({ isDark = true, onChange }) => {
   return (
     <label
-      className="relative inline-flex items-center cursor-pointer scale-75 md:scale-90"
+      className="relative inline-flex items-center cursor-pointer scale-60 md:scale-90"
       title="Toggle Theme"
     >
       <input

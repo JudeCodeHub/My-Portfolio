@@ -74,6 +74,20 @@ const projects = [
   },
   {
     id: 5,
+    title: "NexBuy: Multi-Vendor E-Commerce Platform",
+    category: "Full-Stack Web App",
+    description:
+      "A full-stack multi-vendor e-commerce platform with buyer, seller, and admin dashboards, secure authentication, and integrated payments.",
+    image: "/projects/project6.png",
+    tags: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    githubUrl: "https://github.com/JudeCodeHub/NexBuy-Ecommerce-App.git",
+    liveUrl: "https://e-nexbuy.vercel.app/",
+    icon: <GitBranch size={20} />,
+    accent: "#8b5cf6",
+    terminalName: "nexbuy",
+  },
+  {
+    id: 6,
     title: "GR-10 UGC website",
     category: "Academic Project",
     description:

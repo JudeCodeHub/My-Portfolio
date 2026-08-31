@@ -62,7 +62,7 @@ const socials = [
   },
   {
     icon: FaWhatsapp,
-    href: "https://wa.me/94776345280",
+    href: "https://wa.me/94710321696",
     label: "WA",
     color: "text-[#25D366] group-hover:text-white",
     hoverBg: "hover:bg-[#25D366]",

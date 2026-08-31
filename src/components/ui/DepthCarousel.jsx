@@ -36,6 +36,7 @@ const DepthCarousel = ({
   loop = true,
   showControls = true,
   showIndicators = true,
+  enableWheel = true,
   onChange,
   className = "",
 }) => {
@@ -206,7 +207,7 @@ const DepthCarousel = ({
 
   useEffect(() => {
     const el = rootRef.current;
-    if (!el) return;
+    if (!el || !enableWheel) return;
     const onWheel = (e) => {
       const cfg = cfgRef.current;
       if (cfg.count < 2) return;
@@ -228,7 +229,7 @@ const DepthCarousel = ({
       el.removeEventListener("wheel", onWheel);
       if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
     };
-  }, [layout, setFocus]);
+  }, [layout, setFocus, enableWheel]);
 
   const onPointerDown = useCallback((e) => {
     const cfg = cfgRef.current;

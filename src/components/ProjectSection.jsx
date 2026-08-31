@@ -248,7 +248,7 @@ export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="w-full md:min-h-screen lg:min-h-[85vh] py-12 md:py-20 lg:py-10 xl:py-20 relative overflow-hidden flex flex-col items-center scroll-mt-10 lg:scroll-mt-0"
+      className="w-full md:min-h-screen lg:min-h-[85vh] py-12 md:py-12 lg:py-6 xl:py-10 relative overflow-hidden flex flex-col items-center scroll-mt-10 lg:scroll-mt-0"
     >
       {/* Background glow matching the terminal theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(249,115,22,0.05)_0%,_transparent_60%)] pointer-events-none" />
@@ -273,16 +273,16 @@ export const ProjectsSection = () => {
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 xl:px-[104px] flex flex-col items-start lg:items-center xl:items-start z-10">
         {/* 3D Rolodex Container (Desktop Only) */}
         <div
-          className="relative w-full max-w-5xl h-[650px] lg:max-w-2xl lg:h-[450px] xl:max-w-5xl xl:h-[650px] hidden md:flex items-center justify-center md:translate-x-5 md:ml-8 lg:translate-x-0 lg:ml-0 xl:translate-x-5 xl:ml-8 mt-8 lg:mt-4 xl:mt-8"
+          className="relative w-full max-w-5xl h-[min(60vh,650px)] lg:max-w-2xl lg:h-[min(55vh,450px)] xl:max-w-5xl xl:h-[min(60vh,650px)] min-h-[360px] hidden md:flex items-center justify-center md:translate-x-3 md:ml-6 lg:translate-x-0 lg:ml-0 xl:translate-x-3 xl:ml-6 mt-4 lg:mt-2 xl:mt-4"
           style={{ perspective: "2000px" }}
         >
           {/* Navigation Controls (Right Side) */}
-          <div className="absolute right-[-70px] lg:right-[-40px] xl:right-[-70px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
+          <div className="absolute right-[-48px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
             <button
               onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+              className="w-7 h-7 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
-              <ChevronUp size={20} />
+              <ChevronUp size={14} />
             </button>
 
             {/* Indicators */}
@@ -297,15 +297,15 @@ export const ProjectsSection = () => {
 
             <button
               onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+              className="w-7 h-7 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
-              <ChevronDown size={20} />
+              <ChevronDown size={14} />
             </button>
           </div>
 
           {/* Rolodex Wheel */}
           <div
-            className="relative w-full h-[600px] lg:h-[400px] xl:h-[600px]"
+            className="relative w-full h-full"
             style={{ transformStyle: "preserve-3d", willChange: "transform" }}
           >
             {projects.map((project, i) => {

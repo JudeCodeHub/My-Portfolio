@@ -72,7 +72,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen pt-20 lg:pt-28 pb-16 px-4 overflow-hidden flex flex-col justify-center lg:items-center scroll-mt-12 lg:scroll-mt-18 ml-10 "
+      className="relative min-h-screen pt-20 lg:pt-16 pb-16 lg:pb-8 px-4 overflow-hidden flex flex-col justify-center lg:items-center scroll-mt-12 lg:scroll-mt-18 ml-10 "
     >
       <motion.div
         initial="hidden"
@@ -97,13 +97,13 @@ export const AboutSection = () => {
         </div>
 
         {/* ── SPLIT LAYOUT: PHOTO (Left) | BIO TEXT (Right) ── */}
-        <motion.div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center mb-8 md:mb-12 mt-0">
+        <motion.div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center mb-8 md:mb-12 lg:mb-6 mt-0">
           {/* ── Left: Profile Image ── */}
           <motion.div
             variants={fadeUp(0.2)}
             className="lg:col-span-5 flex justify-center items-center relative mt-2 md:mt-4 lg:-mt-4"
           >
-            <div className="relative w-[200px] h-[200px] md:w-[360px] md:h-[360px] lg:w-[420px] lg:h-[420px]">
+            <div className="relative w-[200px] h-[200px] md:w-[360px] md:h-[360px] lg:w-[340px] lg:h-[340px]">
               {/* Spinning Text Ring */}
               <div className="absolute -inset-4 md:-inset-6 lg:-inset-8 z-20 pointer-events-none flex items-center justify-center">
                 <CircularText
@@ -185,7 +185,7 @@ export const AboutSection = () => {
         {/* ── BOTTOM: QUICK STATS ── */}
         <motion.div
           variants={fadeUpSlow(0.8)}
-          className="flex w-full mt-8 lg:mt-12 pt-4 lg:pt-8 pb-4 flex-row flex-wrap md:flex-nowrap justify-center items-center md:divide-x divide-orange-500/40 gap-y-6 md:gap-y-0"
+          className="flex w-full mt-8 lg:mt-6 pt-4 lg:pt-4 pb-4 lg:pb-2 flex-row flex-wrap md:flex-nowrap justify-center items-center md:divide-x divide-orange-500/40 gap-y-6 md:gap-y-0"
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}

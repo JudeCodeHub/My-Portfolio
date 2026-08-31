@@ -101,7 +101,7 @@ export const Awards_Acheivements = () => {
   return (
     <section
       id="achievements"
-      className="py-12 md:py-24 lg:py-8 xl:py-20 px-4 relative overflow-hidden max-w-[100vw] w-full flex flex-col justify-center items-center lg:min-h-[85vh] scroll-mt-10 lg:scroll-mt-0"
+      className="pt-20 md:pt-20 lg:pt-16 xl:pt-16 pb-12 md:pb-16 lg:pb-8 xl:pb-10 px-4 relative overflow-hidden max-w-[100vw] w-full flex flex-col justify-start items-center lg:min-h-[85vh] scroll-mt-10 lg:scroll-mt-0"
     >
       <div className="container mx-auto max-w-5xl w-full">
         {/* ── Section heading ── */}
@@ -110,7 +110,7 @@ export const Awards_Acheivements = () => {
           whileInView="visible"
           viewport={{ once: false, margin: "0px" }}
           variants={fadeUp(0.1)}
-          className="w-full max-w-6xl mb-10 z-10 text-center mx-auto translate-y-[4px] mt-18"
+          className="w-full max-w-6xl mb-6 z-10 text-center mx-auto translate-y-[4px] mt-2"
         >
           <h2 className="text-3xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex flex-wrap justify-center items-center md:whitespace-nowrap mb-4 mt-2 px-2">
             <span className="text-orange-500 shrink-0 mr-2 md:mr-3">~$</span>
@@ -174,6 +174,7 @@ export const Awards_Acheivements = () => {
               blur={6}
               autoplay={false}
               loop={false}
+              enableWheel={false}
               onChange={(idx) => setActive(idx)}
             />
           </div>

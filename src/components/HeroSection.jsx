@@ -184,7 +184,7 @@ export const HeroSection = () => {
                 className="w-full"
               />
 
-              <div className="hidden md:flex absolute -right-6 lg:-right-16 top-0 bottom-0 my-auto h-fit flex-col gap-4 z-30 justify-center">
+              <div className="hidden md:flex absolute -right-4 xl:-right-6 2xl:-right-16 top-0 bottom-0 my-auto h-fit flex-col gap-4 z-30 justify-center">
                 {socials.map((social, i) => (
                   <motion.a
                     initial={{ opacity: 0, x: -10 }}

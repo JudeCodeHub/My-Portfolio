@@ -55,7 +55,7 @@ export const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="w-full min-h-screen lg:min-h-[85vh] py-12 md:pt-20 lg:pt-12 xl:pt-44 md:pb-28 lg:pb-16 xl:pb-28 flex flex-col justify-start lg:justify-center items-center px-4 relative overflow-hidden scroll-mt-20 lg:scroll-mt-0 ml-4"
+      className="w-full min-h-screen lg:min-h-[85vh] py-12 md:pt-20 lg:pt-12 xl:pt-16 md:pb-28 lg:pb-16 xl:pb-16 flex flex-col justify-start lg:justify-center items-center px-4 relative overflow-hidden scroll-mt-20 lg:scroll-mt-0 ml-4"
     >
       {/* Deep Space Background Glow */}
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent pointer-events-none" />
@@ -77,7 +77,7 @@ export const SkillsSection = () => {
         </p>
       </motion.div>
 
-      <div className="w-full max-w-5xl flex flex-col gap-16 md:gap-10 lg:gap-6 xl:gap-10 z-10 mx-auto mt-4 md:mt-6 lg:mt-2 xl:mt-6">
+      <div className="w-full max-w-5xl flex flex-col gap-16 md:gap-10 lg:gap-6 xl:gap-6 z-10 mx-auto mt-4 md:mt-6 lg:mt-2 xl:mt-2">
         {graphData.map((node, i) => (
           <div
             key={node.id}
@@ -89,7 +89,7 @@ export const SkillsSection = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.2 }}
-              className="relative w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 xl:w-32 xl:h-32 flex-shrink-0 flex items-center justify-center"
+              className="relative w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 xl:w-28 xl:h-28 flex-shrink-0 flex items-center justify-center"
             >
               {/* Pulsing Orbital Rings */}
               <div className="absolute inset-0 rounded-full border border-orange-500/30 animate-[ping_3s_linear_infinite]" />
@@ -103,7 +103,7 @@ export const SkillsSection = () => {
               />
 
               {/* Core Node Body */}
-              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-20 xl:h-20 rounded-full bg-black/80 border-2 border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center backdrop-blur-sm z-10 transition-transform duration-500 hover:scale-110 cursor-pointer">
+              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full bg-black/80 border-2 border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center backdrop-blur-sm z-10 transition-transform duration-500 hover:scale-110 cursor-pointer">
                 <span className="font-mono text-[9px] md:text-[10px] lg:text-[9px] xl:text-[10px] font-bold text-white tracking-widest text-center px-2">
                   {node.title}
                 </span>

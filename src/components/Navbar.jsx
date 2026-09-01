@@ -44,7 +44,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="/Background_Audio.mp3" loop />
+      <audio ref={audioRef} src="/new-theme.mp3" loop />
       {/* DESKTOP NAV (Slide Deck Style) */}
       <nav className="hidden md:flex w-full max-w-7xl mx-auto z-50 items-center justify-between px-6 py-6 lg:py-4 xl:py-6 lg:pt-6 xl:pt-10 pointer-events-auto">
         {/* Left: Logo */}

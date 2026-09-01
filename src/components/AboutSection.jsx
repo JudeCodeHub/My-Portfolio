@@ -72,7 +72,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen pt-20 lg:pt-16 pb-16 lg:pb-8 px-4 overflow-hidden flex flex-col justify-center lg:items-center scroll-mt-12 lg:scroll-mt-18 ml-10 "
+      className="relative min-h-screen pt-20 lg:pt-16 pb-16 lg:pb-8 px-4 overflow-hidden flex flex-col justify-center lg:items-center scroll-mt-12 lg:scroll-mt-18 md:ml-10"
     >
       <motion.div
         initial="hidden"

@@ -7,6 +7,7 @@ import {
   Server,
   Cloud,
   BrainCircuit,
+  Bot,
   TerminalSquare,
   ChevronUp,
   ChevronDown,
@@ -88,6 +89,20 @@ const projects = [
   },
   {
     id: 6,
+    title: "EdgeCase: AI Test Automation Agent",
+    category: "AI / ML",
+    description:
+      "AI-powered test automation agent that analyzes repository code, generates test cases, and runs them in real browsers with video recordings and pass/fail results.",
+    image: "/projects/project7.png",
+    tags: ["Next.js", "TypeScript", "Playwright", "Google Gemini"],
+    githubUrl: "https://github.com/JudeCodeHub/AI-Test-Automation-Agent.git",
+    liveUrl: "https://testedgecase.vercel.app/",
+    icon: <Bot size={20} />,
+    accent: "#14b8a6",
+    terminalName: "edgecase",
+  },
+  {
+    id: 7,
     title: "GR-10 UGC website",
     category: "Academic Project",
     description:

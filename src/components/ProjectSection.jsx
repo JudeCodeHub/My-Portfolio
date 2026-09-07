@@ -8,6 +8,7 @@ import {
   Cloud,
   BrainCircuit,
   Bot,
+  Shield,
   TerminalSquare,
   ChevronUp,
   ChevronDown,
@@ -89,6 +90,20 @@ const projects = [
   },
   {
     id: 6,
+    title: "End-to-End DevSecOps Kubernetes Project",
+    category: "DevSecOps",
+    description:
+      "A complete DevSecOps pipeline that integrates security scanning into CI/CD and deploys containerized applications to Kubernetes with automated build, test, and security gates.",
+    image: "/projects/project8.png",
+    tags: ["Docker", "Kubernetes", "CI/CD", "DevSecOps"],
+    githubUrl:
+      "https://github.com/JudeCodeHub/End-to-End-DevSecOps-Kubernetes-Project.git",
+    icon: <Shield size={20} />,
+    accent: "#ef4444",
+    terminalName: "devsecops-k8s",
+  },
+  {
+    id: 7,
     title: "EdgeCase: AI Test Automation Agent",
     category: "AI / ML",
     description:

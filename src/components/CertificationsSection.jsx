@@ -103,6 +103,12 @@ const CERTIFICATIONS_DATA = [
         type: "IMAGE",
         image: "/Certificates/KodeKloud/cert13.jpg",
       },
+      {
+        id: "kk-14",
+        name: "cert14.png",
+        type: "IMAGE",
+        image: "/Certificates/KodeKloud/cert14.png",
+      },
     ],
   },
   {

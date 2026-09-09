@@ -144,18 +144,18 @@ const fadeUp = (delay = 0) => ({
 function RolodexCard({ project, isActive }) {
   return (
     <div
-      className={`w-full h-full rounded-2xl flex flex-col overflow-hidden bg-[#0a0a0a]/80 backdrop-blur-md border transition-all duration-700 ease-in-out ${
+      className={`w-full h-full rounded-2xl flex flex-col overflow-hidden bg-white/90 dark:bg-[#0a0a0a]/80 backdrop-blur-md border transition-all duration-700 ease-in-out ${
         isActive
-          ? "border-white/20 shadow-[0_0_40px_rgba(249,115,22,0.15)]"
-          : "border-white/5 scale-95"
+          ? "border-slate-300 dark:border-white/20 shadow-[0_0_40px_rgba(249,115,22,0.15)]"
+          : "border-slate-200 dark:border-white/5 scale-95"
       }`}
     >
       {/* Terminal Header Bar (Macbook Style) */}
-      <div className="h-10 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 shrink-0 justify-between">
+      <div className="h-10 bg-slate-100 dark:bg-[#1a1a1a] border-b border-slate-200 dark:border-white/5 flex items-center px-4 shrink-0 justify-between">
         <div className="w-14" /> {/* Spacer for perfect centering */}
         <div className="flex items-center justify-center pointer-events-none">
-          <TerminalSquare size={14} className="text-white/30 mr-2" />
-          <span className="text-white/90 text-xs font-mono">
+          <TerminalSquare size={14} className="text-slate-400 dark:text-white/30 mr-2" />
+          <span className="text-slate-700 dark:text-white/90 text-xs font-mono">
             ~/{project.terminalName}.sh
           </span>
         </div>
@@ -310,7 +310,7 @@ export const ProjectsSection = () => {
           <div className="absolute right-[-48px] top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2">
             <button
               onClick={handlePrev}
-              className="w-7 h-7 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+              className="w-7 h-7 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-[#111] text-slate-700 dark:text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
               <ChevronUp size={14} />
             </button>
@@ -327,7 +327,7 @@ export const ProjectsSection = () => {
 
             <button
               onClick={handleNext}
-              className="w-7 h-7 rounded-full border border-white/20 bg-[#111] text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
+              className="w-7 h-7 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-[#111] text-slate-700 dark:text-white flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-black transition-all shadow-lg active:scale-90"
             >
               <ChevronDown size={14} />
             </button>
@@ -398,7 +398,7 @@ export const ProjectsSection = () => {
           <div className="flex items-center gap-6 mt-8 z-30">
             <button
               onClick={handlePrev}
-              className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white"
+              className="w-10 h-10 bg-white dark:bg-[#111] rounded-full border border-slate-300 dark:border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-slate-700 dark:text-white"
             >
               <ChevronUp className="-rotate-90" size={20} />
             </button>
@@ -412,7 +412,7 @@ export const ProjectsSection = () => {
             </div>
             <button
               onClick={handleNext}
-              className="w-10 h-10 bg-[#111] rounded-full border border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-white"
+              className="w-10 h-10 bg-white dark:bg-[#111] rounded-full border border-slate-300 dark:border-white/20 flex items-center justify-center active:scale-90 shadow-lg text-slate-700 dark:text-white"
             >
               <ChevronDown className="-rotate-90" size={20} />
             </button>

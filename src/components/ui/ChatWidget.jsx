@@ -32,7 +32,7 @@ function ChatMessage({ role, content }) {
           "max-w-[85%] px-4 py-2 text-sm leading-relaxed whitespace-pre-wrap wrap-break-word",
           isUser
             ? "bg-orange-500 text-white rounded-2xl rounded-br-sm"
-            : "bg-[#1a1a1a] border border-white/10 text-white/85 rounded-2xl rounded-bl-sm",
+            : "bg-slate-100 dark:bg-[#1a1a1a] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white/85 rounded-2xl rounded-bl-sm",
         )}
       >
         {content}
@@ -147,7 +147,7 @@ export default function ChatWidget() {
         aria-label={isOpen ? "Close chat" : "Open chat"}
         className={cn(
           "fixed bottom-6 right-6 md:bottom-20 md:right-22 z-60 w-14 h-14 rounded-full flex items-center justify-center",
-          "bg-[#111] border border-orange-500/40 text-orange-500",
+          "bg-slate-200/80 dark:bg-[#111] border border-orange-500/40 text-orange-500",
           "shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300",
           "hover:bg-orange-500 hover:text-white hover:border-orange-500",
           "hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] hover:scale-105 active:scale-95",
@@ -169,26 +169,26 @@ export default function ChatWidget() {
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 className={cn(
                   "fixed z-70 flex flex-col overflow-hidden shadow-2xl",
-                  "bg-[#0c0c0c] border border-white/10 origin-bottom-right",
+                  "bg-white dark:bg-[#0c0c0c] border border-slate-200 dark:border-white/10 origin-bottom-right",
                   "bottom-24 left-4 right-4 h-[60dvh] max-h-[70dvh] rounded-2xl",
-                  "md:bottom-38 md:left-auto md:right-22 md:w-135 md:h-140 md:max-h-[70vh]",
+                  "md:bottom-38 md:left-auto md:right-22 md:w-150 md:h-140 md:max-h-[70vh]",
                 )}
               >
-                <div className="h-14 shrink-0 flex items-center justify-between px-4 border-b border-white/10 bg-[#141414]">
+                <div className="h-14 shrink-0 flex items-center justify-between px-4 border-b border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#141414]">
                   <div className="flex flex-col leading-tight font-mono min-w-0">
-                    <span className="text-sm text-white/85 truncate">
+                    <span className="text-sm text-slate-800 dark:text-white/85 truncate">
                       <span className="text-orange-500">~$</span> ask-about-jude.ai
                     </span>
-                    <span className="text-[11px] text-white/40 truncate">
+                    <span className="text-[11px] text-slate-400 dark:text-white/40 truncate">
                       AI assistant, answering on Jude's behalf
                     </span>
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
                     aria-label="Close chat"
-                    className="w-8 h-8 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer shrink-0"
+                    className="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer shrink-0"
                   >
-                    <X size={18} className="text-white/60" />
+                    <X size={18} className="text-slate-600 dark:text-white/60" />
                   </button>
                 </div>
 
@@ -197,7 +197,7 @@ export default function ChatWidget() {
                   className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3 [scrollbar-width:thin] [scrollbar-color:rgba(249,115,22,0.4)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-orange-500/40 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-orange-500/70"
                 >
                   {messages.length === 0 && (
-                    <p className="text-sm text-white/40 font-mono text-center mt-6">
+                    <p className="text-sm text-slate-400 dark:text-white/40 font-mono text-center mt-6">
                       <span className="text-orange-500">~$</span> ask me anything about
                       Jude's background, skills, or projects
                     </p>
@@ -205,7 +205,7 @@ export default function ChatWidget() {
                   {messages.map((m, i) =>
                     m.role === "assistant" && m.content === "" && isStreaming && i === messages.length - 1 ? (
                       <div key={i} className="flex justify-start">
-                        <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl rounded-bl-sm">
+                        <div className="bg-slate-100 dark:bg-[#1a1a1a] border border-slate-200 dark:border-white/10 rounded-2xl rounded-bl-sm">
                           <TypingIndicator />
                         </div>
                       </div>
@@ -221,7 +221,7 @@ export default function ChatWidget() {
                   <div ref={messagesEndRef} />
                 </div>
 
-                <div className="shrink-0 border-t border-white/10 bg-[#141414] p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+                <div className="shrink-0 border-t border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#141414] p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
                   <div className="flex items-end gap-2">
                     <textarea
                       ref={textareaRef}
@@ -231,7 +231,7 @@ export default function ChatWidget() {
                       placeholder="Type a message..."
                       rows={1}
                       disabled={isStreaming}
-                      className="flex-1 resize-none max-h-24 bg-[#0c0c0c] border border-white/10 rounded-xl px-3 py-2 text-sm text-white/90 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-orange-500 disabled:opacity-60"
+                      className="flex-1 resize-none max-h-24 bg-white dark:bg-[#0c0c0c] border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-800 dark:text-white/90 placeholder:text-slate-400 dark:placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-orange-500 disabled:opacity-60"
                     />
                     <button
                       onClick={sendMessage}

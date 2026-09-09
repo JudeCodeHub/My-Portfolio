@@ -242,10 +242,10 @@ export const HeroSection = () => {
           );
         }}
       >
-        <div className="w-[28px] h-[46px] border-2 border-slate-400 dark:border-white/40 group-hover:border-orange-500/70 rounded-full flex justify-center p-1.5 transition-colors duration-300">
+        <div className="w-[28px] h-[46px] border-2 border-orange-500/60 group-hover:border-orange-500/70 rounded-full flex justify-center p-1.5 transition-colors duration-300">
           <div className="w-1.5 h-2 bg-orange-500 rounded-full animate-mouse-scroll" />
         </div>
-        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-slate-500 dark:text-white/70 group-hover:text-orange-500 transition-colors duration-300">
+        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-orange-500/70 group-hover:text-orange-500 transition-colors duration-300">
           Scroll
         </span>
       </motion.div>

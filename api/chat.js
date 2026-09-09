@@ -1,6 +1,4 @@
 import { GoogleGenAI } from "@google/genai";
-// Reaches outside api/ deliberately: the bio lives in src/data/ so it's easy
-// to find and edit, even though only this server-side function reads it.
 import { buildSystemPrompt } from "../src/data/about-me.js";
 
 const MODEL = "gemini-3.6-flash";
@@ -72,10 +70,6 @@ function sendJson(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
-// Vercel's Node runtime parses a JSON request body onto req.body before the
-// handler runs. Plain Node servers (e.g. this repo's local Vite dev
-// middleware) don't do that, so fall back to reading the raw stream — this
-// keeps the handler working identically in both environments.
 async function readJsonBody(req) {
   if (req.body !== undefined) {
     return typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body;
@@ -159,8 +153,6 @@ export default async function handler(req, res) {
       }
     }
   } catch (err) {
-    // Streaming had already started, so we can't send a structured error
-    // response at this point — just end the (possibly truncated) response.
     console.error("Gemini streaming error:", err);
   } finally {
     res.end();

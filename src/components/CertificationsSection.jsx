@@ -317,11 +317,11 @@ export const CertificationsSection = () => {
       {/* Content Container */}
       <div className="w-full max-w-5xl px-4 md:px-8 z-10">
         {/* Terminal Window Frame */}
-        <div className="w-full min-h-[400px] md:h-[650px] lg:h-[450px] xl:h-[650px] md:min-h-0 bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+        <div className="w-full min-h-[400px] md:h-[650px] lg:h-[450px] xl:h-[650px] md:min-h-0 bg-white dark:bg-[#0a0a0a] rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl flex flex-col">
           {/* Terminal Header */}
-          <div className="h-10 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 shrink-0 justify-between">
+          <div className="h-10 bg-slate-100 dark:bg-[#1a1a1a] border-b border-slate-200 dark:border-white/5 flex items-center px-4 shrink-0 justify-between">
             <div className="w-14" /> {/* Spacer to keep title centered */}
-            <div className="flex-1 text-center text-white/40 text-xs font-mono select-none">
+            <div className="flex-1 text-center text-slate-400 dark:text-white/40 text-xs font-mono select-none">
               ~/certifications
             </div>
             <div className="flex gap-2 w-14 justify-end">
@@ -334,7 +334,7 @@ export const CertificationsSection = () => {
           {/* Terminal Body */}
           <div className="p-4 md:p-6 font-mono text-sm md:text-base flex-1 overflow-y-auto overflow-x-hidden relative" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.2) transparent" }}>
             {/* Table Header (Simulated ls -la output) */}
-            <div className="flex items-center text-white/40 border-b border-white/10 pb-2 mb-4 px-2 hidden md:flex">
+            <div className="flex items-center text-slate-400 dark:text-white/40 border-b border-slate-200 dark:border-white/10 pb-2 mb-4 px-2 hidden md:flex">
               <div className="w-10 shrink-0"></div>
               <div className="w-32 lg:w-40 shrink-0 text-left">Permissions</div>
               <div className="w-24 shrink-0 text-left">Owner</div>
@@ -351,9 +351,9 @@ export const CertificationsSection = () => {
                     {/* Folder Row */}
                     <div
                       onClick={() => toggleFolder(folderIdx)}
-                      className="flex items-center hover:bg-white/5 p-2 rounded cursor-pointer transition-colors group select-none"
+                      className="flex items-center hover:bg-slate-100 dark:hover:bg-white/5 p-2 rounded cursor-pointer transition-colors group select-none"
                     >
-                      <div className="w-10 shrink-0 text-white/40 flex justify-center">
+                      <div className="w-10 shrink-0 text-slate-400 dark:text-white/40 flex justify-center">
                         {isOpen ? (
                           <ChevronDown size={16} />
                         ) : (
@@ -363,7 +363,7 @@ export const CertificationsSection = () => {
                       <div className="hidden md:block w-32 lg:w-40 shrink-0 text-left text-orange-500/80">
                         drwxr-xr-x
                       </div>
-                      <div className="w-24 shrink-0 hidden md:block text-left text-white/50">
+                      <div className="w-24 shrink-0 hidden md:block text-left text-slate-500 dark:text-white/50">
                         jude
                       </div>
                       <div className="w-32 lg:w-48 shrink-0 hidden lg:block"></div>
@@ -385,26 +385,26 @@ export const CertificationsSection = () => {
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="overflow-hidden flex flex-col pl-4 sm:pl-0 border-l border-white/10 sm:border-transparent ml-4 sm:ml-0"
+                          className="overflow-hidden flex flex-col pl-4 sm:pl-0 border-l border-slate-200 dark:border-white/10 sm:border-transparent ml-4 sm:ml-0"
                         >
                           {folder.files.map((file, fileIdx) => (
                             <div
                               key={fileIdx}
                               onClick={() => setSelectedCert(file)}
-                              className="flex items-center hover:bg-white/10 p-2 rounded cursor-pointer transition-colors group select-none"
+                              className="flex items-center hover:bg-slate-100 dark:hover:bg-white/10 p-2 rounded cursor-pointer transition-colors group select-none"
                             >
                               <div className="w-10 shrink-0 hidden md:block"></div>
-                              <div className="hidden md:block w-32 lg:w-40 shrink-0 text-left text-white/60">
+                              <div className="hidden md:block w-32 lg:w-40 shrink-0 text-left text-slate-500 dark:text-white/60">
                                 -rw-r--r--
                               </div>
-                              <div className="w-24 shrink-0 hidden md:block text-left text-white/50">
+                              <div className="w-24 shrink-0 hidden md:block text-left text-slate-500 dark:text-white/50">
                                 jude
                               </div>
                               <div className="w-32 lg:w-48 shrink-0 hidden lg:block"></div>
-                              <div className="flex-1 pl-4 flex items-center justify-start gap-3 text-left text-white/80 group-hover:text-white transition-colors truncate">
+                              <div className="flex-1 pl-4 flex items-center justify-start gap-3 text-left text-slate-700 dark:text-white/80 group-hover:text-slate-900 dark:group-hover:text-white transition-colors truncate">
                                 <FileImage
                                   size={16}
-                                  className="text-white/40 group-hover:text-white/80 shrink-0"
+                                  className="text-slate-400 dark:text-white/40 group-hover:text-slate-600 dark:group-hover:text-white/80 shrink-0"
                                 />
                                 <span className="truncate">{file.name}</span>
                               </div>
@@ -438,43 +438,43 @@ export const CertificationsSection = () => {
                   animate={{ scale: 1, y: 0 }}
                   exit={{ scale: 0.9, y: 20 }}
                   transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                  className="relative w-[95vw] md:w-[90vw] max-w-5xl md:h-[80vh] flex flex-col bg-[#111] rounded-xl border border-white/10 overflow-hidden shadow-2xl"
+                  className="relative w-[95vw] md:w-[90vw] max-w-5xl md:h-[80vh] flex flex-col bg-white dark:bg-[#111] rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Modal Header */}
-                  <div className="h-12 bg-[#1a1a1a] border-b border-white/10 flex items-center px-4 shrink-0 justify-between">
+                  <div className="h-12 bg-slate-100 dark:bg-[#1a1a1a] border-b border-slate-200 dark:border-white/10 flex items-center px-4 shrink-0 justify-between">
                     <div className="flex items-center gap-2 flex-1 overflow-hidden">
                       <FileImage
                         size={16}
                         className="text-orange-500 shrink-0"
                       />
-                      <h3 className="text-white/60 font-mono text-sm font-bold truncate">
+                      <h3 className="text-slate-600 dark:text-white/60 font-mono text-sm font-bold truncate">
                         {selectedCert.name}
                       </h3>
                     </div>
                     <div className="flex justify-end shrink-0">
                       <button
                         onClick={() => setSelectedCert(null)}
-                        className="w-8 h-8 md:w-5 md:h-5 rounded-full md:bg-red-500 md:hover:bg-red-400 hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer group"
+                        className="w-8 h-8 md:w-5 md:h-5 rounded-full md:bg-red-500 md:hover:bg-red-400 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors flex items-center justify-center cursor-pointer group"
                       >
                         <X
                           size={20}
-                          className="text-white/60 md:text-white md:w-[17px] md:h-[17px]"
+                          className="text-slate-600 dark:text-white/60 md:text-white md:w-[17px] md:h-[17px]"
                         />
                       </button>
                     </div>
                   </div>
 
                   {/* Image / PDF Container */}
-                  <div className="flex-1 bg-black/50 p-4 sm:p-8 flex items-center justify-center overflow-hidden h-[60vh] md:h-auto md:overflow-auto relative group/modal">
+                  <div className="flex-1 bg-slate-100 dark:bg-black/50 p-4 sm:p-8 flex items-center justify-center overflow-hidden h-[60vh] md:h-auto md:overflow-auto relative group/modal">
                     {/* DESKTOP PREV BUTTON */}
                     <button
                       onClick={handlePrev}
                       disabled={!hasPrev}
                       className={`hidden md:flex absolute left-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full items-center justify-center transition-all z-10 opacity-0 ${
                         !hasPrev
-                          ? "bg-black/60 border border-white text-white cursor-not-allowed group-hover/modal:opacity-30"
-                          : "bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white cursor-pointer group-hover/modal:opacity-100"
+                          ? "bg-white/80 dark:bg-black/60 border border-slate-400 dark:border-white text-slate-700 dark:text-white cursor-not-allowed group-hover/modal:opacity-30"
+                          : "bg-white/80 dark:bg-black/60 hover:bg-white dark:hover:bg-black/80 border border-slate-400 dark:border-white hover:border-orange-500 hover:text-orange-500 text-slate-700 dark:text-white cursor-pointer group-hover/modal:opacity-100"
                       }`}
                     >
                       <ChevronLeft size={28} className="mr-1" />
@@ -499,8 +499,8 @@ export const CertificationsSection = () => {
                       disabled={!hasNext}
                       className={`hidden md:flex absolute right-4 top-[45%] -translate-y-1/2 w-12 h-12 rounded-full items-center justify-center transition-all z-10 opacity-0 ${
                         !hasNext
-                          ? "bg-black/60 border border-white text-white cursor-not-allowed group-hover/modal:opacity-30"
-                          : "bg-black/60 hover:bg-black/80 border border-white hover:border-orange-500 hover:text-orange-500 text-white cursor-pointer group-hover/modal:opacity-100"
+                          ? "bg-white/80 dark:bg-black/60 border border-slate-400 dark:border-white text-slate-700 dark:text-white cursor-not-allowed group-hover/modal:opacity-30"
+                          : "bg-white/80 dark:bg-black/60 hover:bg-white dark:hover:bg-black/80 border border-slate-400 dark:border-white hover:border-orange-500 hover:text-orange-500 text-slate-700 dark:text-white cursor-pointer group-hover/modal:opacity-100"
                       }`}
                     >
                       <ChevronRight size={28} className="ml-1" />
@@ -508,14 +508,14 @@ export const CertificationsSection = () => {
                   </div>
 
                   {/* MOBILE NAVIGATION BUTTONS (Underneath Image) */}
-                  <div className="md:hidden h-16 bg-[#1a1a1a] border-t border-white/10 flex items-center justify-between px-4 sm:px-6 shrink-0">
+                  <div className="md:hidden h-16 bg-slate-100 dark:bg-[#1a1a1a] border-t border-slate-200 dark:border-white/10 flex items-center justify-between px-4 sm:px-6 shrink-0">
                     <button
                       onClick={handlePrev}
                       disabled={!hasPrev}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
                         !hasPrev
-                          ? "text-white/30 cursor-not-allowed"
-                          : "text-white hover:bg-white/10 hover:text-orange-500 cursor-pointer"
+                          ? "text-slate-300 dark:text-white/30 cursor-not-allowed"
+                          : "text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10 hover:text-orange-500 cursor-pointer"
                       }`}
                     >
                       <ChevronLeft size={20} />
@@ -524,7 +524,7 @@ export const CertificationsSection = () => {
                       </span>
                     </button>
 
-                    <div className="text-white/40 font-mono text-xs sm:text-sm tracking-wider">
+                    <div className="text-slate-400 dark:text-white/40 font-mono text-xs sm:text-sm tracking-wider">
                       ~/{selectedCert.name.split(".")[0]}
                     </div>
 
@@ -533,8 +533,8 @@ export const CertificationsSection = () => {
                       disabled={!hasNext}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
                         !hasNext
-                          ? "text-white/30 cursor-not-allowed"
-                          : "text-white hover:bg-white/10 hover:text-orange-500 cursor-pointer"
+                          ? "text-slate-300 dark:text-white/30 cursor-not-allowed"
+                          : "text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10 hover:text-orange-500 cursor-pointer"
                       }`}
                     >
                       <span className="hidden sm:block font-mono text-sm">

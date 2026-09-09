@@ -103,8 +103,8 @@ export const SkillsSection = () => {
               />
 
               {/* Core Node Body */}
-              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full bg-black/80 border-2 border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center backdrop-blur-sm z-10 transition-transform duration-500 hover:scale-110 cursor-pointer">
-                <span className="font-mono text-[9px] md:text-[10px] lg:text-[9px] xl:text-[10px] font-bold text-white tracking-widest text-center px-2">
+              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full bg-white/90 dark:bg-black/80 border-2 border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center backdrop-blur-sm z-10 transition-transform duration-500 hover:scale-110 cursor-pointer">
+                <span className="font-mono text-[9px] md:text-[10px] lg:text-[9px] xl:text-[10px] font-bold text-slate-800 dark:text-white tracking-widest text-center px-2">
                   {node.title}
                 </span>
               </div>
@@ -123,12 +123,12 @@ export const SkillsSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.2 + sIdx * 0.1 }}
                   whileHover={{ scale: 1.15, y: -5 }}
-                  className="group relative w-14 h-14 md:w-16 md:h-16 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-[#0a0a0a] border border-white/10 hover:border-orange-500 rounded-lg flex flex-col items-center justify-center cursor-crosshair transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                  className="group relative w-14 h-14 md:w-16 md:h-16 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-white dark:bg-[#0a0a0a] border border-slate-200 dark:border-white/10 hover:border-orange-500 rounded-lg flex flex-col items-center justify-center cursor-crosshair transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]"
                 >
                   {/* Skill Icon */}
                   <div className="w-8 h-8 md:w-9 md:h-9 lg:w-7 lg:h-7 xl:w-9 xl:h-9 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.5)] flex items-center justify-center">
                     {skill === "github2" ? (
-                      <GithubIcon className="w-full h-full text-white" />
+                      <GithubIcon className="w-full h-full text-slate-800 dark:text-white" />
                     ) : skill === "ansible" ? (
                       <AnsibleIcon />
                     ) : (

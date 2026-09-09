@@ -146,7 +146,7 @@ export default function ChatWidget() {
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? "Close chat" : "Open chat"}
         className={cn(
-          "fixed bottom-20 right-22 z-60 w-14 h-14 rounded-full flex items-center justify-center",
+          "fixed bottom-6 right-6 md:bottom-20 md:right-22 z-60 w-14 h-14 rounded-full flex items-center justify-center",
           "bg-[#111] border border-orange-500/40 text-orange-500",
           "shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300",
           "hover:bg-orange-500 hover:text-white hover:border-orange-500",
@@ -170,8 +170,8 @@ export default function ChatWidget() {
                 className={cn(
                   "fixed z-70 flex flex-col overflow-hidden shadow-2xl",
                   "bg-[#0c0c0c] border border-white/10 origin-bottom-right",
-                  "bottom-0 right-0 w-full h-[85vh] rounded-t-2xl",
-                  "md:bottom-38 md:right-22 md:w-135 md:h-140 md:max-h-[70vh] md:rounded-2xl",
+                  "bottom-24 left-4 right-4 h-[60dvh] max-h-[70dvh] rounded-2xl",
+                  "md:bottom-38 md:left-auto md:right-22 md:w-135 md:h-140 md:max-h-[70vh]",
                 )}
               >
                 <div className="h-14 shrink-0 flex items-center justify-between px-4 border-b border-white/10 bg-[#141414]">

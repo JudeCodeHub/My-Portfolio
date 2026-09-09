@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
+import { ExperienceSection } from "../components/ExperienceSection";
 import { ProjectsSection } from "../components/ProjectSection";
 import { Awards_Acheivements } from "../components/Awards_Acheivements";
 import { ContactSection } from "../components/ContactSection";
@@ -9,12 +10,14 @@ import { CertificationsSection } from "../components/CertificationsSection";
 import { FooterSection } from "../components/FooterSection";
 import MoltenMetal from "../components/ui/MoltenMetal";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import OptionWheel from "../components/ui/OptionWheel";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SECTIONS = [
   { name: "Init", id: "hero", component: <HeroSection /> },
   { name: "whoami", id: "about", component: <AboutSection /> },
+  { name: "experience", id: "experience", component: <ExperienceSection /> },
   { name: "stack", id: "skills", component: <SkillsSection /> },
   { name: "Projects", id: "projects", component: <ProjectsSection /> },
   { name: "Awards", id: "awards", component: <Awards_Acheivements /> },
@@ -38,18 +41,23 @@ function useIsMobile() {
 export const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   // Listen for hash changes and custom events to sync navigation on desktop
   useEffect(() => {
     const handleNavigation = (hash) => {
-      if (isMobile) return; // Mobile uses native scrolling
       const targetHash = hash.replace("#", "");
       if (!targetHash) return;
 
       const index = SECTIONS.findIndex((s) => s.id === targetHash);
       if (index !== -1) {
-        setActiveIndex(index);
+        if (!isMobile) setActiveIndex(index);
+        return;
       }
+
+      // Unknown section id (e.g. a hand-edited/stale hash) — this isn't a
+      // real section, so send it to the same 404 page unmatched routes get.
+      navigate("/404", { replace: true });
     };
 
     const onHashChange = () => handleNavigation(window.location.hash);
@@ -65,7 +73,7 @@ export const Home = () => {
       window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("navigateSection", onCustomNav);
     };
-  }, [isMobile]);
+  }, [isMobile, navigate]);
 
   return (
     <div
@@ -118,6 +126,7 @@ export const Home = () => {
         <main className="relative z-10 pointer-events-auto w-full overflow-x-hidden">
           <HeroSection />
           <AboutSection />
+          <ExperienceSection />
           <SkillsSection />
           <ProjectsSection />
           <Awards_Acheivements />

@@ -1,3 +1,5 @@
+import { PROJECTS } from "./projects.js";
+
 export const aboutMe = {
   name: "Judechihan",
   role: "Software Engineer",
@@ -47,74 +49,6 @@ export const aboutMe = {
       period: "Current",
       summary:
         "Builds full-stack applications with React and Next.js, and deploys/automates them with Docker, Kubernetes, and Terraform.",
-    },
-  ],
-
-  projects: [
-    {
-      name: "SitePulse (New Portfolio Project)",
-      summary:
-        "A project demonstrating clean UI/UX and modern frontend capabilities.",
-      tech: ["React", "Tailwind CSS", "Framer Motion"],
-      link: "https://site-pulse-snowy-three.vercel.app/",
-      github: "https://github.com/JudeCodeHub/SitePulse.git",
-    },
-    {
-      name: "GitOps CI/CD Pipeline for Go",
-      summary:
-        "End-to-end pipeline that builds, tests, and deploys a Go app to Kubernetes using GitOps principles for automated delivery.",
-      tech: ["GitHub Actions", "Docker", "Kubernetes", "ArgoCD", "Helm"],
-      link: "",
-      github: "https://github.com/JudeCodeHub/Go-web-app.git",
-    },
-    {
-      name: "Resumind (Resume Analyzer using NLP)",
-      summary:
-        "An intelligent system leveraging NLP to parse, analyze, and score resumes against job descriptions for optimized screening.",
-      tech: ["Python", "NLP", "Machine Learning", "Streamlit"],
-      link: "https://resumindjude.netlify.app/",
-      github: "https://github.com/JudeCodeHub/Resume-Analyzer.git",
-    },
-    {
-      name: "CiniVerse",
-      summary:
-        "A scalable movie database platform with secure authentication, built on a robust MERN stack architecture.",
-      tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-      link: "",
-      github: "https://github.com/JudeCodeHub/CiniVerse.git",
-    },
-    {
-      name: "NexBuy",
-      summary:
-        "A full-stack multi-vendor e-commerce platform with buyer, seller, and admin dashboards, secure authentication, and integrated payments.",
-      tech: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
-      link: "https://e-nexbuy.vercel.app/",
-      github: "https://github.com/JudeCodeHub/NexBuy-Ecommerce-App.git",
-    },
-    {
-      name: "End-to-End DevSecOps Kubernetes Project",
-      summary:
-        "A complete DevSecOps pipeline that integrates security scanning into CI/CD and deploys containerized applications to Kubernetes with automated build, test, and security gates.",
-      tech: ["Docker", "Kubernetes", "CI/CD", "DevSecOps"],
-      link: "",
-      github:
-        "https://github.com/JudeCodeHub/End-to-End-DevSecOps-Kubernetes-Project.git",
-    },
-    {
-      name: "EdgeCase",
-      summary:
-        "AI-powered test automation agent that analyzes repository code, generates test cases, and runs them in real browsers with video recordings and pass/fail results.",
-      tech: ["Next.js", "TypeScript", "Playwright", "Google Gemini"],
-      link: "https://testedgecase.vercel.app/",
-      github: "https://github.com/JudeCodeHub/AI-Test-Automation-Agent.git",
-    },
-    {
-      name: "GR-10 UGC Website Redesign",
-      summary:
-        "Academic project: redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
-      tech: ["Figma", "HCI", "UI/UX"],
-      link: "https://www.figma.com/file/PkX0gMzUMNAYHwMvLSHoku/UGC-website-Redesigned",
-      github: "",
     },
   ],
 
@@ -192,7 +126,9 @@ export function buildSystemPrompt(data = aboutMe) {
 
   sections.push(
     `Keep answers concise (a few sentences to a short paragraph) and friendly. When asked a broad question like ` +
-      `"tell me about Jude", give a real overview (role, what he builds, where he studies) rather than only his location.`,
+      `"tell me about Jude", give a real overview (role, what he builds, where he studies) rather than only his location. ` +
+      `Each project below has a number matching its position on the site's Projects section (e.g. "project 4" or ` +
+      `"the 4th project" means the one numbered 4) — use that number to resolve numbered references.`,
   );
 
   sections.push(
@@ -223,11 +159,23 @@ export function buildSystemPrompt(data = aboutMe) {
           )
         : ["Not specified."]),
       "",
-      "Projects:",
-      ...data.projects.map(
-        (p) =>
-          `- ${p.name}: ${p.summary} [${formatList(p.tech)}]${p.link ? ` — Live: ${p.link}` : ""}${p.github ? ` — GitHub: ${p.github}` : ""}`,
-      ),
+      "Projects (numbered in the order they appear on the site, #1-9):",
+      ...PROJECTS.flatMap((p) => [
+        `${p.id}. ${p.title} [${p.category}]`,
+        `   ${p.summary}`,
+        ...p.highlights.map((h) => `   • ${h}`),
+        `   Tech: ${formatList(p.tech)}`,
+        `   Links: ${
+          [
+            p.liveUrl && `Live: ${p.liveUrl}`,
+            p.githubUrl && `GitHub: ${p.githubUrl}`,
+            p.figmaUrl && `Figma: ${p.figmaUrl}`,
+            p.linkedinUrl && `LinkedIn post: ${p.linkedinUrl}`,
+          ]
+            .filter(Boolean)
+            .join(" | ") || "Not published"
+        }`,
+      ]),
       "",
       "Certifications:",
       ...(data.certifications.length

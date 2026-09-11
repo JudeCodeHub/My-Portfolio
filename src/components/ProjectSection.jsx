@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
-  GitBranch,
-  Layout,
-  Server,
-  Cloud,
-  BrainCircuit,
-  Bot,
-  Shield,
   TerminalSquare,
   ChevronUp,
   ChevronDown,
@@ -16,121 +8,7 @@ import {
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaFigma } from "react-icons/fa";
 import Shuffle from "./ui/Shuffle";
-
-const projects = [
-  {
-    id: 1,
-    title: "New Portfolio Project",
-    category: "Frontend Development",
-    description:
-      "A newly added project demonstrating clean UI/UX and modern frontend capabilities.",
-    image: "/projects/project5.png",
-    tags: ["React", "Tailwind CSS", "Framer Motion"],
-    githubUrl: "https://github.com/JudeCodeHub/SitePulse.git",
-    liveUrl: "https://site-pulse-snowy-three.vercel.app/",
-    icon: <TerminalSquare size={20} />,
-    accent: "#3b82f6", // blue-500
-    terminalName: "sitepulse",
-  },
-  {
-    id: 2,
-    title: "GitOps CI/CD Pipeline for Go",
-    category: "DevOps",
-    description:
-      "End-to-end pipeline that builds, tests, and deploys a Go app to Kubernetes using GitOps principles for automated delivery.",
-    image: "/projects/project2.png",
-    tags: ["GitHub Actions", "Docker", "Kubernetes", "ArgoCD", "Helm"],
-    githubUrl: "https://github.com/JudeCodeHub/Go-web-app.git",
-    linkedinUrl: "https://lnkd.in/p/gJYUK7A6",
-    icon: <Server size={20} />,
-    accent: "#10b981",
-    terminalName: "gitops-pipeline",
-  },
-  {
-    id: 3,
-    title: "Resume Analyzer using NLP",
-    category: "AI / ML",
-    description:
-      "An intelligent system leveraging NLP to parse, analyze, and score resumes against job descriptions for optimized screening.",
-    image: "/projects/project4.png",
-    tags: ["Python", "NLP", "Machine Learning", "Streamlit"],
-    githubUrl: "https://github.com/JudeCodeHub/Resume-Analyzer.git",
-    liveUrl: "https://resumindjude.netlify.app/",
-    icon: <BrainCircuit size={20} />,
-    accent: "#ec4899",
-    terminalName: "resumind",
-  },
-  {
-    id: 4,
-    title: "CiniVerse: Full-Stack Platform",
-    category: "Web App",
-    description:
-      "A scalable movie database platform with secure authentication, built on a robust MERN stack architecture.",
-    image: "/projects/project1.png",
-    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    githubUrl: "https://github.com/JudeCodeHub/CiniVerse.git",
-    linkedinUrl: "https://lnkd.in/p/g4cWRg2x",
-    icon: <Cloud size={20} />,
-    accent: "#f59e0b",
-    terminalName: "ciniverse",
-  },
-  {
-    id: 5,
-    title: "NexBuy: Multi-Vendor E-Commerce Platform",
-    category: "Full-Stack Web App",
-    description:
-      "A full-stack multi-vendor e-commerce platform with buyer, seller, and admin dashboards, secure authentication, and integrated payments.",
-    image: "/projects/project6.png",
-    tags: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
-    githubUrl: "https://github.com/JudeCodeHub/NexBuy-Ecommerce-App.git",
-    liveUrl: "https://e-nexbuy.vercel.app/",
-    icon: <GitBranch size={20} />,
-    accent: "#8b5cf6",
-    terminalName: "nexbuy",
-  },
-  {
-    id: 6,
-    title: "End-to-End DevSecOps Kubernetes Project",
-    category: "DevSecOps",
-    description:
-      "A complete DevSecOps pipeline that integrates security scanning into CI/CD and deploys containerized applications to Kubernetes with automated build, test, and security gates.",
-    image: "/projects/project8.png",
-    tags: ["Docker", "Kubernetes", "CI/CD", "DevSecOps"],
-    githubUrl:
-      "https://github.com/JudeCodeHub/End-to-End-DevSecOps-Kubernetes-Project.git",
-    icon: <Shield size={20} />,
-    accent: "#ef4444",
-    terminalName: "devsecops-k8s",
-  },
-  {
-    id: 7,
-    title: "EdgeCase: AI Test Automation Agent",
-    category: "AI / ML",
-    description:
-      "AI-powered test automation agent that analyzes repository code, generates test cases, and runs them in real browsers with video recordings and pass/fail results.",
-    image: "/projects/project7.png",
-    tags: ["Next.js", "TypeScript", "Playwright", "Google Gemini"],
-    githubUrl: "https://github.com/JudeCodeHub/AI-Test-Automation-Agent.git",
-    liveUrl: "https://testedgecase.vercel.app/",
-    icon: <Bot size={20} />,
-    accent: "#14b8a6",
-    terminalName: "edgecase",
-  },
-  {
-    id: 7,
-    title: "GR-10 UGC website",
-    category: "Academic Project",
-    description:
-      "Redesigned the official university website for an HCI module, focusing on navigation flow, layout structure, and accessibility.",
-    image: "/projects/project3.png",
-    tags: ["Figma", "HCI", "UI/UX"],
-    figmaUrl:
-      "https://www.figma.com/file/PkX0gMzUMNAYHwMvLSHoku/UGC-website-Redesigned",
-    icon: <Layout size={20} />,
-    accent: "#6366f1",
-    terminalName: "ugc-website",
-  },
-];
+import { PROJECTS as projects } from "@/data/projects";
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 30 },
@@ -172,7 +50,7 @@ function RolodexCard({ project, isActive }) {
           <img
             src={project.image}
             alt={project.title}
-            className={`w-full h-full object-cover object-left-top transition-all duration-1000 ${isActive ? "opacity-100" : "opacity-30 grayscale"}`}
+            className={`w-full h-full object-cover ${project.mobileImagePosition === "center" ? "object-center md:object-left-top" : "object-left-top"} transition-all duration-1000 ${isActive ? "opacity-100" : "opacity-30 grayscale"}`}
           />
 
           {/* Action Links Overlay (Visible on active card) */}

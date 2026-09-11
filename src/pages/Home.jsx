@@ -17,7 +17,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const SECTIONS = [
   { name: "Init", id: "hero", component: <HeroSection /> },
   { name: "whoami", id: "about", component: <AboutSection /> },
-  { name: "experience", id: "experience", component: <ExperienceSection /> },
+  { name: "journey", id: "experience", component: <ExperienceSection /> },
   { name: "stack", id: "skills", component: <SkillsSection /> },
   { name: "Projects", id: "projects", component: <ProjectsSection /> },
   { name: "Awards", id: "awards", component: <Awards_Acheivements /> },

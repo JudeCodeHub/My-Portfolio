@@ -107,7 +107,7 @@ export const Navbar = () => {
             items={[
               { label: "Init", link: "#hero" },
               { label: "Who Am I", link: "#about" },
-              { label: "Experience", link: "#experience" },
+              { label: "Journey", link: "#experience" },
               { label: "Stack", link: "#skills" },
               { label: "Projects", link: "#projects" },
               { label: "Awards", link: "#awards" },

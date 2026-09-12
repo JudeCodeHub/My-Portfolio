@@ -7,6 +7,10 @@ import {
   ChevronUp,
   ChevronDown,
   ExternalLink,
+  Plus,
+  X,
+  Sparkles,
+  Layers,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaFigma } from "react-icons/fa";
 import Shuffle from "./ui/Shuffle";
@@ -24,9 +28,18 @@ const fadeUp = (delay = 0) => ({
 interface RolodexCardProps {
   project: Project;
   isActive: boolean;
+  onViewDetails: (project: Project) => void;
+  isDetailsOpen: boolean;
+  onCloseDetails: () => void;
 }
 
-function RolodexCard({ project, isActive }: RolodexCardProps) {
+function RolodexCard({
+  project,
+  isActive,
+  onViewDetails,
+  isDetailsOpen,
+  onCloseDetails,
+}: RolodexCardProps) {
   return (
     <div
       className={`w-full h-full rounded-2xl flex flex-col overflow-hidden bg-white/90 dark:bg-[#0a0a0a]/80 backdrop-blur-md border transition-all duration-700 ease-in-out ${
@@ -59,16 +72,17 @@ function RolodexCard({ project, isActive }: RolodexCardProps) {
           />
 
           {isActive && (
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-wrap justify-center items-center gap-2 md:gap-3 z-20 w-[95%] md:w-auto">
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-nowrap justify-center items-center gap-2 md:gap-3 z-20 w-[95%] md:w-auto">
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/95 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                  aria-label="Source"
+                  className="flex items-center gap-0 sm:gap-2 px-3 py-2 sm:px-4 rounded-lg sm:rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-[0_0_18px_rgba(255,255,255,0.2)]"
                 >
                   <FaGithub size={14} />
-                  <span className="text-xs font-medium tracking-wide">
+                  <span className="hidden sm:inline text-xs font-medium tracking-wide">
                     Source
                   </span>
                 </a>
@@ -79,10 +93,11 @@ function RolodexCard({ project, isActive }: RolodexCardProps) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/95 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                  aria-label="Live Demo"
+                  className="flex items-center gap-0 sm:gap-2 px-3 py-2 sm:px-4 rounded-lg sm:rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-[0_0_18px_rgba(255,255,255,0.2)]"
                 >
                   <ExternalLink size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">
+                  <span className="hidden sm:inline text-xs font-medium tracking-wide text-white">
                     Live Demo
                   </span>
                 </a>
@@ -93,38 +108,153 @@ function RolodexCard({ project, isActive }: RolodexCardProps) {
                   href={project.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/95 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-2xl"
+                  aria-label="LinkedIn Post"
+                  className="flex items-center gap-0 sm:gap-2 px-3 py-2 sm:px-4 rounded-lg sm:rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-[0_0_18px_rgba(255,255,255,0.2)]"
                 >
                   <FaLinkedin size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">
+                  <span className="hidden sm:inline text-xs font-medium tracking-wide text-white">
                     LinkedIn Post
                   </span>
                 </a>
               )}
+
+              <button
+                onClick={() => onViewDetails(project)}
+                aria-label="View project details"
+                className="flex items-center gap-0 sm:gap-2 px-3 py-2 sm:px-4 rounded-lg sm:rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white hover:bg-orange-500 hover:border-orange-500 hover:scale-105 transition-all duration-300 shadow-[0_0_18px_rgba(255,255,255,0.2)]"
+              >
+                <Plus size={14} />
+                <span className="hidden sm:inline text-xs font-medium tracking-wide">
+                  Details
+                </span>
+              </button>
 
               {project.figmaUrl && (
                 <a
                   href={project.figmaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/95 backdrop-blur-xl border border-white/10 text-white/90 hover:text-white hover:bg-[#F24E1E] hover:border-[#F24E1E] hover:scale-105 transition-all duration-300 shadow-2xl"
+                  aria-label="Figma Design"
+                  className="flex items-center gap-0 sm:gap-2 px-3 py-2 sm:px-4 rounded-lg sm:rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white hover:bg-[#F24E1E] hover:border-[#F24E1E] hover:scale-105 transition-all duration-300 shadow-[0_0_18px_rgba(255,255,255,0.2)]"
                 >
                   <FaFigma size={14} />
-                  <span className="text-xs font-medium tracking-wide text-white">
+                  <span className="hidden sm:inline text-xs font-medium tracking-wide text-white">
                     Figma Design
                   </span>
                 </a>
               )}
             </div>
           )}
+
+          <ProjectDetailsPanel
+            project={isDetailsOpen ? project : null}
+            onClose={onCloseDetails}
+          />
         </div>
       </div>
     </div>
   );
 }
 
+interface ProjectDetailsPanelProps {
+  project: Project | null;
+  onClose: () => void;
+}
+
+function ProjectDetailsPanel({ project, onClose }: ProjectDetailsPanelProps) {
+  useEffect(() => {
+    if (!project) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [project, onClose]);
+
+  return (
+    <AnimatePresence>
+      {project && (
+        <motion.div
+          initial={{ y: "-100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-100%" }}
+          transition={{ type: "spring", stiffness: 300, damping: 32 }}
+          className="absolute inset-0 z-40 rounded-b-2xl bg-[#0a0a0a]/97 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+        >
+          <div className="flex-1 overflow-y-auto px-6 pt-5 pb-6 flex flex-col gap-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-orange-500">
+                  {project.category}
+                </span>
+                <h3 className="text-xl font-bold text-white leading-snug mt-1">
+                  {project.title}
+                </h3>
+              </div>
+
+              <button
+                onClick={onClose}
+                aria-label="Close project details"
+                className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-black/60 border border-white/10 text-white/80 hover:text-white hover:bg-orange-500 hover:border-orange-500 transition-all duration-300"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <p className="text-sm text-white/70 leading-relaxed">
+              {project.summary}
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-white/90">
+                <Sparkles size={14} className="text-orange-500" />
+                <span className="text-xs font-mono font-bold uppercase tracking-widest">
+                  Highlights
+                </span>
+              </div>
+              <ul className="flex flex-col gap-2.5">
+                {project.highlights.map((highlight, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-2.5 text-sm text-white/70 leading-relaxed"
+                  >
+                    <span className="shrink-0 text-orange-500 mt-0.5">›</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-white/90">
+                <Layers size={14} className="text-orange-500" />
+                <span className="text-xs font-mono font-bold uppercase tracking-widest">
+                  Tech Stack
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1.5 rounded-full text-[11px] font-mono font-medium bg-white/5 border border-white/10 text-white/70 hover:text-orange-400 hover:border-orange-500/40 hover:bg-orange-500/5 hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export const ProjectsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(
+    null,
+  );
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
@@ -244,7 +374,13 @@ export const ProjectsSection = () => {
                     willChange: "transform, opacity, filter",
                   }}
                 >
-                  <RolodexCard project={project} isActive={isActive} />
+                  <RolodexCard
+                    project={project}
+                    isActive={isActive}
+                    onViewDetails={setSelectedProject}
+                    isDetailsOpen={selectedProject?.id === project.id}
+                    onCloseDetails={() => setSelectedProject(null)}
+                  />
                 </motion.div>
               );
             })}
@@ -262,7 +398,13 @@ export const ProjectsSection = () => {
                 transition={{ duration: 0.3 }}
                 className="absolute inset-0"
               >
-                <RolodexCard project={projects[activeIndex]} isActive={true} />
+                <RolodexCard
+                  project={projects[activeIndex]}
+                  isActive={true}
+                  onViewDetails={setSelectedProject}
+                  isDetailsOpen={selectedProject?.id === projects[activeIndex].id}
+                  onCloseDetails={() => setSelectedProject(null)}
+                />
               </motion.div>
             </AnimatePresence>
           </div>

@@ -1,0 +1,149 @@
+"use client";
+
+import { motion } from "framer-motion";
+import StackIcon from "tech-stack-icons";
+import { GithubIcon } from "hugeicons-react";
+import Shuffle from "./ui/Shuffle";
+
+const AnsibleIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-full h-full">
+    <path fill="#1A1918" d="M126 64c0 34.2-27.8 62-62 62S2 98.2 2 64 29.8 2 64 2s62 27.8 62 62"/>
+    <path fill="#FFF" d="M65 39.9l16 39.6-24.1-19.1L65 39.9zm28.5 48.7L68.9 29.2c-.7-1.7-2.1-2.6-3.8-2.6-1.7 0-3.2.9-3.9 2.6L34 94.3h9.3L54 67.5l32 25.9c1.3 1 2.2 1.5 3.4 1.5 2.4 0 4.5-1.8 4.5-4.4.1-.5-.1-1.2-.4-1.9z"/>
+  </svg>
+);
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" as const, delay },
+  },
+});
+
+const graphData = [
+  {
+    id: "languages",
+    title: "LANGUAGES",
+    skills: ["js", "typescript", "python", "java"],
+  },
+  {
+    id: "frontend",
+    title: "FRONTEND",
+    skills: ["html5", "css3", "react", "nextjs2", "tailwindcss"],
+  },
+  {
+    id: "backend",
+    title: "BACKEND",
+    skills: ["nodejs", "nestjs", "postgresql", "mongodb"],
+  },
+  {
+    id: "devops",
+    title: "DEVOPS",
+    skills: [
+      "linux",
+      "git",
+      "github2",
+      "docker",
+      "ansible",
+      "kubernetes",
+      "aws",
+      "terraform",
+    ],
+  },
+];
+
+export const SkillsSection = () => {
+  return (
+    <section
+      id="skills"
+      className="w-full min-h-screen lg:min-h-[85vh] py-12 md:pt-20 lg:pt-12 xl:pt-16 md:pb-28 lg:pb-16 xl:pb-16 flex flex-col justify-start lg:justify-center items-center px-4 relative overflow-hidden scroll-mt-20 lg:scroll-mt-0 md:ml-4"
+    >
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent pointer-events-none" />
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "0px" }}
+        variants={fadeUp(0.1)}
+        className="w-full max-w-6xl mb-1 md:mb-2 z-10 text-center"
+      >
+        <h2 className="text-4xl md:text-5xl font-mono font-bold text-slate-800 dark:text-white tracking-tight flex gap-3 justify-center">
+          <span className="text-orange-500">~$</span>
+          <Shuffle text="stack" loop={true} loopDelay={3} />
+        </h2>
+        <p className="text-slate-700 dark:text-white/90 font-mono text-[15px] mt-2 uppercase tracking-[0.3em]">
+          {"// Technologies & Tools I work with"}
+        </p>
+      </motion.div>
+
+      <div className="w-full max-w-5xl flex flex-col gap-16 md:gap-10 lg:gap-6 xl:gap-6 z-10 mx-auto mt-4 md:mt-6 lg:mt-2 xl:mt-2">
+        {graphData.map((node, i) => (
+          <div
+            key={node.id}
+            className="relative flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.2 }}
+              className="relative w-24 h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 xl:w-28 xl:h-28 flex-shrink-0 flex items-center justify-center"
+            >
+              <div className="absolute inset-0 rounded-full border border-orange-500/30 animate-[ping_3s_linear_infinite]" />
+              <div
+                className="absolute inset-2 rounded-full border border-orange-500/20 animate-[spin_10s_linear_infinite]"
+                style={{ borderTopColor: "transparent" }}
+              />
+              <div
+                className="absolute inset-4 rounded-full border border-orange-500/20 animate-[spin_15s_linear_infinite_reverse]"
+                style={{ borderBottomColor: "transparent" }}
+              />
+
+              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full bg-white/90 dark:bg-black/80 border-2 border-orange-500 shadow-[0_0_30px_rgba(249,115,22,0.4)] flex items-center justify-center backdrop-blur-sm z-10 transition-transform duration-500 hover:scale-110 cursor-pointer">
+                <span className="font-mono text-[9px] md:text-[10px] lg:text-[9px] xl:text-[10px] font-bold text-slate-800 dark:text-white tracking-widest text-center px-2">
+                  {node.title}
+                </span>
+              </div>
+            </motion.div>
+
+            <div className="hidden md:block absolute left-[112px] lg:left-[96px] xl:left-[128px] right-0 top-1/2 -translate-y-1/2 h-[1px] bg-gradient-to-r from-orange-500/50 to-transparent -z-10" />
+
+            <div className="flex-1 flex flex-wrap justify-center md:justify-start items-center gap-x-3 gap-y-10 md:gap-4 md:gap-y-8 lg:gap-3 lg:gap-y-6 xl:gap-5 xl:gap-y-10 relative z-10 mt-2 md:mt-0">
+              {node.skills.map((skill, sIdx) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.2 + sIdx * 0.1 }}
+                  whileHover={{ scale: 1.15, y: -5 }}
+                  className="group relative w-14 h-14 md:w-16 md:h-16 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-white dark:bg-[#0a0a0a] border border-slate-200 dark:border-white/10 hover:border-orange-500 rounded-lg flex flex-col items-center justify-center cursor-crosshair transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                >
+                  <div className="w-8 h-8 md:w-9 md:h-9 lg:w-7 lg:h-7 xl:w-9 xl:h-9 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.5)] flex items-center justify-center">
+                    {skill === "github2" ? (
+                      <GithubIcon className="w-full h-full text-slate-800 dark:text-white" />
+                    ) : skill === "ansible" ? (
+                      <AnsibleIcon />
+                    ) : (
+                      <StackIcon name={skill} />
+                    )}
+                  </div>
+
+
+                  <div className="absolute -bottom-5 md:-bottom-6 lg:-bottom-5 xl:-bottom-6 font-mono font-bold text-[9px] md:text-[10px] lg:text-[9px] xl:text-[10px] text-slate-700 dark:text-white/90 group-hover:text-orange-500 tracking-widest uppercase transition-colors duration-300 pointer-events-none whitespace-nowrap">
+                    {skill === "github2"
+                      ? "github"
+                      : skill === "nextjs2"
+                        ? "nextjs"
+                        : skill}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};

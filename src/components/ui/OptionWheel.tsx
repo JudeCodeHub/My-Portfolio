@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect, type CSSProperties } from "react";
+import { useRef, useState, useCallback, useEffect, useLayoutEffect, type CSSProperties } from "react";
 import "./OptionWheel.css";
 
 const DEFAULT_ITEMS = [
@@ -64,6 +64,48 @@ interface OptionWheelProps {
   className?: string;
 }
 
+// Used only for the item's resting position in the initial/server-rendered
+// markup, so it must be a pure function of props — never of `window` or
+// `getComputedStyle` (like the px-based `rowH` in WheelConfig, which reads
+// the client's actual root font-size). Expressing the offset in `rem`
+// instead of pre-multiplied `px` keeps the server and client output
+// byte-identical and lets the browser resolve the real pixels itself,
+// avoiding a hydration mismatch when a visitor's root font-size isn't 16px.
+const getRestStyle = (
+  d: number,
+  props: {
+    fontSize: number;
+    spacing: number;
+    curve: number;
+    tilt: number;
+    side: "left" | "right";
+    fade: number;
+    minOpacity: number;
+    blur: number;
+  },
+): CSSProperties => {
+  const rowHRem = props.fontSize * props.spacing;
+  const mirror = props.side === "right" ? -1 : 1;
+  const tiltRad = (props.tilt * Math.PI) / 180;
+  const R = tiltRad > 0.0005 ? rowHRem / tiltRad : 0;
+  const dist = Math.abs(d);
+  let x = 0;
+  let y = d * rowHRem;
+  let rot = 0;
+  if (R > 0) {
+    const ang = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, d * tiltRad));
+    y = R * Math.sin(ang);
+    x = -mirror * R * (1 - Math.cos(ang)) * props.curve;
+    rot = (mirror * ang * 180) / Math.PI;
+  }
+  return {
+    transform: `translate(${x.toFixed(4)}rem, calc(${y.toFixed(4)}rem - 50%)) rotate(${rot.toFixed(3)}deg)`,
+    opacity: Math.max(props.minOpacity, 1 - dist * props.fade),
+    filter: props.blur > 0 ? `blur(${(dist * props.blur).toFixed(2)}px)` : "none",
+    ["--ow-p" as string]: Math.max(0, 1 - Math.min(dist, 1)).toFixed(4),
+  } as CSSProperties;
+};
+
 const OptionWheel = ({
   items = DEFAULT_ITEMS,
   defaultSelected = 0,
@@ -88,6 +130,7 @@ const OptionWheel = ({
 }: OptionWheelProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const initialSelectedRef = useRef(defaultSelected);
   const posRef = useRef(defaultSelected);
   const targetRef = useRef(defaultSelected);
   const rafRef = useRef<number | null>(null);
@@ -315,7 +358,7 @@ const OptionWheel = ({
     [applyTarget],
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     applyTarget(targetRef.current, false);
   }, [
     items,
@@ -376,6 +419,16 @@ const OptionWheel = ({
           role="option"
           aria-selected={selectedIndex === index}
           className={`option-wheel__item font-sans tracking-tight${selectedIndex === index ? " option-wheel__item--selected" : ""}`}
+          style={getRestStyle(index - initialSelectedRef.current, {
+            fontSize,
+            spacing,
+            curve,
+            tilt,
+            side,
+            fade,
+            minOpacity,
+            blur,
+          })}
           onClick={() => handleItemClick(index)}
         >
           <div className="dial-node">

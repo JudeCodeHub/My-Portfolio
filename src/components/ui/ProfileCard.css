@@ -45,11 +45,14 @@
 .pc-card-wrapper {
   perspective: 500px;
   position: relative;
-  touch-action: none;
   width: 100%;
   display: flex;
   justify-content: center;
   animation: floatUpAndDown 4s ease-in-out infinite;
+}
+
+.pc-card-wrapper.pc-tilt-enabled {
+  touch-action: none;
 }
 
 .pc-behind {

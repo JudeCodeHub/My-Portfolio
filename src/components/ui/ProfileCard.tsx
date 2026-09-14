@@ -368,7 +368,7 @@ const ProfileCardComponent = ({
   return (
     <div
       ref={wrapRef}
-      className={`pc-card-wrapper ${className}`.trim()}
+      className={`pc-card-wrapper ${enableTilt ? "pc-tilt-enabled" : ""} ${className}`.trim()}
       style={cardStyle}
     >
       {behindGlowEnabled && <div className="pc-behind" />}

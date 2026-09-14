@@ -38,7 +38,13 @@ const SECTIONS: Section[] = [
 ];
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
+  // Defaults to true (mobile) rather than false: the server has no way to
+  // know the visitor's screen width, so whatever this starts as is what
+  // paints first, for every visitor, before JS has loaded. On a real phone
+  // over a real network that gap is long enough to be visible, so it must
+  // default to the layout that's actually correct for a phone (the plain
+  // stacked sections) rather than the desktop OptionWheel UI.
+  const [isMobile, setIsMobile] = useState(true);
 
   useLayoutEffect(() => {
     const checkIsMobile = () => setIsMobile(window.innerWidth < 768);

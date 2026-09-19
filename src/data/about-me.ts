@@ -198,9 +198,9 @@ export function buildSystemPrompt(data: AboutMe = aboutMe) {
           )
         : ["Not specified."]),
       "",
-      "Projects (numbered in the order they appear on the site, #1-9):",
-      ...PROJECTS.flatMap((p) => [
-        `${p.id}. ${p.title} [${p.category}]`,
+      `Projects (numbered in the order they appear on the site, #1-${PROJECTS.length}):`,
+      ...PROJECTS.flatMap((p, i) => [
+        `${i + 1}. ${p.title} [${p.category}]`,
         `   ${p.summary}`,
         ...p.highlights.map((h) => `   • ${h}`),
         `   Tech: ${formatList(p.tech)}`,

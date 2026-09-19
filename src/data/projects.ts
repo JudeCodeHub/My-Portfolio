@@ -17,6 +17,39 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: 10,
+    title: "Microservices E-Commerce Platform on AWS EKS",
+    category: "DevSecOps / Cloud",
+    summary:
+      "Designed and deployed a production-style, 11-service e-commerce platform on AWS, covering the full DevOps lifecycle from infrastructure provisioning to a live, publicly-accessible application.",
+    highlights: [
+      "Provisioned all AWS infrastructure — VPC, EC2, EKS, ECR, and S3 remote state — entirely as code using Terraform",
+      "Set up 11 independent Jenkins CI/CD pipelines across a polyglot stack (Go, Java, .NET, Node.js, Python), each building and pushing a Docker image to ECR",
+      "Automated deployments by having each pipeline commit the new image tag to the Kubernetes manifests, with ArgoCD syncing every change into the live EKS cluster",
+      "Deployed Prometheus and Grafana for observability, and made the app publicly live via Route53 DNS and an AWS Load Balancer",
+    ],
+    tech: [
+      "AWS EKS",
+      "Terraform",
+      "Jenkins",
+      "Docker",
+      "ArgoCD",
+      "Prometheus",
+      "Grafana",
+      "Route53",
+      "Go",
+      "Java",
+      ".NET",
+      "Node.js",
+      "Python",
+    ],
+    image: "/projects/project10.png",
+    githubUrl:
+      "https://github.com/JudeCodeHub/ecommerce-microservices-aws-eks.git",
+    linkedinUrl: "https://lnkd.in/p/ghBWJ4ZJ",
+    terminalName: "ecommerce-eks",
+  },
+  {
     id: 1,
     title: "DevSecOps Pipeline for a Three-Tier App on AWS EKS",
     category: "DevSecOps / Cloud",

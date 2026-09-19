@@ -181,7 +181,7 @@ function ProjectDetailsPanel({ project, onClose }: ProjectDetailsPanelProps) {
           transition={{ type: "spring", stiffness: 300, damping: 32 }}
           className="absolute inset-0 z-40 rounded-b-2xl bg-[#0a0a0a]/97 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
         >
-          <div className="flex-1 overflow-y-auto px-6 pt-5 pb-6 flex flex-col gap-5">
+          <div className="flex-1 overflow-y-auto px-6 pt-5 pb-6 flex flex-col gap-5 [scrollbar-width:thin] [scrollbar-color:rgba(249,115,22,0.4)_transparent] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-orange-500/40 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-orange-500/70">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-orange-500">
